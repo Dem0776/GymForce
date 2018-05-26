@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Inicio extends javafx.application.Application{
- 
+	public static Stage stage;
 	public static void main(String[] args) {
 		launch(args);
 	}
