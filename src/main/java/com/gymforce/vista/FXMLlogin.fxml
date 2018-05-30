@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLloginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLoginController">
    <children>
       <GridPane layoutX="147.0" layoutY="121.0" prefHeight="90.0" prefWidth="307.0">
         <columnConstraints>
@@ -50,10 +50,10 @@
       </GridPane>
       <ImageView fitHeight="118.0" fitWidth="187.0" layoutX="67.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../recursos/MonoGym.png.jpg" />
+            <Image url="@../recursos/MonoGym.jpg" />
          </image>
       </ImageView>
-      <JFXButton layoutX="300.0" layoutY="211.0" onAction="#btnLogin" prefHeight="25.0" prefWidth="151.0" text="Login" />
-      <JFXButton layoutX="300.0" layoutY="260.0" onAction="#btnSalir" prefHeight="25.0" prefWidth="151.0" text="Salir" />
+      <JFXButton layoutX="300.0" layoutY="211.0" onAction="#accederMenu" prefHeight="25.0" prefWidth="151.0" text="Login" />
+      <JFXButton layoutX="300.0" layoutY="260.0" onAction="#salirAplicacion" prefHeight="25.0" prefWidth="151.0" text="Salir" />
    </children>
 </AnchorPane>
