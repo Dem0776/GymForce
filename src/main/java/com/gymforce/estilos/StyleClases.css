@@ -1,0 +1,12 @@
+.tab{
+	-fx-background-color: #45B7AF;	
+}
+
+.tab-header-background{
+	-fx-background-color: white;	
+}
+
+.titulos{
+	-fx-font-size: 20;
+	-fx-font-family: "Ebrima";	
+}

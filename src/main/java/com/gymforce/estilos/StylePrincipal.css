@@ -1,0 +1,27 @@
+.parent{
+	-fx-background-color: #fff;
+}
+
+.sidebar{
+	-fx-background-color: #333645;
+}
+
+.lblTitulo{
+	-fx-background-color: #00A2D3;
+	-fx-font-size: 18;
+	-fx-font-family: "Ebrima";
+	-fx-text-fill: white;
+}
+
+.iconos{
+	-fx-fill:#7C8184;
+}
+
+.menus{
+	-fx-font-size: 16;
+	-fx-font-family: "Calibri light";
+	-fx-text-fill: #7C8184;
+}
+.btns:hover{
+	-fx-background-color: #202332;
+}

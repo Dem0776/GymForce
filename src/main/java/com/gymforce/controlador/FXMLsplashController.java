@@ -42,7 +42,7 @@ public class FXMLsplashController implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
-			Parent fxml = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLlogin.fxml"));
+			Parent fxml = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLlogin1.fxml"));
 			makeStageDrageable();
 			AnimationGenerator animationGenerator = new AnimationGenerator();
 			animationGenerator.applyFadeAnimationOn01(parent, 5000, 1, 0.8, 1, (e) -> {

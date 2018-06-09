@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" stylesheets="@../estilos/StyleClases.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="40.0" />
+            <JFXTabPane prefHeight="560.0" prefWidth="950.0">
+               <tabs>
+                  <Tab text="Ver Clases">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab text="Agregar Clase">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0">
+                           <children>
+                              <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulos" text="Clase" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="100.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="200.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="350.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField promptText="Nombre" />
+                                                <JFXTextField promptText="Descripcion" />
+                                                <JFXTextField promptText="Precio" />
+                                                <JFXTextField promptText="Instructor" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="275.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <JFXButton prefHeight="40.0" prefWidth="150.0" text="Asignar Horario">
+                                       <VBox.margin>
+                                          <Insets left="700.0" top="20.0" />
+                                       </VBox.margin>
+                                    </JFXButton>
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <JFXButton prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Modificar Clase">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0">
+                           <children>
+                              <VBox prefHeight="523.0" prefWidth="950.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulos" text="Clase" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="100.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="200.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="350.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField promptText="Nombre" />
+                                                <JFXTextField promptText="Descripcion" />
+                                                <JFXTextField promptText="Precio" />
+                                                <JFXTextField promptText="Instructor" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="275.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <JFXButton prefHeight="40.0" prefWidth="150.0" text="Asignar Horario">
+                                       <VBox.margin>
+                                          <Insets left="700.0" top="20.0" />
+                                       </VBox.margin>
+                                    </JFXButton>
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <JFXButton prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

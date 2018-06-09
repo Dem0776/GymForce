@@ -1,7 +1,12 @@
 package com.gymforce.controlador;
 
-import javafx.event.ActionEvent;
+import java.io.IOException;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class FXMLprincipalController {
@@ -10,47 +15,49 @@ public class FXMLprincipalController {
     private BorderPane principal;
 
     @FXML
-    void salir(ActionEvent event) {
+    void hbClases(MouseEvent event) throws IOException {
+    	AnchorPane clase;
+    	clase = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLclases.fxml"));
+		principal.setRight(clase);
+    }
+
+    @FXML
+    void hbEmpleados(MouseEvent event) {
 
     }
 
     @FXML
-    void verClases(ActionEvent event) {
+    void hbFinanzas(MouseEvent event) {
 
     }
 
     @FXML
-    void verEmpleados(ActionEvent event) {
+    void hbMembresias(MouseEvent event) {
 
     }
 
     @FXML
-    void verFinanzas(ActionEvent event) {
+    void hbMobiliario(MouseEvent event) {
 
     }
 
     @FXML
-    void verMembresias(ActionEvent event) {
+    void hbPlanesEntrenamiento(MouseEvent event) {
 
     }
 
     @FXML
-    void verMobiliario(ActionEvent event) {
+    void hbProductos(MouseEvent event) {
 
     }
 
     @FXML
-    void verPlanEntrenamiento(ActionEvent event) {
-
+    void hbSalir(MouseEvent event) {
+    	Platform.exit();
     }
 
     @FXML
-    void verProductos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void verVentas(ActionEvent event) {
+    void hbVentas(MouseEvent event) {
 
     }
 
