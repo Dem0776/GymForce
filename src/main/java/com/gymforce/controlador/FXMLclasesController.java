@@ -7,6 +7,7 @@ import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.DetalleClaseEntrenador;
 import com.gymforce.modelo.Empleado;
+import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;

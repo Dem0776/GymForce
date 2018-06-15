@@ -1,34 +1,36 @@
 .tab{
-	-fx-background-color:  #336699;
+	-fx-background-color:  #038db7;
+	-fx-font-family: "Ebrima";
 	tab-size:100;
 }
 
 .tab-header-background{
-	-fx-background-color: #333645;	
+	-fx-background-color: #070c14;	
 }
 
 .fondoHeader{
-	-fx-background-color: #333645;	
+	-fx-background-color: #070c14;	
 }
 
 .fondoVentana{
-	-fx-background-color: white;	
+	-fx-background-color: #0c1421;	
 }
 
 .titulos{
 	-fx-font-size: 18;
 	-fx-font-family: "Ebrima";	
+	-fx-text-fill: grey;
 }
 
 .btnsFondo{
 	-fx-font-size: 16;
-	-fx-background-color: #33ccff;
+	-fx-background-color: #063151;
 	-fx-font-family: "Ebrima";
 	-fx-text-fill: white;
 }
 
 .btns:hover, .btns:active{
-	-fx-background-color: #00cccc;
+	-fx-background-color: #04525b;
 }
 
 .buscar{

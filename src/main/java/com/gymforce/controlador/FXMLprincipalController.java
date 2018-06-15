@@ -8,11 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class FXMLprincipalController {
 
     @FXML
     private BorderPane principal;
+    
+    @FXML
+    private VBox vbSlideBar;
 
     @FXML
     void hbClases(MouseEvent event) throws IOException {
@@ -20,11 +24,16 @@ public class FXMLprincipalController {
     	clase = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLclases.fxml"));
 		principal.setRight(clase);
     }
+    
+    @FXML
+    void hbDietas(MouseEvent event) {
 
+    }
+    
     @FXML
     void hbEmpleados(MouseEvent event) {
 
-    }
+    }   
 
     @FXML
     void hbFinanzas(MouseEvent event) {
@@ -55,10 +64,19 @@ public class FXMLprincipalController {
     void hbSalir(MouseEvent event) {
     	Platform.exit();
     }
+    
+    @FXML
+    void hbSocios(MouseEvent event) {
+
+    }
 
     @FXML
     void hbVentas(MouseEvent event) {
 
+    }
+    
+    @FXML
+    void hideSlideBar(MouseEvent event) {
     }
 
 }

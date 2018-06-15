@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLclasesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLclasesController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,7 +29,7 @@
                            <children>
                               <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
                                        <children>
                                           <Label styleClass="titulos" text="Clases registradas">
                                              <HBox.margin>
@@ -37,15 +37,18 @@
                                              </HBox.margin>
                                           </Label>
                                        </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                                        <children>
                                           <FontAwesomeIconView glyphName="SEARCH">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </FontAwesomeIconView>
-                                          <JFXTextField prefWidth="300.0" promptText="Buscar" styleClass="buscar" />
+                                          <JFXTextField prefWidth="400.0" promptText="Buscar" styleClass="buscar" />
                                           <JFXButton prefHeight="30.0" prefWidth="100.0" text="Ir">
                                              <styleClass>
                                                 <String fx:value="btns" />
@@ -54,15 +57,15 @@
                                           </JFXButton>
                                        </children>
                                        <padding>
-                                          <Insets left="10.0" />
+                                          <Insets right="20.0" />
                                        </padding>
                                     </HBox>
-                                    <AnchorPane prefHeight="274.0" prefWidth="950.0">
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewClases" layoutX="288.0" layoutY="-65.0" prefHeight="300.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <JFXTreeTableView fx:id="tblViewClases" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
-                                    <HBox alignment="CENTER" prefHeight="150.0" prefWidth="950.0" spacing="20.0">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
                                        <children>
                                           <JFXButton onAction="#btnVer" prefHeight="40.0" prefWidth="150.0" text="Ver">
                                              <styleClass>
@@ -83,7 +86,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Agregar Clase">
+                  <Tab text="Clase">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>

@@ -1,4 +1,4 @@
-package com.gymforce.controlador;
+package com.gymforce.modelo;
 
 import javafx.scene.control.Alert;
 

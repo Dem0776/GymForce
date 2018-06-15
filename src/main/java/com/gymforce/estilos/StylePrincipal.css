@@ -1,13 +1,14 @@
 .parent{
-	-fx-background-color: #fff;
+	-fx-background-color: #0c1421;
 }
 
 .sidebar{
-	-fx-background-color: #333645;
+	-fx-background-color: #070c14;
+	
 }
 
 .lblTitulo{
-	-fx-background-color: #00A2D3;
+	-fx-background-color: #038db7;
 	-fx-font-size: 18;
 	-fx-font-family: "Ebrima";
 	-fx-text-fill: white;
