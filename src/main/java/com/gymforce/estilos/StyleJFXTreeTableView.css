@@ -23,7 +23,7 @@
 
 .tree-table-view .column-header{
     -fx-border-width : 0 1 0 1;
-    -fx-border-color: #F3F3F3;
+    -fx-border-color: #7C8184;
 }
 
 .tree-table-view .column-header .label {
@@ -32,7 +32,7 @@
 }
 
 .tree-table-view .column-header .arrow, .tree-table-view .column-header .sort-order-dot{ 
-    -fx-background-color : #949494;
+    -fx-background-color : #7C8184;
 }
 
 .tree-table-view .column-header:last-visible {
@@ -41,7 +41,7 @@
 
 .tree-table-view .column-header-background{
     -fx-border-width : 0 0.0 1 0;
-    -fx-border-color:#F3F3F3;
+    -fx-border-color:#7C8184;
 }
 
 .tree-table-view .tree-table-cell{

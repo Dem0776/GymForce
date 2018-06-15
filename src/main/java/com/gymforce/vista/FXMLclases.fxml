@@ -31,7 +31,7 @@
                                  <children>
                                     <HBox prefHeight="50.0" prefWidth="950.0">
                                        <children>
-                                          <Label styleClass="titulos" text="Clases registradas">
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="Clases registradas">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -43,12 +43,12 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <FontAwesomeIconView glyphName="SEARCH">
+                                          <FontAwesomeIconView glyphName="SEARCH" styleClass="icono">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
                                           </FontAwesomeIconView>
-                                          <JFXTextField prefWidth="400.0" promptText="Buscar" styleClass="buscar" />
+                                          <JFXTextField prefWidth="400.0" promptText="Buscar" styleClass="textos" />
                                           <JFXButton prefHeight="30.0" prefWidth="100.0" text="Ir">
                                              <styleClass>
                                                 <String fx:value="btns" />
@@ -94,7 +94,7 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="950.0">
                                        <children>
-                                          <Label styleClass="titulos" text="Clase" />
+                                          <Label styleClass="titulo" text="Clase" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -107,10 +107,10 @@
                                        <children>
                                           <VBox prefHeight="200.0" prefWidth="350.0" spacing="20.0">
                                              <children>
-                                                <JFXTextField fx:id="txtNombre" promptText="Nombre" />
-                                                <JFXTextField fx:id="txtDescripcion" promptText="Descripcion" />
-                                                <JFXTextField fx:id="txtPrecio" promptText="Precio" />
-                                                <JFXComboBox fx:id="cmbInstructor" prefHeight="25.0" prefWidth="383.0" promptText="Instructor" />
+                                                <JFXTextField fx:id="txtNombre" promptText="Nombre" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDescripcion" promptText="Descripcion" styleClass="textos" />
+                                                <JFXTextField fx:id="txtPrecio" promptText="Precio" styleClass="textos" />
+                                                <JFXComboBox fx:id="cmbInstructor" prefHeight="25.0" prefWidth="383.0" promptText="Instructor" styleClass="textos" />
                                              </children>
                                              <HBox.margin>
                                                 <Insets left="275.0" />

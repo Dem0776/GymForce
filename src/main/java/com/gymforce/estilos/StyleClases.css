@@ -1,9 +1,11 @@
 .tab{
-	-fx-background-color:  #038db7;
-	-fx-font-family: "Ebrima";
-	tab-size:100;
+	-fx-background-color:   #0c1421;	
 }
-
+.tab-label {
+	-fx-font-family: "Ebrima";
+    -fx-text-fill: white ;
+    -fx-font-size: 20px;
+}
 .tab-header-background{
 	-fx-background-color: #070c14;	
 }
@@ -16,10 +18,20 @@
 	-fx-background-color: #0c1421;	
 }
 
-.titulos{
-	-fx-font-size: 18;
-	-fx-font-family: "Ebrima";	
-	-fx-text-fill: grey;
+.titulo{
+	-fx-font-size: 24;
+	-fx-font-family: "Calibri light";	
+	-fx-text-fill: #7C8184;	
+}
+
+.textos{
+	-fx-font-size: 16;
+	-fx-font-family: "Calibri light";	
+	-fx-text-fill: #7C8184;	
+}
+
+.icono{
+	-fx-fill:#7C8184;
 }
 
 .btnsFondo{
@@ -31,9 +43,4 @@
 
 .btns:hover, .btns:active{
 	-fx-background-color: #04525b;
-}
-
-.buscar{
-	-fx-font-size: 16;
-	-fx-font-family: "Calibri light";	
 }
