@@ -1,5 +1,6 @@
 package com.gymforce.controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -14,8 +15,6 @@ import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,7 +30,7 @@ public class FXMLclasesController implements Initializable {
 
 	private ObservableList<Clase> listaClase;
 	private ObservableList<Empleado> listaInstructor;
-
+    
 	@FXML
 	private JFXTreeTableView<Clase> tblViewClases;
 
@@ -69,10 +68,10 @@ public class FXMLclasesController implements Initializable {
 		clmnDesc_clase = new TreeTableColumn<>("Descripcion");
 		clmnInstructor = new TreeTableColumn<>("Instructor");
 		clmnPrecio = new TreeTableColumn<>("Precio");
-		clmnNombre_clase.setPrefWidth(150);
+		/*clmnNombre_clase.setPrefWidth(150);
 		clmnDesc_clase.setPrefWidth(150);
 		clmnInstructor.setPrefWidth(150);
-		clmnPrecio.setPrefWidth(150);
+		clmnPrecio.setPrefWidth(150);*/
 		clmnNombre_clase.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, String>("nombre_clase"));
 		clmnDesc_clase.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, String>("desc_clase"));
 		clmnInstructor.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, Empleado>("nombreInstructor"));
@@ -113,7 +112,7 @@ public class FXMLclasesController implements Initializable {
 
 	@FXML
 	void btnAsignarHorario(ActionEvent event) {
-
+		
 	}
 
 	@FXML
@@ -127,8 +126,8 @@ public class FXMLclasesController implements Initializable {
 	}
 
 	@FXML
-	void btnVer(ActionEvent event) {
-
+	void btnVer(ActionEvent event) throws IOException {
+		
 	}
 
 	private void guardarClase() {
@@ -166,7 +165,7 @@ public class FXMLclasesController implements Initializable {
 	
 	private void seleccionarColumnaTalbe() {
 		tblViewClases.getSelectionModel().selectedIndexProperty().addListener((observable, oldCount, newCount) -> {
-			System.out.println("Hola");
+			//System.out.println("Hola");
 		});
 	}
 }
