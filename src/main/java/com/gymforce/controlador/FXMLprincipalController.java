@@ -22,12 +22,14 @@ public class FXMLprincipalController {
     void hbClases(MouseEvent event) throws IOException {
     	AnchorPane clase;
     	clase = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLclases.fxml"));
-		principal.setRight(clase);
+		principal.setCenter(clase);
     }
     
     @FXML
-    void hbDietas(MouseEvent event) {
-
+    void hbDietas(MouseEvent event) throws IOException {
+    	AnchorPane dieta;
+    	dieta = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLdieta.fxml"));
+		principal.setCenter(dieta);
     }
     
     @FXML
@@ -51,8 +53,10 @@ public class FXMLprincipalController {
     }
 
     @FXML
-    void hbPlanesEntrenamiento(MouseEvent event) {
-
+    void hbPlanesEntrenamiento(MouseEvent event) throws IOException {
+    	AnchorPane planEntr;
+    	planEntr = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLplanEntrenamiento.fxml"));
+		principal.setCenter(planEntr);
     }
 
     @FXML

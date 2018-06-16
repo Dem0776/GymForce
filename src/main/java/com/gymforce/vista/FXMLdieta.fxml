@@ -16,14 +16,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLclasesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLdietaController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
             <JFXTabPane prefHeight="629.0" prefWidth="950.0">
                <tabs>
-                  <Tab text="Ver Clases">
+                  <Tab text="Ver Dietas">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
                            <children>
@@ -31,7 +31,7 @@
                                  <children>
                                     <HBox prefHeight="50.0" prefWidth="950.0">
                                        <children>
-                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="C L A S E S  R E G I S T R A D A S">
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="D I E T A S  R E G I S T R A D A S">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -62,7 +62,7 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewClases" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <JFXTreeTableView fx:id="tblViewDieta" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
@@ -86,15 +86,15 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Clase">
+                  <Tab text="Dietas">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
                               <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="950.0">
+                                    <HBox prefHeight="85.0" prefWidth="950.0">
                                        <children>
-                                          <Label styleClass="titulo" text="C L A S E" />
+                                          <Label styleClass="titulo" text="D I E T A" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -103,14 +103,20 @@
                                           <Insets left="270.0" top="30.0" />
                                        </padding>
                                     </HBox>
-                                    <HBox prefHeight="200.0" prefWidth="950.0">
+                                    <HBox prefHeight="370.0" prefWidth="950.0">
                                        <children>
-                                          <VBox prefHeight="200.0" prefWidth="350.0" spacing="20.0">
+                                          <VBox spacing="20.0">
                                              <children>
                                                 <JFXTextField fx:id="txtNombre" promptText="Nombre" styleClass="textos" />
                                                 <JFXTextField fx:id="txtDescripcion" promptText="Descripcion" styleClass="textos" />
-                                                <JFXTextField fx:id="txtPrecio" promptText="Precio" styleClass="textos" />
-                                                <JFXComboBox fx:id="cmbInstructor" prefHeight="25.0" prefWidth="383.0" promptText="Instructor" styleClass="textos" />
+                                                <JFXComboBox fx:id="cmbAlimento" prefHeight="25.0" prefWidth="383.0" promptText="Alimento" styleClass="textos" />
+                                                <JFXButton onAction="#btnAgregarAlimento" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
+                                                   <styleClass>
+                                                      <String fx:value="btnsFondo" />
+                                                      <String fx:value="btns" />
+                                                   </styleClass>
+                                                </JFXButton>
+                                                <JFXTreeTableView prefHeight="163.0" prefWidth="383.0" />
                                              </children>
                                              <HBox.margin>
                                                 <Insets left="275.0" />
@@ -118,7 +124,7 @@
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                    <HBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="950.0" spacing="20.0">
                                        <children>
                                           <JFXButton onAction="#btnAgregar" prefHeight="40.0" prefWidth="150.0" text="Agregar">
                                              <HBox.margin>
@@ -137,15 +143,6 @@
                                                 <String fx:value="btnsFondo" />
                                                 <String fx:value="btns" />
                                              </styleClass>
-                                          </JFXButton>
-                                          <JFXButton onAction="#btnAsignarHorario" prefHeight="40.0" prefWidth="150.0" text="Asignar Horario">
-                                             <styleClass>
-                                                <String fx:value="btnsFondo" />
-                                                <String fx:value="btns" />
-                                             </styleClass>
-                                             <HBox.margin>
-                                                <Insets top="10.0" />
-                                             </HBox.margin>
                                           </JFXButton>
                                        </children>
                                        <VBox.margin>

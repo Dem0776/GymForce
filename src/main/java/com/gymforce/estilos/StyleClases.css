@@ -3,8 +3,8 @@
 }
 .tab-label {
 	-fx-font-family: "Ebrima";
-    -fx-text-fill: white ;
-    -fx-font-size: 20px;
+    -fx-text-fill: #7C8184 ;
+    -fx-font-size: 18px;
 }
 .tab-header-background{
 	-fx-background-color: #070c14;	
@@ -15,7 +15,8 @@
 }
 
 .fondoVentana{
-	-fx-background-color: #0c1421;	
+	/*-fx-background-color: #0c1421;*/
+	-fx-background-color: linear-gradient(to right, #141e30 , #243b55);	
 }
 
 .titulo{
