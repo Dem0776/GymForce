@@ -61,7 +61,7 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="149.0" onMouseClicked="#hbProductos" prefHeight="40.0" spacing="10.0" styleClass="btns">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="149.0" onMouseClicked="#hbInventario" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
                   <FontAwesomeIconView glyphName="CUBES" styleClass="iconos" wrappingWidth="12.0" />
                   <Label styleClass="menus" text="Inventario" />
@@ -73,7 +73,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="176.0" onMouseClicked="#hbMobiliario" prefHeight="40.0" spacing="10.0" styleClass="btns">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="176.0" onMouseClicked="#hbPagosCompras" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
                   <FontAwesomeIconView glyphName="USD" styleClass="iconos" wrappingWidth="12.0" />
                   <Label styleClass="menus" text="Pagos y compras" />
