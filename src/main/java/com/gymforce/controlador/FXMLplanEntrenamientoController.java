@@ -10,47 +10,106 @@ import javafx.fxml.FXML;
 public class FXMLplanEntrenamientoController {
 
     @FXML
+    private JFXTextField txtBuscarPlanE;
+
+    @FXML
     private JFXTreeTableView<?> tblViewPlanE;
 
     @FXML
-    private JFXTextField txtNombre;
+    private JFXTextField txtDescPlanE;
 
     @FXML
-    private JFXTextField txtDescripcion;
+    private JFXTextField txtDuracionPlanE;
 
     @FXML
-    private JFXTextField txtFrecuencia;
+    private JFXTextField txtFrecuenciaPlanE;
 
     @FXML
-    private JFXTextField txtDificultad;
+    private JFXTextField txtDificultadPlanE;
 
     @FXML
-    private JFXComboBox<?> cmbCategoria;
+    private JFXComboBox<?> cmbCategoriaPlanE;
 
     @FXML
-    void btnAgregar(ActionEvent event) {
+    private JFXTreeTableView<?> tbRutina;
+
+    @FXML
+    private JFXComboBox<?> cmbEjercicioRutina;
+
+    @FXML
+    private JFXTextField txtSeries;
+
+    @FXML
+    private JFXTextField txtRepeticiones;
+
+    @FXML
+    private JFXTextField txtDuracion;
+
+    @FXML
+    private JFXTextField txtPeso;
+
+    @FXML
+    private JFXTextField txtDescEjercicio;
+
+    @FXML
+    private JFXTextField txtComplejidad;
+
+    @FXML
+    private JFXComboBox<?> cmbEquipamento;
+
+    @FXML
+    private JFXTreeTableView<?> tbEjercicios;
+
+    @FXML
+    void btnAgregarEjercicio(ActionEvent event) {
 
     }
 
     @FXML
-    void btnAsignarRutina(ActionEvent event) {
+    void btnAgregarPlanE(ActionEvent event) {
 
     }
 
     @FXML
-    void btnCancelar(ActionEvent event) {
+    void btnAgregarRutina(ActionEvent event) {
 
     }
 
     @FXML
-    void btnModificar(ActionEvent event) {
+    void btnAgregarRutinaPlan(ActionEvent event) {
 
     }
 
     @FXML
-    void btnVer(ActionEvent event) {
+    void btnBuscarPlanE(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCancelarEjercicio(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCancelarPlanE(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCancelarRutina(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEliminarPlanE(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnVerPlanE(ActionEvent event) {
 
     }
 
 }
+
 

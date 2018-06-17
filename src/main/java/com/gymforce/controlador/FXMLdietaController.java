@@ -1,30 +1,48 @@
 package com.gymforce.controlador;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 
 public class FXMLdietaController {
 
     @FXML
-    private JFXTreeTableView<?> tblViewDieta;
+    private JFXTextField txtBuscarDieta;
+
+    @FXML
+    private JFXTreeTableView<?> tbvViewDieta;
+
+    @FXML
+    private VBox txtNombreDieta;
 
     @FXML
     private JFXTextField txtNombre;
 
     @FXML
-    private JFXTextField txtDescripcion;
+    private JFXTextField txtDescDieta;
 
     @FXML
-    private JFXComboBox<?> cmbAlimento;
+    private JFXComboBox<?> cmbAlimentoDieta;
 
     @FXML
-    void btnAgregar(ActionEvent event) {
+    private JFXButton btnAgregarAlimentoDieta;
 
-    }
+    @FXML
+    private JFXTreeTableView<?> tbvAlimentoDieta;
+
+    @FXML
+    private JFXTextField txtNombreAlimento;
+
+    @FXML
+    private JFXTextField txtDescAlimento;
+
+    @FXML
+    private JFXTreeTableView<?> tbvAlimento;
 
     @FXML
     void btnAgregarAlimento(ActionEvent event) {
@@ -32,19 +50,40 @@ public class FXMLdietaController {
     }
 
     @FXML
-    void btnCancelar(ActionEvent event) {
+    void btnAgregarAlimentoDieta(ActionEvent event) {
 
     }
 
     @FXML
-    void btnModificar(ActionEvent event) {
+    void btnAgregarDieta(ActionEvent event) {
 
     }
 
     @FXML
-    void btnVer(ActionEvent event) {
+    void btnBuscarDieta(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCancelarAlimento(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnCancelarDieta(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEliminarDieta(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnVerDieta(ActionEvent event) {
 
     }
 
 }
+
 
