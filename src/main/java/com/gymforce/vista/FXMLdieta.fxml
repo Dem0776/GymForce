@@ -48,8 +48,8 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </FontAwesomeIconView>
-                                          <JFXTextField prefWidth="400.0" promptText="Buscar" styleClass="textos" />
-                                          <JFXButton prefHeight="30.0" prefWidth="100.0" text="Ir">
+                                          <JFXTextField fx:id="txtBuscarDieta" prefWidth="400.0" promptText="Buscar" styleClass="textos" />
+                                          <JFXButton onAction="#btnBuscarDieta" prefHeight="30.0" prefWidth="100.0" text="Ir">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
@@ -62,18 +62,18 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewDieta" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <JFXTreeTableView fx:id="tbvViewDieta" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
                                        <children>
-                                          <JFXButton onAction="#btnVer" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                          <JFXButton onAction="#btnVerDieta" prefHeight="40.0" prefWidth="150.0" text="Ver">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
                                              </styleClass>
                                           </JFXButton>
-                                          <JFXButton onAction="#btnModificar" prefHeight="40.0" prefWidth="150.0" text="Modificar">
+                                          <JFXButton onAction="#btnEliminarDieta" prefHeight="40.0" prefWidth="150.0" text="Eliminar">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
@@ -105,18 +105,18 @@
                                     </HBox>
                                     <HBox prefHeight="370.0" prefWidth="950.0">
                                        <children>
-                                          <VBox spacing="20.0">
+                                          <VBox fx:id="txtNombreDieta" spacing="20.0">
                                              <children>
                                                 <JFXTextField fx:id="txtNombre" promptText="Nombre" styleClass="textos" />
-                                                <JFXTextField fx:id="txtDescripcion" promptText="Descripcion" styleClass="textos" />
-                                                <JFXComboBox fx:id="cmbAlimento" prefHeight="25.0" prefWidth="383.0" promptText="Alimento" styleClass="textos" />
-                                                <JFXButton onAction="#btnAgregarAlimento" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
+                                                <JFXTextField fx:id="txtDescDieta" promptText="Descripcion" styleClass="textos" />
+                                                <JFXComboBox fx:id="cmbAlimentoDieta" prefHeight="25.0" prefWidth="383.0" promptText="Alimento" styleClass="textos" />
+                                                <JFXButton fx:id="btnAgregarAlimentoDieta" onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
                                                    <styleClass>
                                                       <String fx:value="btnsFondo" />
                                                       <String fx:value="btns" />
                                                    </styleClass>
                                                 </JFXButton>
-                                                <JFXTreeTableView prefHeight="163.0" prefWidth="383.0" />
+                                                <JFXTreeTableView fx:id="tbvAlimentoDieta" prefHeight="163.0" prefWidth="383.0" />
                                              </children>
                                              <HBox.margin>
                                                 <Insets left="275.0" />
@@ -126,7 +126,7 @@
                                     </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="950.0" spacing="20.0">
                                        <children>
-                                          <JFXButton onAction="#btnAgregar" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                          <JFXButton onAction="#btnAgregarDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar">
                                              <HBox.margin>
                                                 <Insets top="10.0" />
                                              </HBox.margin>
@@ -135,7 +135,7 @@
                                                 <String fx:value="btns" />
                                              </styleClass>
                                           </JFXButton>
-                                          <JFXButton onAction="#btnCancelar" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                          <JFXButton onAction="#btnCancelarDieta" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
                                              <HBox.margin>
                                                 <Insets top="10.0" />
                                              </HBox.margin>
@@ -175,9 +175,9 @@
                                        <children>
                                           <VBox prefWidth="500.0" spacing="20.0">
                                              <children>
-                                                <JFXTextField fx:id="txtNombre1" promptText="Nombre" styleClass="textos" />
-                                                <JFXTextField fx:id="txtDescripcion1" promptText="Descripcion" styleClass="textos" />
-                                                <JFXTreeTableView />
+                                                <JFXTextField fx:id="txtNombreAlimento" promptText="Nombre" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDescAlimento" promptText="Descripcion" styleClass="textos" />
+                                                <JFXTreeTableView fx:id="tbvAlimento" />
                                              </children>
                                              <HBox.margin>
                                                 <Insets />
@@ -187,7 +187,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="97.0" prefWidth="950.0" spacing="20.0">
                                        <children>
-                                          <JFXButton onAction="#btnAgregar" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                          <JFXButton onAction="#btnAgregarAlimento" prefHeight="40.0" prefWidth="150.0" text="Agregar">
                                              <HBox.margin>
                                                 <Insets top="10.0" />
                                              </HBox.margin>
@@ -196,7 +196,7 @@
                                                 <String fx:value="btns" />
                                              </styleClass>
                                           </JFXButton>
-                                          <JFXButton onAction="#btnCancelar" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                          <JFXButton onAction="#btnCancelarAlimento" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
                                              <HBox.margin>
                                                 <Insets top="10.0" />
                                              </HBox.margin>

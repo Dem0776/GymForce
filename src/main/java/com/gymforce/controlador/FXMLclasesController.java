@@ -30,9 +30,12 @@ public class FXMLclasesController implements Initializable {
 
 	private ObservableList<Clase> listaClase;
 	private ObservableList<Empleado> listaInstructor;
-    
+
 	@FXML
-	private JFXTreeTableView<Clase> tblViewClases;
+	private JFXTextField txtBuscarClase;
+
+	@FXML
+	private JFXTreeTableView<Clase> tvbViewClases;
 
 	private TreeTableColumn<Clase, String> clmnNombre_clase;
 	private TreeTableColumn<Clase, String> clmnDesc_clase;
@@ -51,6 +54,48 @@ public class FXMLclasesController implements Initializable {
 	@FXML
 	private JFXComboBox<Empleado> cmbInstructor;
 
+    @FXML
+    private JFXTextField txtDomingoInicio;
+
+    @FXML
+    private JFXTextField txtDomingoFin;
+
+    @FXML
+    private JFXTextField txtLunesInicio;
+
+    @FXML
+    private JFXTextField txtMartesInicio;
+
+    @FXML
+    private JFXTextField txtMiercolesInicio;
+
+    @FXML
+    private JFXTextField txtJuevesInicio;
+
+    @FXML
+    private JFXTextField txtViernesInicio;
+
+    @FXML
+    private JFXTextField txtSabadoInicio;
+
+    @FXML
+    private JFXTextField txtLunesFin;
+
+    @FXML
+    private JFXTextField txtMartesFin;
+
+    @FXML
+    private JFXTextField txtMiercolesFin;
+
+    @FXML
+    private JFXTextField txtJuevesFin;
+
+    @FXML
+    private JFXTextField txtViernesFin;
+
+    @FXML
+    private JFXTextField txtSabadoFin;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -68,25 +113,25 @@ public class FXMLclasesController implements Initializable {
 		clmnDesc_clase = new TreeTableColumn<>("Descripcion");
 		clmnInstructor = new TreeTableColumn<>("Instructor");
 		clmnPrecio = new TreeTableColumn<>("Precio");
-		/*clmnNombre_clase.setPrefWidth(150);
-		clmnDesc_clase.setPrefWidth(150);
-		clmnInstructor.setPrefWidth(150);
-		clmnPrecio.setPrefWidth(150);*/
+		/*
+		 * clmnNombre_clase.setPrefWidth(150); clmnDesc_clase.setPrefWidth(150);
+		 * clmnInstructor.setPrefWidth(150); clmnPrecio.setPrefWidth(150);
+		 */
 		clmnNombre_clase.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, String>("nombre_clase"));
 		clmnDesc_clase.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, String>("desc_clase"));
 		clmnInstructor.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, Empleado>("nombreInstructor"));
 		clmnPrecio.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, DetalleClaseEntrenador>("precio"));
 		final TreeItem<Clase> root = new RecursiveTreeItem<Clase>(listaClase, RecursiveTreeObject::getChildren);
-		tblViewClases.getColumns().addAll(clmnNombre_clase, clmnDesc_clase, clmnInstructor, clmnPrecio);
-		tblViewClases.setRoot(root);
-		tblViewClases.setShowRoot(false);
+		tvbViewClases.getColumns().addAll(clmnNombre_clase, clmnDesc_clase, clmnInstructor, clmnPrecio);
+		tvbViewClases.setRoot(root);
+		tvbViewClases.setShowRoot(false);
 
 		conexion.cerrarConexion();
 		seleccionarColumnaTalbe();
 	}
 
 	@FXML
-	void btnAgregar(ActionEvent event) {
+	void btnAgregarClase(ActionEvent event) {
 		Double precio;
 		if (txtNombre.getText().trim().length() == 0) {
 			Mensaje.error("Campo Vacio", "Ingresa el nombre de la clase");
@@ -111,23 +156,28 @@ public class FXMLclasesController implements Initializable {
 	}
 
 	@FXML
-	void btnAsignarHorario(ActionEvent event) {
-		
-	}
-
-	@FXML
-	void btnCancelar(ActionEvent event) {
-		limpiar();
-	}
-
-	@FXML
-	void btnModificar(ActionEvent event) {
+	void btnAsignarHorarioClase(ActionEvent event) {
 
 	}
 
 	@FXML
-	void btnVer(ActionEvent event) throws IOException {
-		
+	void btnBuscarClase(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btnCancelarClase(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btnEliminiarClase(ActionEvent event) {
+
+	}
+
+	@FXML
+	void btnVerClase(ActionEvent event) {
+
 	}
 
 	private void guardarClase() {
@@ -162,10 +212,10 @@ public class FXMLclasesController implements Initializable {
 		txtDescripcion.setText("");
 		txtPrecio.setText("");
 	}
-	
+
 	private void seleccionarColumnaTalbe() {
-		tblViewClases.getSelectionModel().selectedIndexProperty().addListener((observable, oldCount, newCount) -> {
-			//System.out.println("Hola");
+		tvbViewClases.getSelectionModel().selectedIndexProperty().addListener((observable, oldCount, newCount) -> {
+			// System.out.println("Hola");
 		});
 	}
 }

@@ -16,7 +16,7 @@ public class FXMLprincipalController {
     private BorderPane principal;
     
     @FXML
-    private VBox vbSlideBar;
+    private VBox vbSlideBar;    
 
     @FXML
     void hbClases(MouseEvent event) throws IOException {
