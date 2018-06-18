@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLMembresiasController">
+   <children>
+      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
+            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+               <tabs>
+                  <Tab text="Ver Membresias">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="M e m b r e s i a s  r e g i s t r a d a s">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <FontAwesomeIconView glyphName="SEARCH" size="13" styleClass="icono">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <JFXTextField fx:id="txtBuscarMembresia" prefWidth="400.0" promptText="Buscar" styleClass="textos" />
+                                          <JFXButton prefHeight="30.0" prefWidth="100.0" text="Ir">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <padding>
+                                          <Insets right="20.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <JFXTreeTableView fx:id="tblViewMembresias" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton fx:id="btnVerMembresia" onAction="#btnVer" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnModificarMembresiaTable" onAction="#btnModificar" prefHeight="40.0" prefWidth="150.0" text="Modificar">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Administrar Membresias">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="11.0" layoutY="109.0" prefHeight="241.0" prefWidth="939.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="35.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="Membresias">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets right="20.0" />
+                                             </padding></Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="270.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="352.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefHeight="190.0" prefWidth="380.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField fx:id="txtDescripcion" promptText="Descripción" styleClass="textos" />
+                                                <JFXTextField fx:id="txtPrecio" promptText="Precio" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDiasValidos" promptText="Dias Validos" styleClass="textos" />
+                                                <HBox prefHeight="88.0" prefWidth="474.0">
+                                                   <children>
+                                                      <JFXButton fx:id="btnAgregarMembresa" onAction="#btnAgregar" prefHeight="39.0" prefWidth="150.0" text="Agregar">
+                                                         <styleClass>
+                                                            <String fx:value="btnsFondo" />
+                                                            <String fx:value="btns" />
+                                                         </styleClass>
+                                                         <HBox.margin>
+                                                            <Insets left="-30.0" right="20.0" />
+                                                         </HBox.margin>
+                                                      </JFXButton>
+                                                      <JFXButton fx:id="btnModicarMembresia" onAction="#btnModificar" prefHeight="40.0" prefWidth="150.0" text="Modificar">
+                                                         <styleClass>
+                                                            <String fx:value="btnsFondo" />
+                                                            <String fx:value="btns" />
+                                                         </styleClass>
+                                                         <HBox.margin>
+                                                            <Insets right="20.0" />
+                                                         </HBox.margin>
+                                                      </JFXButton>
+                                                      <JFXButton fx:id="btnEliminarMembresia" onAction="#btnEliminar" prefHeight="40.0" prefWidth="150.0" text="Eliminar">
+                                                         <styleClass>
+                                                            <String fx:value="btnsFondo" />
+                                                            <String fx:value="btns" />
+                                                         </styleClass>
+                                                         <HBox.margin>
+                                                            <Insets right="-30.0" />
+                                                         </HBox.margin>
+                                                      </JFXButton>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets top="20.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="280.0" top="20.0" />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                          </VBox>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../estilos/StyleClases.css" />
+      <URL value="@../estilos/StyleJFXTreeTableView.css" />
+   </stylesheets>
+</AnchorPane>

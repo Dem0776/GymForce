@@ -33,8 +33,10 @@ public class FXMLprincipalController {
     }
     
     @FXML
-    void hbEmpleados(MouseEvent event) {
-
+    void hbEmpleados(MouseEvent event) throws IOException {
+    	AnchorPane Empleados;
+    	Empleados = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLEmpleados.fxml"));
+		principal.setCenter(Empleados);
     }   
 
     @FXML
@@ -43,8 +45,10 @@ public class FXMLprincipalController {
     }
 
     @FXML
-    void hbMembresias(MouseEvent event) {
-
+    void hbMembresias(MouseEvent event) throws IOException {
+    	AnchorPane Membresias;
+    	Membresias = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLMembresias.fxml"));
+		principal.setCenter(Membresias);
     }
 
     @FXML
@@ -60,7 +64,7 @@ public class FXMLprincipalController {
     }
 
     @FXML
-    void hbProductos(MouseEvent event) {
+    void hbProductos(MouseEvent event) throws IOException {
 
     }
 
@@ -70,8 +74,10 @@ public class FXMLprincipalController {
     }
     
     @FXML
-    void hbSocios(MouseEvent event) {
-
+    void hbSocios(MouseEvent event) throws IOException {
+    	AnchorPane planEntr;
+		planEntr = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLSocios.fxml"));
+		principal.setCenter(planEntr);
     }
 
     @FXML

@@ -7,11 +7,13 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class Empleado {
+public class Empleado extends RecursiveTreeObject<Empleado>{
 	private StringProperty rfc_empleado;
 	private StringProperty nombre_empleado;
 	private StringProperty ape1_empleado;
@@ -164,5 +166,6 @@ String usuario_empleado, String password_empleado, TipoEmpleado clv_te) {
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-	}		
+	}
+	
 }

@@ -52,7 +52,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="455.0" onMouseClicked="#hbMembresias" prefHeight="40.0" spacing="10.0" styleClass="btns">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="455.0" onMouseClicked="#hbSocios" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
                   <FontAwesomeIconView glyphName="USERS" styleClass="iconos" wrappingWidth="12.0" />
                   <Label onMouseClicked="#hbSocios" styleClass="menus" text="Socios" />

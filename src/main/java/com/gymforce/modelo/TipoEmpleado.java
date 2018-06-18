@@ -1,11 +1,14 @@
 package com.gymforce.modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -13,13 +16,16 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class TipoEmpleado {
+public class TipoEmpleado extends RecursiveTreeObject<TipoEmpleado>{
 	private IntegerProperty clv_te;
 	private StringProperty desc_te;
 	private StringProperty status_te;
 
 	public TipoEmpleado(int clv_te, String desc_te) { 
 		this.clv_te = new SimpleIntegerProperty(clv_te);
+		this.desc_te = new SimpleStringProperty(desc_te);
+	}
+	public TipoEmpleado(String desc_te) {
 		this.desc_te = new SimpleStringProperty(desc_te);
 	}
 
@@ -62,7 +68,7 @@ public class TipoEmpleado {
 	public static void llenarComboClasif(Connection conect, ObservableList<TipoEmpleado> listTipoE) {
         try {
             Statement st = conect.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM clasificacion");
+            ResultSet rs = st.executeQuery("SELECT * FROM tipo_empleado");
             while (rs.next()) {
             	listTipoE.add(
                         new TipoEmpleado(rs.getInt("clv_te"),
@@ -75,4 +81,27 @@ public class TipoEmpleado {
         }
 
     }
+	public int guardarTipoEmpleado(Connection cn) {
+		try {
+			PreparedStatement consulta = cn.prepareStatement("INSERT tipo_empleado VALUES (DEFAULT,?,DEFAULT)");
+			consulta.setString(1, desc_te.get());
+			return consulta.executeUpdate();
+		} catch (SQLException e) {
+			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, e);
+			return 0;
+		}
+	}
+	public static void llenarTableTipoEmpleado(Connection conect, ObservableList<TipoEmpleado> listTipoEmpleado) {
+		try {
+			Statement st = conect.createStatement();
+			ResultSet rs = st.executeQuery("SELECT tipo_empleado.desc_te FROM tipo_empleado");
+
+			while (rs.next()) {
+				listTipoEmpleado.add(new TipoEmpleado(
+						rs.getString("desc_te")));
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 }
