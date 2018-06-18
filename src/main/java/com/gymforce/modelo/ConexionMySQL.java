@@ -12,8 +12,8 @@ public class ConexionMySQL {
 	private Connection connection;
 	
 	private String url = "jdbc:mysql://localhost/gymforce";
-	private String usuario = "root";
-	private String contrasena = "";
+	private String usuario = "gustavo";
+	private String contrasena = "midian776";
 
 	public Connection getConnection() {
 		return connection;

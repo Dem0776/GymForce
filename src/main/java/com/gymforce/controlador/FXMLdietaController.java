@@ -4,10 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.gymforce.modelo.Alimento;
-import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.Dieta;
-import com.gymforce.modelo.Empleado;
 import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;

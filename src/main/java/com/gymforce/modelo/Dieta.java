@@ -1,5 +1,13 @@
 package com.gymforce.modelo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import javafx.beans.property.IntegerProperty;
@@ -47,5 +55,32 @@ public class Dieta extends RecursiveTreeObject<Dieta> {
 	}
 	public StringProperty Desc_dietaProperty() {
 		return desc_dieta;
+	}
+	
+	public int guardarDieta(Connection cn) {
+		try {
+			PreparedStatement consulta = cn.prepareStatement("INSERT dieta VALUES (DEFAULT,?,?)");
+			consulta.setString(1, nombre_dieta.get());
+			consulta.setString(2, desc_dieta.get());
+			return consulta.executeUpdate();
+		} catch (SQLException e) {
+			Logger.getLogger(Dieta.class.getName()).log(Level.SEVERE, null, e);
+			return 0;
+		}
+	}
+	
+	public static int obtenerUltimaDieta(Connection conect) {
+		int clv = 0;
+		try {
+			Statement st = conect.createStatement();
+			ResultSet rs = st.executeQuery(
+					"SELECT " + "dieta.clv_dieta " + "FROM " + "dieta ORDER BY dieta.clv_dieta DESC LIMIT 1");
+			while (rs.next()) {
+				clv = rs.getInt("clv_dieta");
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(Dieta.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return clv;
 	}
 }

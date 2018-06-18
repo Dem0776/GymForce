@@ -1,10 +1,7 @@
 package com.gymforce.controlador;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.Mensaje;
@@ -38,20 +35,19 @@ public class FXMLagregarMobiliario implements Initializable {
 			txtCostoMobiliario.requestFocus();
 
 		} else {
-			conexion.establecerConexion();
 			try {
 				conexion.establecerConexion();
-                Mobiliario mob = new Mobiliario
-                		(txtDescripcionMobiliario.getText(),
-                        Double.valueOf(txtDescripcionMobiliario.getText()));
-                int noReg = mob.guardarMobiliario(conexion.getConnection());
-                if (noReg != 0) {
-                    Mensaje.informacion("Guardar Registro", "Mobiliario Almacenada Correctamente");
-                    listMobiliario.add(mob);
-                }
+				Mobiliario mob = new Mobiliario(txtDescripcionMobiliario.getText(),
+						Double.valueOf(txtDescripcionMobiliario.getText()));
+				int noReg = mob.guardarMobiliario(conexion.getConnection());
+				if (noReg != 0) {
+					Mensaje.informacion("Guardar Registro", "Mobiliario Almacenada Correctamente");
+					//listMobiliario.add(mob);					
+				}
 			} catch (Exception e) {
 				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
 			}
+			conexion.cerrarConexion();
 		}
 	}
 
