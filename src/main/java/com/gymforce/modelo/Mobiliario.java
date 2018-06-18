@@ -46,7 +46,10 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 		this.costo_mobiliario = new SimpleDoubleProperty(costo_mobiliario);
 		this.status_mobiliario = new SimpleStringProperty(status_mobiliario);
 	}
-
+	
+	public Mobiliario(String desc_mobiliario) {		
+		this.desc_mobiliario = new SimpleStringProperty(desc_mobiliario);
+	}
 
 	// Metodos atributo: clv_mobiliario
 	public int getClv_mobiliario() {
@@ -99,7 +102,26 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 	public StringProperty Status_mobiliarioProperty() {
 		return status_mobiliario;
 	}
+	
+	@Override
+	public String toString() {
+		return desc_mobiliario.get();
+	}
+	public static void llenarComboEquipamento(Connection cn, ObservableList<Mobiliario> lista) {
+		try {
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery(
+					"SELECT * FROM mobiliario " + "WHERE mobiliario.status_mobiliario = 1");
+			while (rs.next()) {
+				lista.add(new Mobiliario(rs.getInt("clv_mobiliario"), rs.getString("desc_mobiliario"),
+						rs.getDouble("costo_mobiliario"), rs.getString("status_mobiliario")));
 
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(Mobiliario.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+	
 	public static void llenarTableMobiliario(Connection conexion, ObservableList<Mobiliario> listmobiliario) {
 		try {
 			Statement st = conexion.createStatement();
@@ -111,9 +133,8 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 
 		} catch (SQLException ex) {
 			// TODO: handle exception
-			Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(Mobiliario.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
 	}
 	
 	 public int guardarMobiliario(Connection cn){

@@ -137,7 +137,8 @@ public class FXMLclasesController implements Initializable {
 			Mensaje.error("Campo Vacio", "Ingresa el nombre de la clase");
 			txtNombre.requestFocus();
 		} else if (txtDescripcion.getText().trim().length() == 0) {
-			txtDescripcion.setText("");
+			Mensaje.error("Campo Vacio", "Ingresa la descripcion de la clase");
+			txtDescripcion.requestFocus();
 		} else if (txtPrecio.getText().trim().length() == 0) {
 			Mensaje.error("Campo Vacio", "Ingresa el precio de la clase");
 			txtPrecio.requestFocus();

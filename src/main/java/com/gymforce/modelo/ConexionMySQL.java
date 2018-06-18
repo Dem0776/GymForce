@@ -10,12 +10,16 @@ import javax.swing.JOptionPane;
 
 public class ConexionMySQL {
 	private Connection connection;
+	
 	private String url = "jdbc:mysql://localhost/gymforce";
-
 	private String usuario = "root";
-	private String contrasena = "1";
+<<<<<<< HEAD
+	private String contrasena = "";
+=======
+	private String contrasena = "midian776";
 	
 
+>>>>>>> 4bcec089be9bad41f7e69837630f7b1e196ac8e1
 
 	public Connection getConnection() {
 		return connection;

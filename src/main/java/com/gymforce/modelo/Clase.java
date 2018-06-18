@@ -137,10 +137,10 @@ public class Clase extends RecursiveTreeObject<Clase> {
 		}
 	}
 
-	public static int obtenerUltimaClase(Connection connect) {
+	public static int obtenerUltimaClase(Connection conect) {
 		int clv = 0;
 		try {
-			Statement st = connect.createStatement();
+			Statement st = conect.createStatement();
 			ResultSet rs = st.executeQuery(
 					"SELECT " + "clase.clv_clase " + "FROM " + "clase ORDER BY clase.clv_clase DESC LIMIT 1");
 

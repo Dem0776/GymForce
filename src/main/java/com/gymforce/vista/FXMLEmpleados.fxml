@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLEmpleadosController">
+   <children>
+      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
+            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+               <tabs>
+                  <Tab text="Ver Empleados">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="Empleados  registrados">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <FontAwesomeIconView glyphName="SEARCH" size="13" styleClass="icono">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <JFXTextField fx:id="txtBuscarEmpleado" prefWidth="400.0" promptText="Buscar" styleClass="textos" />
+                                          <JFXButton prefHeight="30.0" prefWidth="100.0" text="Ir">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <padding>
+                                          <Insets right="20.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <JFXTreeTableView fx:id="tblViewEmpleados" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton fx:id="btnVerEmpleado" onAction="#btnVer" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnModificarEmpleadoTable" onAction="#btnModificar" prefHeight="40.0" prefWidth="150.0" text="Modificar">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Administrar Empleado">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="35.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="Empleados" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="270.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="461.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefHeight="382.0" prefWidth="388.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField fx:id="txtRfc" promptText="RFC" styleClass="textos" />
+                                                <JFXTextField fx:id="txtNombre" promptText="NOMBRE(S)" styleClass="textos" />
+                                                <JFXTextField fx:id="txtApellido1" promptText="Apellido1" styleClass="textos" />
+                                                <JFXTextField fx:id="txtApellido2" promptText="Apellido2" styleClass="textos" />
+                                                <JFXTextField fx:id="txtTelefono" promptText="Telefono" styleClass="textos" />
+                                                <JFXTextField fx:id="txtCorreo" promptText="Correo" styleClass="textos" />
+                                                <JFXTextField fx:id="txtUsuario" promptText="Usuario" styleClass="textos" />
+                                                <JFXTextField fx:id="txtContraseña" promptText="Password" styleClass="textos" />
+                                                <JFXComboBox fx:id="cmbTipoEmpleado" prefHeight="38.0" prefWidth="367.0" promptText="--TIPO EMPLEADO--" styleClass="textos" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="210.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="461.0" prefWidth="350.0">
+                                             <children>
+                                                <JFXButton fx:id="btnAgregarEmpleado" onAction="#btnAgregar" prefHeight="39.0" prefWidth="150.0" text="Agregar">
+                                                   <styleClass>
+                                                      <String fx:value="btnsFondo" />
+                                                      <String fx:value="btns" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="75.0" top="100.0" />
+                                                   </VBox.margin>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btnModicarEmpleado" onAction="#btnModificarEmpleado" prefHeight="40.0" prefWidth="150.0" text="Modificar">
+                                                   <styleClass>
+                                                      <String fx:value="btnsFondo" />
+                                                      <String fx:value="btns" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="75.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btnEliminarEmpleado" onAction="#btnEliminar" prefHeight="40.0" prefWidth="150.0" text="Eliminar">
+                                                   <styleClass>
+                                                      <String fx:value="btnsFondo" />
+                                                      <String fx:value="btns" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="75.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </JFXButton>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="40.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Administrar Tipo Empleado">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox prefHeight="523.0" prefWidth="950.0">
+                                 <children>
+                                    <HBox prefHeight="35.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="Tipo de Empleados" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="270.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="461.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefHeight="298.0" prefWidth="355.0" spacing="20.0">
+                                             <HBox.margin>
+                                                <Insets left="210.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <JFXTextField fx:id="txtTipoEmpleado" prefHeight="41.0" prefWidth="369.0" promptText="Cargo del Empleado" styleClass="textos">
+                                                   <VBox.margin>
+                                                      <Insets left="-20.0" right="20.0" top="30.0" />
+                                                   </VBox.margin>
+                                                </JFXTextField>
+                                                <JFXTreeTableView fx:id="tblViewEmpleadosTipos" prefHeight="249.0" prefWidth="353.0" style="-fx-background-color: #1d1e1e;">
+                                                   <VBox.margin>
+                                                      <Insets left="-200.0" right="-100.0" top="20.0" />
+                                                   </VBox.margin>
+                                                </JFXTreeTableView>
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="461.0" prefWidth="350.0">
+                                             <children>
+                                                <JFXButton fx:id="btnAgregarTE" onAction="#btnAgregarTipoEmp" prefHeight="39.0" prefWidth="150.0" text="Agregar">
+                                                   <styleClass>
+                                                      <String fx:value="btnsFondo" />
+                                                      <String fx:value="btns" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="75.0" top="40.0" />
+                                                   </VBox.margin>
+                                                </JFXButton>
+                                                <JFXButton fx:id="btnEliminarTE" onAction="#btnEliminarTipo" prefHeight="40.0" prefWidth="150.0" text="Eliminar">
+                                                   <styleClass>
+                                                      <String fx:value="btnsFondo" />
+                                                      <String fx:value="btns" />
+                                                   </styleClass>
+                                                   <VBox.margin>
+                                                      <Insets bottom="20.0" left="75.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </JFXButton>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="40.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../estilos/StyleClases.css" />
+      <URL value="@../estilos/StyleJFXTreeTableView.css" />
+   </stylesheets>
+</AnchorPane>
