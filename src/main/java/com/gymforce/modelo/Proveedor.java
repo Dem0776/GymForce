@@ -1,5 +1,11 @@
 package com.gymforce.modelo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,13 +18,13 @@ public class Proveedor{
 	private StringProperty status_proveedor;
 
 	public Proveedor(String rfc_proveedor, String razon_social, String email_proveedor, 
-String telefono_proveedor, String contacto_proveedor, String status_proveedor) { 
+String telefono_proveedor, String contacto_proveedor ) { 
 		this.rfc_proveedor = new SimpleStringProperty(rfc_proveedor);
 		this.razon_social = new SimpleStringProperty(razon_social);
 		this.email_proveedor = new SimpleStringProperty(email_proveedor);
 		this.telefono_proveedor = new SimpleStringProperty(telefono_proveedor);
 		this.contacto_proveedor = new SimpleStringProperty(contacto_proveedor);
-		this.status_proveedor = new SimpleStringProperty(status_proveedor);
+		
 	}
 
 	//Metodos atributo: rfc_proveedor
@@ -81,4 +87,24 @@ String telefono_proveedor, String contacto_proveedor, String status_proveedor) {
 	public StringProperty Status_proveedorProperty() {
 		return status_proveedor;
 	}
+	
+	public int guardarProveedor(Connection cn) {
+		try {
+			PreparedStatement consulta = cn.prepareStatement("INSERT proveedor VALUES (?,?,?,?,?,DEFAULT)");
+			consulta.setString(1, rfc_proveedor.get());
+			consulta.setString(2, razon_social.get());
+			consulta.setString(3, email_proveedor.get());
+			consulta.setString(4, telefono_proveedor.get());
+			consulta.setString(5, contacto_proveedor.get());
+			
+			
+			
+			return consulta.executeUpdate();
+		} catch (SQLException e) {
+			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, e);
+			return 0;
+		}
+	}
+	
+	
 }
