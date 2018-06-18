@@ -10,8 +10,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="950.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLagregarMobiliario">
    <children>
-      <JFXTextField labelFloat="true" layoutX="294.0" layoutY="154.0" prefHeight="40.0" prefWidth="317.0" promptText="Descripcion " />
-      <JFXTextField labelFloat="true" layoutX="294.0" layoutY="223.0" prefHeight="40.0" prefWidth="317.0" promptText="Costo" />
+      <JFXTextField fx:id="txtDescripcionMobiliario" labelFloat="true" layoutX="294.0" layoutY="154.0" prefHeight="40.0" prefWidth="317.0" promptText="Descripcion " />
+      <JFXTextField fx:id="txtCostoMobiliario" labelFloat="true" layoutX="294.0" layoutY="223.0" prefHeight="40.0" prefWidth="317.0" promptText="Costo" />
       <JFXButton layoutX="353.0" layoutY="307.0" onAction="#btnAgregar" prefHeight="40.0" prefWidth="150.0" text="Agregar">
          <styleClass>
             <String fx:value="btnsFondo" />

@@ -2,6 +2,7 @@ package com.gymforce.modelo;
 
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -114,6 +115,26 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 		}
 
 	}
+	
+	 public int guardarMobiliario(Connection cn){
+	        try {
+	            PreparedStatement consulta = cn.prepareStatement(
+	                    "INSERT INTO mobiliario VALUES(DEFAULT,?,?,DEFAULT)"
+	            );
+	            
+	            consulta.setString(1, desc_mobiliario.get());
+	            consulta.setDouble(2,costo_mobiliario.get());
+	            
+	            
+	            
+	            return consulta.executeUpdate();
+	                
+	        } catch (SQLException ex) {
+	            Logger.getLogger(Mobiliario.class.getName()).log(Level.SEVERE, null, ex);
+	            return 0;
+	        }
+	    }
+	
 }
 
 	

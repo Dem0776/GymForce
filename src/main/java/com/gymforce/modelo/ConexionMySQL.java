@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 public class ConexionMySQL {
 	private Connection connection;
 	private String url = "jdbc:mysql://localhost/gymforce";
@@ -27,6 +29,7 @@ public class ConexionMySQL {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(url, usuario, contrasena);
+			//JOptionPane.showMessageDialog(null,"Conexion Establecida");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

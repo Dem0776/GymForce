@@ -4,26 +4,66 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
+import com.gymforce.modelo.ConexionMySQL;
+import com.gymforce.modelo.Mensaje;
+import com.gymforce.modelo.Mobiliario;
+import com.jfoenix.controls.JFXTextField;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 public class FXMLagregarMobiliario implements Initializable {
+    ConexionMySQL conexion;
+    private ObservableList<Mobiliario>listMobiliario;
+	@FXML
+	private JFXTextField txtDescripcionMobiliario;
 
-    @FXML
-    void btnAgregar(ActionEvent event) {
+	@FXML
+	private JFXTextField txtCostoMobiliario;
 
-    }
+	@FXML
+	void btnAgregar(ActionEvent event) {
 
+		
+
+        if(txtDescripcionMobiliario.getText().trim().length() == 0){
+            Mensaje.error("Campo Vacio","Ingrese la descripcio del mobiliario");;
+            txtDescripcionMobiliario.requestFocus();
+        }else if(Double.valueOf(txtCostoMobiliario.getText())<0){
+            Mensaje.error("Campo Vacio o Valor no Valido", "Ingrese costo correctamente");
+            txtCostoMobiliario.requestFocus();
+        
+    }else {
+    	conexion.establecerConexion();
+    	Mobiliario mob = new Mobiliario(txtDescripcionMobiliario.getText(), Double.valueOf(txtCostoMobiliario.getText()));
+    	JOptionPane.showMessageDialog(null,"Mensaje");
+    	if(mob.guardarMobiliario(conexion.getConnection()) ==1){
+            Mensaje.informacion("Guardar Mobiliario",
+                                "Almacenado Correctamente");
+            //Mostrarlo en el TableView
+            listMobiliario.add(mob);
+        }else{
+            Mensaje.error("Guardar Lector", 
+                          "Problemas al guardar");
+        }
+        conexion.cerrarConexion();
+       
     
+    }
+		
+		
+		
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
