@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane fx:id="productos2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="950.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLagregarProducto">
+   <children>
+      <JFXTextField fx:id="btndescripcion" labelFloat="true" layoutX="278.0" layoutY="195.0" prefHeight="40.0" prefWidth="317.0" promptText="Descripcion " />
+      <JFXTextField fx:id="btnprecio" labelFloat="true" layoutX="278.0" layoutY="263.0" prefHeight="40.0" prefWidth="317.0" promptText="Precio" />
+      <JFXButton layoutX="213.0" layoutY="385.0" onAction="#btnAgregar" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+         <styleClass>
+            <String fx:value="btnsFondo" />
+            <String fx:value="btns" />
+         </styleClass>
+      </JFXButton>
+      <Label layoutX="77.0" layoutY="32.0" styleClass="titulo" stylesheets="@../../Documents/gimnasio/GymForce/src/main/java/com/gymforce/estilos/StyleClases.css" text="P R O D U C T O" />
+      <ImageView fitHeight="144.0" fitWidth="244.0" layoutX="621.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/Productosb.png" />
+         </image>
+      </ImageView>
+      <JFXTextField labelFloat="true" layoutX="278.0" layoutY="96.0" prefHeight="25.0" prefWidth="317.0" promptText="Codigo" />
+      <JFXTextField fx:id="btnnombreproducto" labelFloat="true" layoutX="278.0" layoutY="151.0" prefHeight="25.0" prefWidth="317.0" promptText="Nombre" />
+      <JFXTextField fx:id="btnmarca" labelFloat="true" layoutX="278.0" layoutY="337.0" prefHeight="25.0" prefWidth="317.0" promptText="Marca" />
+      <JFXButton layoutX="668.0" layoutY="131.0" onAction="#btnAgregar" prefHeight="40.0" prefWidth="150.0" text="Actualizar">
+         <styleClass>
+            <String fx:value="btnsFondo" />
+            <String fx:value="btns" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="461.0" layoutY="385.0" onAction="#btnEliminar" prefHeight="40.0" prefWidth="150.0" text="Eliminar">
+         <styleClass>
+            <String fx:value="btnsFondo" />
+            <String fx:value="btns" />
+         </styleClass>
+      </JFXButton>
+      <HBox alignment="CENTER_RIGHT" layoutX="347.0" layoutY="32.0" prefHeight="50.0" prefWidth="431.0" spacing="10.0">
+         <children>
+            <FontAwesomeIconView glyphName="SEARCH">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <JFXTextField fx:id="txtbuscarproducto" prefHeight="25.0" prefWidth="319.0" promptText="Buscar" styleClass="buscar" />
+            <JFXButton fx:id="btnirbuscarproducto" prefHeight="37.0" prefWidth="43.0" text="Ir">
+               <styleClass>
+                  <String fx:value="btns" />
+                  <String fx:value="btnsFondo" />
+               </styleClass>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

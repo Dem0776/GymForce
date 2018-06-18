@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -13,10 +14,10 @@ import javafx.scene.layout.VBox;
 public class FXMLprincipalController {
 
     @FXML
-    private BorderPane principal;
+    public BorderPane principal;
     
     @FXML
-    private VBox vbSlideBar;
+    private VBox vbSlideBar;    
 
     @FXML
     void hbClases(MouseEvent event) throws IOException {
@@ -52,9 +53,12 @@ public class FXMLprincipalController {
     }
 
     @FXML
-    void hbMobiliario(MouseEvent event) {
-
+    void hbPagosCompras(MouseEvent event) throws IOException {
+    	AnchorPane Compras;
+    	Compras = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLcomprasPagos.fxml"));
+		principal.setCenter(Compras);
     }
+
 
     @FXML
     void hbPlanesEntrenamiento(MouseEvent event) throws IOException {
@@ -64,10 +68,16 @@ public class FXMLprincipalController {
     }
 
     @FXML
+<<<<<<< HEAD
     void hbProductos(MouseEvent event) throws IOException {
 
+=======
+    void hbInventario(MouseEvent event) throws IOException {
+    	AnchorPane inventario;
+    	inventario = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLinventario.fxml"));
+		principal.setCenter(inventario);
+>>>>>>> 4bcec089be9bad41f7e69837630f7b1e196ac8e1
     }
-
     @FXML
     void hbSalir(MouseEvent event) {
     	Platform.exit();
@@ -81,12 +91,23 @@ public class FXMLprincipalController {
     }
 
     @FXML
-    void hbVentas(MouseEvent event) {
-
+    void hbVentas(MouseEvent event) throws IOException {
+    	AnchorPane ventas;
+    	ventas = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLventas.fxml"));
+		principal.setCenter(ventas);
+    	
+    	
     }
     
     @FXML
     void hideSlideBar(MouseEvent event) {
     }
 
+    public void regresar() throws IOException {
+    	AnchorPane inventario;
+    	inventario = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLinventario.fxml"));
+		principal.setCenter(inventario);
+   
+    }
+    
 }
