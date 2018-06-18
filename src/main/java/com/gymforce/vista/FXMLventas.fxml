@@ -249,7 +249,7 @@
       </VBox>
    </children>
    <stylesheets>
-      <URL value="@../../../../../../../../../Documents/gimnasio/GymForce/src/main/java/com/gymforce/estilos/StyleClases.css" />
-      <URL value="@../../../../../../../../../Documents/gimnasio/GymForce/src/main/java/com/gymforce/estilos/StyleJFXTreeTableView.css" />
+      <URL value="@../estilos/StyleClases.css" />
+      <URL value="@../estilos/StyleJFXTreeTableView.css" />
    </stylesheets>
 </AnchorPane>

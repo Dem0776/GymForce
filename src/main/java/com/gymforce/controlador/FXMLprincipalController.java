@@ -66,18 +66,6 @@ public class FXMLprincipalController {
     	planEntr = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLplanEntrenamiento.fxml"));
 		principal.setCenter(planEntr);
     }
-
-    @FXML
-<<<<<<< HEAD
-    void hbProductos(MouseEvent event) throws IOException {
-
-=======
-    void hbInventario(MouseEvent event) throws IOException {
-    	AnchorPane inventario;
-    	inventario = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLinventario.fxml"));
-		principal.setCenter(inventario);
->>>>>>> 4bcec089be9bad41f7e69837630f7b1e196ac8e1
-    }
     @FXML
     void hbSalir(MouseEvent event) {
     	Platform.exit();
@@ -102,12 +90,12 @@ public class FXMLprincipalController {
     @FXML
     void hideSlideBar(MouseEvent event) {
     }
-
-    public void regresar() throws IOException {
+    
+    @FXML
+    void hbInventario(MouseEvent event) throws IOException {
     	AnchorPane inventario;
     	inventario = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLinventario.fxml"));
 		principal.setCenter(inventario);
-   
     }
     
 }
