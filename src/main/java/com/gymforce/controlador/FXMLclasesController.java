@@ -216,7 +216,9 @@ public class FXMLclasesController implements Initializable {
 
 	private void seleccionarColumnaTalbe() {
 		tvbViewClases.getSelectionModel().selectedIndexProperty().addListener((observable, oldCount, newCount) -> {
-			// System.out.println("Hola");
+			 TreeItem<Clase> selectedItem = tvbViewClases.getSelectionModel().getSelectedItem();
+			 int index = selectedItem.getParent().getChildren().indexOf(selectedItem);
+			 System.out.println(index);
 		});
 	}
 }

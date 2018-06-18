@@ -1,6 +1,5 @@
 package com.gymforce.modelo;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -23,13 +21,10 @@ import javafx.collections.ObservableList;
 
 public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 
-
-
 	private IntegerProperty clv_mobiliario;
 	private StringProperty desc_mobiliario;
 	private DoubleProperty costo_mobiliario;
 	private StringProperty status_mobiliario;
-
 
 	public Mobiliario(String desc_mobiliario, Double costo_mobiliario) {
 
@@ -39,15 +34,14 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 	}
 
 	public Mobiliario(int clv_mobiliario, String desc_mobiliario, Double costo_mobiliario, String status_mobiliario) {
-	 
 
 		this.clv_mobiliario = new SimpleIntegerProperty(clv_mobiliario);
 		this.desc_mobiliario = new SimpleStringProperty(desc_mobiliario);
 		this.costo_mobiliario = new SimpleDoubleProperty(costo_mobiliario);
 		this.status_mobiliario = new SimpleStringProperty(status_mobiliario);
 	}
-	
-	public Mobiliario(String desc_mobiliario) {		
+
+	public Mobiliario(String desc_mobiliario) {
 		this.desc_mobiliario = new SimpleStringProperty(desc_mobiliario);
 	}
 
@@ -102,16 +96,16 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 	public StringProperty Status_mobiliarioProperty() {
 		return status_mobiliario;
 	}
-	
+
 	@Override
 	public String toString() {
 		return desc_mobiliario.get();
 	}
+
 	public static void llenarComboEquipamento(Connection cn, ObservableList<Mobiliario> lista) {
 		try {
 			Statement st = cn.createStatement();
-			ResultSet rs = st.executeQuery(
-					"SELECT * FROM mobiliario " + "WHERE mobiliario.status_mobiliario = 1");
+			ResultSet rs = st.executeQuery("SELECT * FROM mobiliario " + "WHERE mobiliario.status_mobiliario = 1");
 			while (rs.next()) {
 				lista.add(new Mobiliario(rs.getInt("clv_mobiliario"), rs.getString("desc_mobiliario"),
 						rs.getDouble("costo_mobiliario"), rs.getString("status_mobiliario")));
@@ -121,12 +115,12 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 			Logger.getLogger(Mobiliario.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
+
 	public static void llenarTableMobiliario(Connection conexion, ObservableList<Mobiliario> listmobiliario) {
 		try {
 			Statement st = conexion.createStatement();
-			ResultSet rs = st.executeQuery("SELECT" + " desc_mobiliario," + "costo_mobiliario"
-				+ " FROM " + "mobiliario ");
+			ResultSet rs = st
+					.executeQuery("SELECT" + " desc_mobiliario," + "costo_mobiliario" + " FROM " + "mobiliario ");
 			while (rs.next()) {
 				listmobiliario.add(new Mobiliario(rs.getString("desc_mobiliario"), rs.getDouble("costo_mobiliario")));
 			}
@@ -136,24 +130,19 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 			Logger.getLogger(Mobiliario.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-	
-	 public int guardarMobiliario(Connection cn){
-	        try {
-	        	PreparedStatement consulta = cn.prepareStatement("INSERT mobiliario VALUES (DEFAULT,?,?,DEFAULT)");
-				consulta.setString(1, desc_mobiliario.get());
-				consulta.setDouble(2, costo_mobiliario.get());
-				
-				return consulta.executeUpdate();
-		
-	                
-	        } catch (SQLException ex) {
-	            Logger.getLogger(Mobiliario.class.getName()).log(Level.SEVERE, null, ex);
-	            return 0;
-	        }
-	    }
-	
+
+	public int guardarMobiliario(Connection cn) {
+		try {
+			PreparedStatement consulta = cn.prepareStatement("INSERT mobiliario VALUES (DEFAULT,?,?,DEFAULT)");
+			consulta.setString(1, desc_mobiliario.get());
+			consulta.setDouble(2, costo_mobiliario.get());
+
+			return consulta.executeUpdate();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(Mobiliario.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
+
 }
-
-	
-
-

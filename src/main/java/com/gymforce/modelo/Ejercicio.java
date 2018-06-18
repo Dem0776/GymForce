@@ -109,13 +109,17 @@ public class Ejercicio extends RecursiveTreeObject<Ejercicio> {
 	public static void lleanarTableEjercicio(Connection conect, ObservableList<Ejercicio> listaEjercicio) {
 		try {
 			Statement st = conect.createStatement();
-			ResultSet rs = st.executeQuery("SELECT " + "ejercicio.desc_ejercicio, "
+			ResultSet rs = st.executeQuery("SELECT " + "ejercicio.clv_ejercicio, " + "ejercicio.desc_ejercicio, "
 					+ "ejercicio.complejidad_ejercicio, " + "mobiliario.desc_mobiliario " + "FROM ejercicio "
 					+ "JOIN mobiliario ON ejercicio.clv_mobiliario = mobiliario.clv_mobiliario "
 					+ "WHERE ejercicio.status_ejercicio = 1");
 			while (rs.next()) {
-				listaEjercicio.add(new Ejercicio(rs.getString("desc_ejercicio"), rs.getString("complejidad_ejercicio"),
+				listaEjercicio.add(new Ejercicio(rs.getInt("clv_ejercicio"), 
+						rs.getString("desc_ejercicio"), 
+						rs.getString("complejidad_ejercicio"), 
 						new Mobiliario(rs.getString("desc_mobiliario"))));
+				/*listaEjercicio.add(new Ejercicio(rs.getString("desc_ejercicio"), rs.getString("complejidad_ejercicio"),
+						new Mobiliario(rs.getString("desc_mobiliario"))));*/
 			}
 		} catch (SQLException e) {
 			Logger.getLogger(Ejercicio.class.getName()).log(Level.SEVERE, null, e);

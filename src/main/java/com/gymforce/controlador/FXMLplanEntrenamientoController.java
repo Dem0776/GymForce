@@ -25,6 +25,7 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -100,6 +101,7 @@ public class FXMLplanEntrenamientoController implements Initializable {
 
 	@FXML
 	private JFXTreeTableView<Ejercicio> tbEjercicios;
+	private TreeTableColumn<Ejercicio, Integer> clmnClv_ejercicio;
 	private TreeTableColumn<Ejercicio, String> clmnNombre_ejercicio;
 	private TreeTableColumn<Ejercicio, String> clmnComplejidad_ejercicio;
 	private TreeTableColumn<Ejercicio, Mobiliario> clmnEquipamento_mobiliario;
@@ -178,12 +180,10 @@ public class FXMLplanEntrenamientoController implements Initializable {
 			Mensaje.error("Campo Vacio", "Ingresa la duracion de la rutina");
 			txtComplejidad.requestFocus();
 		} else {
-			if (txtPeso.getText().trim().length() == 0 && 
-					txtRepeticiones.getText().trim().length() != 0) {
+			if (txtPeso.getText().trim().length() == 0 && txtRepeticiones.getText().trim().length() != 0) {
 				txtPeso.setText("0");
 			}
-			if (txtRepeticiones.getText().trim().length() == 0 && 
-					txtPeso.getText().trim().length() != 0) {
+			if (txtRepeticiones.getText().trim().length() == 0 && txtPeso.getText().trim().length() != 0) {
 				txtRepeticiones.setText("0");
 			}
 			try {
@@ -272,12 +272,14 @@ public class FXMLplanEntrenamientoController implements Initializable {
 		tbvCategoria.setRoot(rootCategoria);
 		tbvCategoria.setShowRoot(false);
 
+		clmnClv_ejercicio = new TreeTableColumn<>("clave");
 		clmnNombre_ejercicio = new TreeTableColumn<>("Ejercicio");
 		clmnComplejidad_ejercicio = new TreeTableColumn<>("Complejidad");
 		clmnEquipamento_mobiliario = new TreeTableColumn<>("Equipamento");
 		clmnNombre_ejercicio.setPrefWidth(150);
 		clmnComplejidad_ejercicio.setPrefWidth(150);
 		clmnEquipamento_mobiliario.setPrefWidth(150);
+		clmnClv_ejercicio.setCellValueFactory(new TreeItemPropertyValueFactory<Ejercicio, Integer>("clv_ejercicio"));
 		clmnNombre_ejercicio.setCellValueFactory(new TreeItemPropertyValueFactory<Ejercicio, String>("desc_ejercicio"));
 		clmnComplejidad_ejercicio
 				.setCellValueFactory(new TreeItemPropertyValueFactory<Ejercicio, String>("complejidad_ejercicio"));
@@ -296,7 +298,8 @@ public class FXMLplanEntrenamientoController implements Initializable {
 		clmnPeso_rutina = new TreeTableColumn<>("Peso");
 		clmnEjercicio_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, Ejercicio>("clv_ejercicio"));
 		clmnSerie_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("serie_rutina"));
-		clmnRepeticion_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("repeticion_rutina"));
+		clmnRepeticion_rutina
+				.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("repeticion_rutina"));
 		clmnDuracion_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("duracion_rutina"));
 		clmnPeso_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("peso_rutina"));
 		final TreeItem<Rutina> rootRutina = new RecursiveTreeItem<Rutina>(oblListaRutinaTbv,
@@ -307,8 +310,9 @@ public class FXMLplanEntrenamientoController implements Initializable {
 		tbRutina.setShowRoot(false);
 
 		conexion.cerrarConexion();
-	}		
-	
+		seleccionarColumnaTalbe();
+	}
+
 	private void guardarCategoria() {
 		try {
 			conexion.establecerConexion();
@@ -331,9 +335,9 @@ public class FXMLplanEntrenamientoController implements Initializable {
 					cmbEquipamento.getSelectionModel().getSelectedItem());
 			int noReg = ejercicio.guardarEjercicio(conexion.getConnection());
 			if (noReg != 0) {
-				Mensaje.informacion("Guardar Registro", "Ejercicio Almacenada Correctamente");				
+				Mensaje.informacion("Guardar Registro", "Ejercicio Almacenada Correctamente");
 				oblListaEjercicioCmb.add(ejercicio);
-				oblListaEjercicioTbv.add(ejercicio);				
+				oblListaEjercicioTbv.add(ejercicio);
 			}
 		} catch (Exception e) {
 			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
@@ -346,7 +350,7 @@ public class FXMLplanEntrenamientoController implements Initializable {
 			conexion.establecerConexion();
 			Rutina rutina = new Rutina(Integer.valueOf(txtSeries.getText()), Integer.valueOf(txtRepeticiones.getText()),
 					txtDuracion.getText(), Integer.valueOf(txtPeso.getText()),
-					cmbEjercicioRutina.getSelectionModel().getSelectedItem());			
+					cmbEjercicioRutina.getSelectionModel().getSelectedItem());
 
 			int noReg = rutina.guardarRutina(conexion.getConnection());
 			if (noReg != 0) {
@@ -358,34 +362,40 @@ public class FXMLplanEntrenamientoController implements Initializable {
 		}
 		conexion.cerrarConexion();
 	}
-	
+
 	private void guardarPlanE() {
 		try {
 			conexion.establecerConexion();
-			PlanEntrenamiento plan = new PlanEntrenamiento(0, txtDescPlanE.getText(), 
-					txtDuracionPlanE.getText(), txtFrecuenciaPlanE.getText(), 
-					txtDificultadPlanE.getText(), "1", cmbCategoriaPlanE.getSelectionModel().getSelectedItem());			
+			PlanEntrenamiento plan = new PlanEntrenamiento(0, txtDescPlanE.getText(), txtDuracionPlanE.getText(),
+					txtFrecuenciaPlanE.getText(), txtDificultadPlanE.getText(), "1",
+					cmbCategoriaPlanE.getSelectionModel().getSelectedItem());
 
 			int noReg = plan.guardarPlanE(conexion.getConnection());
 			if (noReg != 0) {
 				Mensaje.informacion("Guardar Registro", "Plane Almacenado Correctamente");
-				//oblListaPlanEntrTbv.add(plan);
+				// oblListaPlanEntrTbv.add(plan);
 			}
 		} catch (Exception e) {
 			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos, algo ocurrio");
 		}
 		conexion.cerrarConexion();
 	}
-	
+
 	private void guardarDetalleCE() {
 		try {
 			conexion.establecerConexion();
-			/*DetalleRutinaPlanE planR = new DetalleRutinaPlanE(PlanEntrenamiento.obtenerUltimoPlan(conexion.getConnection()), 
-					cmb);*/
+			/*
+			 * DetalleRutinaPlanE planR = new
+			 * DetalleRutinaPlanE(PlanEntrenamiento.obtenerUltimoPlan(conexion.getConnection
+			 * ()), cmb);
+			 */
 		} catch (Exception e) {
 			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
 		}
 		conexion.cerrarConexion();
 	}
+
+	private void seleccionarColumnaTalbe() {		
+}
 
 }
