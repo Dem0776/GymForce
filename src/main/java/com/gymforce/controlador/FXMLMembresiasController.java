@@ -7,6 +7,7 @@ import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.Membresia;
 import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -17,6 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -33,6 +36,15 @@ public class FXMLMembresiasController implements Initializable{
     private TreeTableColumn<Membresia,String> clmndesc_membresia;
     private TreeTableColumn<Membresia,Double> clmnprecio_membresia;
     private TreeTableColumn<Membresia,Number> clmndiasValidos_membresia;
+    
+    @FXML
+    private JFXTabPane MembresiasPrincipal;
+    
+    @FXML
+    private Tab VerMembresias;
+    
+    @FXML
+    private Tab AdministrarMembresias;
 
     @FXML
     private JFXTextField txtBuscarMembresia;
@@ -100,7 +112,7 @@ public class FXMLMembresiasController implements Initializable{
 
     @FXML
     void btnVer(ActionEvent event) {
-
+    	MembresiasPrincipal.getSelectionModel().select(AdministrarMembresias);
     }
 
 	@Override

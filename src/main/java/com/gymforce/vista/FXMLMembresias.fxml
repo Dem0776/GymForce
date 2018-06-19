@@ -20,9 +20,9 @@
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
-            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+            <JFXTabPane fx:id="MembresiasPrincipal" prefHeight="629.0" prefWidth="950.0">
                <tabs>
-                  <Tab text="Ver Membresias">
+                  <Tab fx:id="VerMembresias" text="Ver Membresias">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
                            <children>
@@ -85,7 +85,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Administrar Membresias">
+                  <Tab fx:id="AdministrarMembresias" text="Administrar Membresias">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>

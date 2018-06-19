@@ -1,6 +1,7 @@
 package com.gymforce.modelo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -167,5 +168,60 @@ String usuario_empleado, String password_empleado, TipoEmpleado clv_te) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
 	}
-	
+	public static void llenarTableEmpleado(Connection conect, ObservableList<Empleado> listEmpleado) {
+        try {
+            Statement st = conect.createStatement();
+            ResultSet rs = st.executeQuery("SELECT "
+                    + "empleado.rfc_empleado, "
+                    + "empleado.nombre_empleado, "
+                    + "empleado.ape1_empleado, "
+                    + "empleado.ape2_empleado, "
+                    + "empleado.telefono_empleado, "
+                    + "empleado.email_empleado, "
+                    + "empleado.usuario_empleado, "
+                    + "empleado.password_empleado, "
+                    + "tipo_empleado.clv_te, "
+                    + "tipo_empleado.desc_te "
+                    + "FROM "
+                    + "empleado "
+                    + "INNER JOIN tipo_empleado ON empleado.clv_te = tipo_empleado.clv_te");
+            while (rs.next()) {
+                listEmpleado.add(
+                        new Empleado(rs.getString("rfc_empleado"),
+                                rs.getString("nombre_empleado"),
+                                rs.getString("ape1_empleado"),
+                                rs.getString("ape2_empleado"),
+                                rs.getString("telefono_empleado"),
+                                rs.getString("email_empleado"),
+                                rs.getString("usuario_empleado"),
+                                rs.getString("password_empleado"),
+                                new TipoEmpleado(rs.getInt("clv_te"), rs.getString("desc_te"))
+                        ));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public int guardarEmpleado(Connection cn) {
+        try {
+            PreparedStatement consulta
+                    = cn.prepareStatement(
+                            "INSERT empleado VALUES (?,?,?,?,?,?,?,?,?,DEFAULT)");
+            consulta.setString(1, rfc_empleado.get());
+            consulta.setString(2, nombre_empleado.get());
+            consulta.setString(3, ape1_empleado.get());
+            consulta.setString(4, ape2_empleado.get());
+            consulta.setString(5, telefono_empleado.get());
+            consulta.setString(6, email_empleado.get());
+            consulta.setString(7, usuario_empleado.get());
+            consulta.setString(8, password_empleado.get());
+            consulta.setInt(9, clv_te.getClv_te());
+
+            return consulta.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }	
 }

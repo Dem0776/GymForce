@@ -1,9 +1,6 @@
 package com.gymforce.controlador;
 
-<<<<<<< HEAD
 import javafx.scene.control.ButtonType;
-=======
->>>>>>> ccf4212be6cc720febbc75a8f18b7d6d3b288f37
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -32,7 +29,6 @@ public class FXMLagregarMobiliario {
 	void btnAgregar(ActionEvent event) {
 		conexion = new ConexionMySQL();
 
-<<<<<<< HEAD
 		Alert dialogo = new Alert(AlertType.CONFIRMATION);
 		dialogo.setTitle("Continuar guardando");
 		dialogo.setHeaderText(null);
@@ -70,8 +66,6 @@ public class FXMLagregarMobiliario {
 		}else {
 			txtDescripcionMobiliario.setText("");
 			txtCostoMobiliario.setText("");
-		
-=======
 		if (txtDescripcionMobiliario.getText().trim().length() == 0) {
 			Mensaje.error("Campo Vacio", "Ingrese la descripcio del mobiliario");
 			;
@@ -94,11 +88,9 @@ public class FXMLagregarMobiliario {
 				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
 			}
 			conexion.cerrarConexion();
->>>>>>> ccf4212be6cc720febbc75a8f18b7d6d3b288f37
 		}
-
-	}
-
+		}
+		}
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
