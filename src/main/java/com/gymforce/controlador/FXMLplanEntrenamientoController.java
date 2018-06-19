@@ -3,16 +3,9 @@ package com.gymforce.controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import com.gymforce.modelo.Categoria;
-import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
-import com.gymforce.modelo.DetalleClaseEntrenador;
-import com.gymforce.modelo.DetalleRutinaPlanE;
 import com.gymforce.modelo.Ejercicio;
-import com.gymforce.modelo.Empleado;
 import com.gymforce.modelo.Mensaje;
 import com.gymforce.modelo.Mobiliario;
 import com.gymforce.modelo.PlanEntrenamiento;
@@ -20,19 +13,15 @@ import com.gymforce.modelo.Rutina;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FXMLplanEntrenamientoController implements Initializable {
 
@@ -49,8 +38,8 @@ public class FXMLplanEntrenamientoController implements Initializable {
 	@FXML
 	private JFXTextField txtBuscarPlanE;
 
-	@FXML
-	private JFXTreeTableView<PlanEntrenamiento> tblViewPlanE;
+    @FXML
+    private TableView<PlanEntrenamiento> tblViewPlanE;
 
 	@FXML
 	private JFXTextField txtDescPlanE;
@@ -67,13 +56,23 @@ public class FXMLplanEntrenamientoController implements Initializable {
 	@FXML
 	private JFXComboBox<Categoria> cmbCategoriaPlanE;
 
-	@FXML
-	private JFXTreeTableView<Rutina> tbRutina;
-	private TreeTableColumn<Rutina, Ejercicio> clmnEjercicio_rutina;
-	private TreeTableColumn<Rutina, String> clmnSerie_rutina;
-	private TreeTableColumn<Rutina, String> clmnRepeticion_rutina;
-	private TreeTableColumn<Rutina, String> clmnDuracion_rutina;
-	private TreeTableColumn<Rutina, String> clmnPeso_rutina;
+    @FXML
+    private TableView<Rutina> tbvRutina;	
+	
+    @FXML
+    private TableColumn<Rutina, Ejercicio> clmnEjercicio_rutina;
+
+    @FXML
+    private TableColumn<Rutina, Number> clmnSerie_rutina;
+
+    @FXML
+    private TableColumn<Rutina, Number> clmnRepeticion_rutina;
+
+    @FXML
+    private TableColumn<Rutina, String> clmnDuracion_rutina;
+
+    @FXML
+    private TableColumn<Rutina, Number> clmnPeso_rutina;
 
 	@FXML
 	private JFXComboBox<Ejercicio> cmbEjercicioRutina;
@@ -99,19 +98,27 @@ public class FXMLplanEntrenamientoController implements Initializable {
 	@FXML
 	private JFXComboBox<Mobiliario> cmbEquipamento;
 
-	@FXML
-	private JFXTreeTableView<Ejercicio> tbEjercicios;
-	private TreeTableColumn<Ejercicio, Integer> clmnClv_ejercicio;
-	private TreeTableColumn<Ejercicio, String> clmnNombre_ejercicio;
-	private TreeTableColumn<Ejercicio, String> clmnComplejidad_ejercicio;
-	private TreeTableColumn<Ejercicio, Mobiliario> clmnEquipamento_mobiliario;
+    @FXML
+    private TableView<Ejercicio> tbvEjercicios;	
+	
+    private TableColumn<Ejercicio, Integer> clmnClv_ejercicio;
+    
+    @FXML
+    private TableColumn<Ejercicio, String> clmnNombre_ejercicio;
+
+    @FXML
+    private TableColumn<Ejercicio, String> clmnComplejidad_ejercicio;
+
+    @FXML
+    private TableColumn<Ejercicio, Mobiliario> clmnEquipamento_mobiliario;
 
 	@FXML
 	private JFXTextField txtDescCategoria;
 
-	@FXML
-	private JFXTreeTableView<Categoria> tbvCategoria;
-	private TreeTableColumn<Categoria, String> clmnNombre_categoria;
+    @FXML
+    private TableView<Categoria> tbvCategoria;
+    @FXML
+    private TableColumn<Categoria, String> clmnNombre_categoria;
 
 	@FXML
 	void btnAgregarCategoria(ActionEvent event) {
@@ -237,8 +244,7 @@ public class FXMLplanEntrenamientoController implements Initializable {
 	void btnVerPlanE(ActionEvent event) {
 
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		conexion = new ConexionMySQL();
@@ -262,52 +268,27 @@ public class FXMLplanEntrenamientoController implements Initializable {
 		cmbEquipamento.setItems(oblListaMobiliariioCmb);
 		cmbEjercicioRutina.setItems(oblListaEjercicioCmb);
 		cmbCategoriaPlanE.setItems(oblListaCategoriaCmb);
-
-		clmnNombre_categoria = new TreeTableColumn<>("Categoria");
+		
+		clmnNombre_categoria.setCellValueFactory(new PropertyValueFactory<Categoria, String>("desc_categoria"));				
 		clmnNombre_categoria.setPrefWidth(150);
-		clmnNombre_categoria.setCellValueFactory(new TreeItemPropertyValueFactory<Categoria, String>("desc_categoria"));
-		final TreeItem<Categoria> rootCategoria = new RecursiveTreeItem<Categoria>(oblListaCategoriaTbv,
-				RecursiveTreeObject::getChildren);
-		tbvCategoria.getColumns().addAll(clmnNombre_categoria);
-		tbvCategoria.setRoot(rootCategoria);
-		tbvCategoria.setShowRoot(false);
-
-		clmnClv_ejercicio = new TreeTableColumn<>("clave");
-		clmnNombre_ejercicio = new TreeTableColumn<>("Ejercicio");
-		clmnComplejidad_ejercicio = new TreeTableColumn<>("Complejidad");
-		clmnEquipamento_mobiliario = new TreeTableColumn<>("Equipamento");
+		tbvCategoria.setItems(oblListaCategoriaTbv);
+		
+		clmnClv_ejercicio = new TableColumn<>();
+		clmnClv_ejercicio.setCellValueFactory(new PropertyValueFactory<Ejercicio, Integer>("clv_ejercicio"));
+		clmnNombre_ejercicio.setCellValueFactory(new PropertyValueFactory<Ejercicio, String>("desc_ejercicio"));
+		clmnComplejidad_ejercicio.setCellValueFactory(new PropertyValueFactory<Ejercicio, String>("complejidad_ejercicio"));
+		clmnEquipamento_mobiliario.setCellValueFactory(new PropertyValueFactory<Ejercicio, Mobiliario>("clv_mobiliario"));
 		clmnNombre_ejercicio.setPrefWidth(150);
 		clmnComplejidad_ejercicio.setPrefWidth(150);
 		clmnEquipamento_mobiliario.setPrefWidth(150);
-		clmnClv_ejercicio.setCellValueFactory(new TreeItemPropertyValueFactory<Ejercicio, Integer>("clv_ejercicio"));
-		clmnNombre_ejercicio.setCellValueFactory(new TreeItemPropertyValueFactory<Ejercicio, String>("desc_ejercicio"));
-		clmnComplejidad_ejercicio
-				.setCellValueFactory(new TreeItemPropertyValueFactory<Ejercicio, String>("complejidad_ejercicio"));
-		clmnEquipamento_mobiliario
-				.setCellValueFactory(new TreeItemPropertyValueFactory<Ejercicio, Mobiliario>("clv_mobiliario"));
-		final TreeItem<Ejercicio> rootEjercicio = new RecursiveTreeItem<Ejercicio>(oblListaEjercicioTbv,
-				RecursiveTreeObject::getChildren);
-		tbEjercicios.getColumns().addAll(clmnNombre_ejercicio, clmnComplejidad_ejercicio, clmnEquipamento_mobiliario);
-		tbEjercicios.setRoot(rootEjercicio);
-		tbEjercicios.setShowRoot(false);
+		tbvEjercicios.setItems(oblListaEjercicioTbv);
 
-		clmnEjercicio_rutina = new TreeTableColumn<>("Ejercicio");
-		clmnSerie_rutina = new TreeTableColumn<>("Series");
-		clmnRepeticion_rutina = new TreeTableColumn<>("Repeticiones");
-		clmnDuracion_rutina = new TreeTableColumn<>("Duracion");
-		clmnPeso_rutina = new TreeTableColumn<>("Peso");
-		clmnEjercicio_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, Ejercicio>("clv_ejercicio"));
-		clmnSerie_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("serie_rutina"));
-		clmnRepeticion_rutina
-				.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("repeticion_rutina"));
-		clmnDuracion_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("duracion_rutina"));
-		clmnPeso_rutina.setCellValueFactory(new TreeItemPropertyValueFactory<Rutina, String>("peso_rutina"));
-		final TreeItem<Rutina> rootRutina = new RecursiveTreeItem<Rutina>(oblListaRutinaTbv,
-				RecursiveTreeObject::getChildren);
-		tbRutina.getColumns().addAll(clmnEjercicio_rutina, clmnSerie_rutina, clmnRepeticion_rutina, clmnDuracion_rutina,
-				clmnPeso_rutina);
-		tbRutina.setRoot(rootRutina);
-		tbRutina.setShowRoot(false);
+		clmnEjercicio_rutina.setCellValueFactory(new PropertyValueFactory<Rutina, Ejercicio>("clv_ejercicio"));
+		clmnSerie_rutina.setCellValueFactory(new PropertyValueFactory<Rutina, Number>("serie_rutina"));
+		clmnRepeticion_rutina.setCellValueFactory(new PropertyValueFactory<Rutina, Number>("repeticion_rutina"));
+		clmnDuracion_rutina.setCellValueFactory(new PropertyValueFactory<Rutina, String>("duracion_rutina"));
+		clmnPeso_rutina.setCellValueFactory(new PropertyValueFactory<Rutina, Number>("peso_rutina"));	
+		tbvRutina.setItems(oblListaRutinaTbv);
 
 		conexion.cerrarConexion();
 		seleccionarColumnaTalbe();

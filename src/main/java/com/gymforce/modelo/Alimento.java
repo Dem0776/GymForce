@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class Alimento extends RecursiveTreeObject<Alimento> {
+public class Alimento{
 	private IntegerProperty clv_alimento;
 	private StringProperty nombre_alimento;
 	private StringProperty desc_alimento;
@@ -30,6 +30,10 @@ public class Alimento extends RecursiveTreeObject<Alimento> {
 	public Alimento(String nombre_alimento, String desc_alimento) {
 		this.nombre_alimento = new SimpleStringProperty(nombre_alimento);
 		this.desc_alimento = new SimpleStringProperty(desc_alimento);
+	}
+	
+	public Alimento(String nombre_alimento) {
+		this.nombre_alimento = new SimpleStringProperty(nombre_alimento);
 	}
 
 	// Metodos atributo: clv_alimento

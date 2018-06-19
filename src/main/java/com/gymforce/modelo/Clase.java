@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class Clase extends RecursiveTreeObject<Clase> {
+public class Clase{
 	private IntegerProperty clv_clase;
 	private StringProperty nombre_clase;
 	private StringProperty desc_clase;
