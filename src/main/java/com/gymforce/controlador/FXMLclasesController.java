@@ -1,8 +1,11 @@
 package com.gymforce.controlador;
 
 import java.net.URL;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ResourceBundle;
 
+import com.gymforce.modelo.Alimento;
 import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.DetalleClaseEntrenador;
@@ -13,6 +16,7 @@ import com.gymforce.modelo.Empleado;
 import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +30,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FXMLclasesController implements Initializable {
 
 	private ConexionMySQL conexion;
+	private int banderaClase = 0;
+	private int contAgregarC = 0;
+	private int banderaCancelar = 0;
 
 	private ObservableList<Clase> listaClase;
 	private ObservableList<Empleado> listaInstructor;
@@ -52,48 +59,12 @@ public class FXMLclasesController implements Initializable {
 
 	@FXML
 	private JFXComboBox<Empleado> cmbInstructor;
+	
+    @FXML
+    private JFXTimePicker timeDomingoInicio;
 
     @FXML
-    private JFXTextField txtDomingoInicio;
-
-    @FXML
-    private JFXTextField txtDomingoFin;
-
-    @FXML
-    private JFXTextField txtLunesInicio;
-
-    @FXML
-    private JFXTextField txtMartesInicio;
-
-    @FXML
-    private JFXTextField txtMiercolesInicio;
-
-    @FXML
-    private JFXTextField txtJuevesInicio;
-
-    @FXML
-    private JFXTextField txtViernesInicio;
-
-    @FXML
-    private JFXTextField txtSabadoInicio;
-
-    @FXML
-    private JFXTextField txtLunesFin;
-
-    @FXML
-    private JFXTextField txtMartesFin;
-
-    @FXML
-    private JFXTextField txtMiercolesFin;
-
-    @FXML
-    private JFXTextField txtJuevesFin;
-
-    @FXML
-    private JFXTextField txtViernesFin;
-
-    @FXML
-    private JFXTextField txtSabadoFin;
+    private JFXTimePicker timeDomingoFin;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -144,8 +115,17 @@ public class FXMLclasesController implements Initializable {
 		} else {
 			try {
 				precio = Double.valueOf(txtPrecio.getText());
-				guardarClase();
-				guardarDetalleCE();
+				if (banderaClase == 0) {
+					guardarClase();
+					guardarDetalleCE();
+					banderaCancelar = 1;
+					Mensaje.informacion("Guardar Registro", "Clase agregada");
+				} else {
+					Mensaje.informacion("Guardar Registro", "Clase agregada");
+					contAgregarC = 0;
+					limpiar();
+				}
+				
 			} catch (Exception e) {
 				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
 			}
@@ -154,7 +134,37 @@ public class FXMLclasesController implements Initializable {
 
 	@FXML
 	void btnAsignarHorarioClase(ActionEvent event) {
-
+		Double precio;
+		banderaClase = 1;		
+		if (txtNombre.getText().trim().length() == 0) {
+			Mensaje.error("Campo Vacio", "Ingresa el nombre de la clase");
+			txtNombre.requestFocus();
+		} else if (txtDescripcion.getText().trim().length() == 0) {
+			Mensaje.error("Campo Vacio", "Ingresa la descripcion de la clase");
+			txtDescripcion.requestFocus();
+		} else if (txtPrecio.getText().trim().length() == 0) {
+			Mensaje.error("Campo Vacio", "Ingresa el precio de la clase");
+			txtPrecio.requestFocus();
+		} else if (cmbInstructor.getValue() == null) {
+			Mensaje.error("Campo Vacio", "Seleccione un instructor");
+			cmbInstructor.requestFocus();
+		} else {
+			try {
+				precio = Double.valueOf(txtPrecio.getText());
+				if (contAgregarC == 0) {
+					precio = Double.valueOf(txtPrecio.getText());
+					guardarClase();
+					guardarDetalleCE();
+					contAgregarC = 1;
+					banderaCancelar = 1;
+				}else if (contAgregarC == 1) {
+					guardarHorarioDom();
+				}
+				
+			} catch (Exception e) {
+				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
+			}
+		}
 	}
 
 	@FXML
@@ -164,7 +174,14 @@ public class FXMLclasesController implements Initializable {
 
 	@FXML
 	void btnCancelarClase(ActionEvent event) {
-
+		limpiar();
+		if (banderaCancelar == 1) {
+			conexion.establecerConexion();
+			Clase clase = new Clase(Clase.obtenerUltimaClase(conexion.getConnection()));
+			int noReg = clase.cancelarClase(conexion.getConnection());
+			conexion.cerrarConexion();
+			banderaCancelar = 0;
+		}
 	}
 
 	@FXML
@@ -208,10 +225,25 @@ public class FXMLclasesController implements Initializable {
 		txtNombre.setText("");
 		txtDescripcion.setText("");
 		txtPrecio.setText("");
+		cmbInstructor.setValue(null);
 	}
 	
-	private void guardarHorario() {
-		
+	private void guardarHorarioDom() {
+		try {
+			conexion.establecerConexion();
+			DetalleDiaClaseEnt ddce = new DetalleDiaClaseEnt(0, 
+					0, 
+					DetalleClaseEntrenador.obtenerUltimoDetalleDce(conexion.getConnection()), 
+					Time.valueOf(timeDomingoInicio.toString()),
+					Time.valueOf(timeDomingoFin.toString()));
+			int noReg = ddce.guardarDomingo(conexion.getConnection());
+			if (noReg != 0) {
+				Mensaje.informacion("Guardar Registro", "Alimento Almacenado Correctamente");				
+			}
+		} catch (Exception e) {
+			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
+		}
+		conexion.cerrarConexion();
 	}
 
 	/*private void seleccionarColumnaTalbe() {

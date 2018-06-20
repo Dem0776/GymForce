@@ -8,6 +8,7 @@ import com.gymforce.modelo.Alimento;
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.DetalleDietaAlimento;
 import com.gymforce.modelo.Dieta;
+import com.gymforce.modelo.Membresia;
 import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
@@ -35,26 +36,26 @@ public class FXMLdietaController implements Initializable {
 	private ObservableList<Dieta> oblListaDietaTbv;
 	private ObservableList<DetalleDietaAlimento> oblListaDetDietaATbv;
 
-    @FXML
-    private JFXTabPane tpDieta;
+	@FXML
+	private JFXTabPane tpDieta;
 
-    @FXML
-    private Tab tabVerDietas;
-    
-    @FXML
-    private Tab tabDietas;
-    
-    @FXML
-    private Tab tabAlimentos;
-	
+	@FXML
+	private Tab tabVerDietas;
+
+	@FXML
+	private Tab tabDietas;
+
+	@FXML
+	private Tab tabAlimentos;
+
 	@FXML
 	private JFXTextField txtBuscarDieta;
 
 	@FXML
 	private TableView<Dieta> tbvDietas;
-    private TableColumn<Dieta, String> clmn_dieta;
-    private TableColumn<Dieta, String> clmn_descDieta;    
-    private TableColumn<Dieta, Alimento> clmn_alimentoDieta;    
+	private TableColumn<Dieta, String> clmn_dieta;
+	private TableColumn<Dieta, String> clmn_descDieta;
+	private TableColumn<Dieta, Alimento> clmn_alimentoDieta;
 
 	@FXML
 	private JFXTextField txtNombreDieta;
@@ -67,11 +68,11 @@ public class FXMLdietaController implements Initializable {
 
 	@FXML
 	private TableView<DetalleDietaAlimento> tbvAlimentoDieta;
-	
-    @FXML
-    private TableColumn<DetalleDietaAlimento, Alimento> clmnAlimento_dda;
-    private TableColumn<DetalleDietaAlimento, Number> clmnClv_dda;
-    private TableColumn<DetalleDietaAlimento, Dieta> clmnDieta_dda;
+
+	@FXML
+	private TableColumn<DetalleDietaAlimento, Alimento> clmnAlimento_dda;
+	private TableColumn<DetalleDietaAlimento, Number> clmnClv_dda;
+	private TableColumn<DetalleDietaAlimento, Dieta> clmnDieta_dda;
 
 	@FXML
 	private JFXTextField txtNombreAlimento;
@@ -134,7 +135,7 @@ public class FXMLdietaController implements Initializable {
 		} else {
 			Mensaje.informacion("Guardar Registro", "Dieta agregada");
 			limpiarDieta();
-		}		
+		}
 	}
 
 	@FXML
@@ -153,29 +154,36 @@ public class FXMLdietaController implements Initializable {
 			limpiarDieta();
 		} else {
 			conexion.establecerConexion();
-			Dieta dieta = new Dieta(Dieta.obtenerUltimaDieta(conexion.getConnection()), 
-					txtNombreDieta.getText(), 
-					txtDescDieta.getText());		
+			Dieta dieta = new Dieta(Dieta.obtenerUltimaDieta(conexion.getConnection()), txtNombreDieta.getText(),
+					txtDescDieta.getText());
 			int noReg = dieta.cancelarDieta(conexion.getConnection());
 			conexion.cerrarConexion();
 			banderaDieta = 0;
 			limpiarDieta();
-		}		
+		}
 	}
 
 	@FXML
 	void btnEliminarDieta(ActionEvent event) {
-
+		String dietaE = "";
+		dietaE = tbvDietas.getSelectionModel().getSelectedItem().toString();
+		conexion.getConnection();
+		Dieta dieta = new Dieta();
+		dieta.setNombre_dieta(dietaE);
+		int noReg = dieta.eliminarDieta(conexion.getConnection());
+		conexion.cerrarConexion();
+		
 	}
 
 	@FXML
-	void btnVerDieta(ActionEvent event) {		
-		tbvDietas.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Dieta> observable, Dieta oldValue, Dieta newValue) -> {
-			txtNombreDieta.setText(newValue.getNombre_dieta());
-			txtDescDieta.setText(newValue.getDesc_dieta());
-			cmbAlimentoDieta.setValue(newValue.getNombre_alimento());
-        });
-		
+	void btnVerDieta(ActionEvent event) {
+		tbvDietas.getSelectionModel().selectedItemProperty()
+				.addListener((ObservableValue<? extends Dieta> observable, Dieta oldValue, Dieta newValue) -> {
+					txtNombreDieta.setText(newValue.getNombre_dieta());
+					txtDescDieta.setText(newValue.getDesc_dieta());
+					cmbAlimentoDieta.setValue(newValue.getNombre_alimento());
+				});
+
 		tpDieta.getSelectionModel().select(tabDietas);
 	}
 
@@ -184,37 +192,36 @@ public class FXMLdietaController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		conexion = new ConexionMySQL();
 		conexion.establecerConexion();
-		
-		
+
 		oblListaAlimentoTbv = FXCollections.observableArrayList();
 		oblListaAlimentoCmb = FXCollections.observableArrayList();
-		oblListaDietaTbv = FXCollections.observableArrayList();		
+		oblListaDietaTbv = FXCollections.observableArrayList();
 		oblListaDetDietaATbv = FXCollections.observableArrayList();
-		
+
 		Alimento.llenarTableAlimento(conexion.getConnection(), oblListaAlimentoTbv);
-		Alimento.llenarComboAlimento(conexion.getConnection(), oblListaAlimentoCmb);		
+		Alimento.llenarComboAlimento(conexion.getConnection(), oblListaAlimentoCmb);
 		Dieta.llenarTableDieta(conexion.getConnection(), oblListaDietaTbv);
-		
+
 		cmbAlimentoDieta.setItems(oblListaAlimentoCmb);
-		
+
 		clmnnombre_alimento.setCellValueFactory(new PropertyValueFactory<Alimento, String>("nombre_alimento"));
 		clmndesc_alimento.setCellValueFactory(new PropertyValueFactory<Alimento, String>("desc_alimento"));
-		tbvAlimento.setItems(oblListaAlimentoTbv);				
-		
+		tbvAlimento.setItems(oblListaAlimentoTbv);
+
 		clmn_dieta = new TableColumn<>("Dieta");
 		clmn_descDieta = new TableColumn<>("Descripcion");
-		clmn_alimentoDieta = new TableColumn<>("Alimento");	
+		clmn_alimentoDieta = new TableColumn<>("Alimento");
 		clmn_dieta.setPrefWidth(200);
 		clmn_descDieta.setPrefWidth(200);
 		clmn_alimentoDieta.setPrefWidth(200);
 		clmn_dieta.setCellValueFactory(new PropertyValueFactory<Dieta, String>("nombre_dieta"));
 		clmn_descDieta.setCellValueFactory(new PropertyValueFactory<Dieta, String>("desc_dieta"));
-		clmn_alimentoDieta.setCellValueFactory(new PropertyValueFactory<Dieta, Alimento>("nombre_alimento"));		
+		clmn_alimentoDieta.setCellValueFactory(new PropertyValueFactory<Dieta, Alimento>("nombre_alimento"));
 		tbvDietas.getColumns().addAll(clmn_dieta, clmn_descDieta, clmn_alimentoDieta);
-	    tbvDietas.setItems(oblListaDietaTbv);
-				
+		tbvDietas.setItems(oblListaDietaTbv);
+
 		conexion.cerrarConexion();
-		
+
 	}
 
 	private void guardarAlimento() {
@@ -250,8 +257,7 @@ public class FXMLdietaController implements Initializable {
 	private void guardarDetalleDA() {
 		try {
 			conexion.establecerConexion();
-			DetalleDietaAlimento dda = new DetalleDietaAlimento(0, 
-					Dieta.obtenerUltimaDieta(conexion.getConnection()), 
+			DetalleDietaAlimento dda = new DetalleDietaAlimento(0, Dieta.obtenerUltimaDieta(conexion.getConnection()),
 					cmbAlimentoDieta.getSelectionModel().getSelectedItem());
 			int noReg = dda.guardarDetalleDietaAlim(conexion.getConnection());
 			if (noReg != 0) {
@@ -263,24 +269,31 @@ public class FXMLdietaController implements Initializable {
 		}
 		conexion.cerrarConexion();
 	}
-	
+
 	private void llenarTableAlimentoDieta() {
 		conexion.establecerConexion();
-				
-		DetalleDietaAlimento.lleanarTableDda(conexion.getConnection(), 
-				oblListaDetDietaATbv,
+
+		DetalleDietaAlimento.lleanarTableDda(conexion.getConnection(), oblListaDetDietaATbv,
 				Dieta.obtenerUltimaDieta(conexion.getConnection()));
-		
+
 		clmnDieta_dda = new TableColumn<>();
 		clmnClv_dda = new TableColumn<>();
 		clmnDieta_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento, Dieta>("dieta"));
-		clmnClv_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento,Number>("clv_dda"));
+		clmnClv_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento, Number>("clv_dda"));
 		clmnAlimento_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento, Alimento>("clv_alimento"));
 		tbvAlimentoDieta.setItems(oblListaDetDietaATbv);
-		
+
 		conexion.cerrarConexion();
 	}
-	
+
+	private void eliminarDieta() {
+
+	}
+
+	private void llenarFormularioSeleccion() {
+
+	}
+
 	private void limpiarDieta() {
 		txtNombreDieta.setText("");
 		txtDescDieta.setText("");

@@ -117,6 +117,6 @@ public class Alimento{
 			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, e);
 			return 0;
 		}
-	}
+	}	
 
 }

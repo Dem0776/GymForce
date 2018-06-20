@@ -374,7 +374,7 @@ public class FXMLplanEntrenamientoController implements Initializable {
 		try {
 			conexion.establecerConexion();
 			PlanEntrenamiento plan = new PlanEntrenamiento(0, txtDescPlanE.getText(), txtDuracionPlanE.getText(),
-					txtFrecuenciaPlanE.getText(), txtDificultadPlanE.getText(), "1",
+					txtFrecuenciaPlanE.getText(), txtDificultadPlanE.getText(), "0",
 					cmbCategoriaPlanE.getSelectionModel().getSelectedItem());
 
 			int noReg = plan.guardarPlanE(conexion.getConnection());

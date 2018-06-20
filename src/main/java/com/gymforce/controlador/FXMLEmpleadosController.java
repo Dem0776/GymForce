@@ -34,6 +34,7 @@ public class FXMLEmpleadosController implements Initializable {
 	private ConexionMySQL conexion;
 
 	private ObservableList<TipoEmpleado> listaTipo;
+	private ObservableList<TipoEmpleado> listaTipoCmb;
 	private ObservableList<Empleado> listaEmpleado;
 	
 	 @FXML
@@ -259,12 +260,13 @@ public class FXMLEmpleadosController implements Initializable {
 		conexion.establecerConexion();
 		listaTipo = FXCollections.observableArrayList();
 		listaEmpleado = FXCollections.observableArrayList();
+		listaTipoCmb = FXCollections.observableArrayList();
 
 		TipoEmpleado.llenarTableTipoEmpleado(conexion.getConnection(), listaTipo);
-		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipo);
+		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipoCmb);
 		
 		Empleado.llenarTableEmpleado(conexion.getConnection(), listaEmpleado);
-		cmbTipoEmpleado.setItems(listaTipo);
+		cmbTipoEmpleado.setItems(listaTipoCmb);
 		tblViewEmpleadosTipos.setItems(listaTipo);
 		tblViewEmpleados.setItems(listaEmpleado);
 

@@ -36,6 +36,10 @@ public class Clase{
 		this.nombreInstructor = nombreInstructor;
 		this.precio = precio;
 	}
+	
+	public Clase(int clv_clase) {
+		this.clv_clase = new SimpleIntegerProperty(clv_clase);		
+	}
 
 	// Metodos atributo: clv_clase
 	public int getClv_clase() {
@@ -133,6 +137,20 @@ public class Clase{
 			return consulta.executeUpdate();
 		} catch (SQLException e) {
 			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, e);
+			return 0;
+		}
+	}
+	
+	public int cancelarClase(Connection cn) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE clase SET " + "clase.status_clase = 0 " + "WHERE clase.clv_clase = ?");
+			consulta.setInt(1, clv_clase.get());
+
+			return consulta.executeUpdate();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
 			return 0;
 		}
 	}

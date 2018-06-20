@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLclasesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLclasesController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -182,20 +183,20 @@
                                                       <Label styleClass="textos" text="SABADO" />
                                                    </children>
                                                 </HBox>
-                                                <JFXTextField fx:id="txtDomingoInicio" alignment="CENTER" promptText="INICIO" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <JFXTextField fx:id="txtDomingoFin" alignment="CENTER" promptText="FIN" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <JFXTextField fx:id="txtLunesInicio" alignment="CENTER" promptText="INICIO" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <JFXTextField fx:id="txtMartesInicio" alignment="CENTER" promptText="INICIO" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <JFXTextField fx:id="txtMiercolesInicio" alignment="CENTER" promptText="INICIO" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <JFXTextField fx:id="txtJuevesInicio" alignment="CENTER" promptText="INICIO" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <JFXTextField fx:id="txtViernesInicio" alignment="CENTER" promptText="INICIO" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <JFXTextField fx:id="txtSabadoInicio" alignment="CENTER" promptText="INICIO" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                <JFXTextField fx:id="txtLunesFin" alignment="CENTER" promptText="FIN" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <JFXTextField fx:id="txtMartesFin" alignment="CENTER" promptText="FIN" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                <JFXTextField fx:id="txtMiercolesFin" alignment="CENTER" promptText="FIN" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                                <JFXTextField fx:id="txtJuevesFin" alignment="CENTER" promptText="FIN" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                <JFXTextField fx:id="txtViernesFin" alignment="CENTER" promptText="FIN" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                <JFXTextField fx:id="txtSabadoFin" alignment="CENTER" promptText="FIN" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                                <JFXTimePicker fx:id="timeDomingoInicio" accessibleRole="TEXT_FIELD" styleClass="textos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <JFXTimePicker fx:id="timeDomingoFin" styleClass="textos" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <JFXTimePicker GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <JFXTimePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <JFXTimePicker GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <JFXTimePicker GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <JFXTimePicker GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                <JFXTimePicker GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                <JFXTimePicker GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <JFXTimePicker GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <JFXTimePicker GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                <JFXTimePicker GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <JFXTimePicker GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                <JFXTimePicker GridPane.columnIndex="2" GridPane.rowIndex="7" />
                                              </children>
                                           </GridPane>
                                        </children>

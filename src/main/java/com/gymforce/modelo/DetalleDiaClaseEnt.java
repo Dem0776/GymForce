@@ -7,7 +7,9 @@ import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class DetalleDiaClaseEnt {
@@ -17,6 +19,9 @@ public class DetalleDiaClaseEnt {
 	private Time horaInicio;
 	private Time horaFin;
 	private IntegerProperty numDia;
+	private DoubleProperty hora_inicio;
+	private DoubleProperty hora_fin;
+	private IntegerProperty d_ce;
 
 	public DetalleDiaClaseEnt(int clv_ddced, Dias dia, DetalleClaseEntrenador dce, Time horaInicio, Time horaFin) {
 		this.clv_ddced = new SimpleIntegerProperty(clv_ddced);
@@ -26,10 +31,10 @@ public class DetalleDiaClaseEnt {
 		this.horaFin = horaFin;
 	}
 	
-	public DetalleDiaClaseEnt(int clv_ddced, int numDia, DetalleClaseEntrenador dce, Time horaInicio, Time horaFin) {
+	public DetalleDiaClaseEnt(int clv_ddced, int numDia, int d_ce, Time horaInicio, Time horaFin) {
 		this.clv_ddced = new SimpleIntegerProperty(clv_ddced);
 		this.numDia = new SimpleIntegerProperty(numDia);
-		this.dce = dce;
+		this.d_ce = new SimpleIntegerProperty(d_ce);
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 	}
@@ -94,6 +99,22 @@ public class DetalleDiaClaseEnt {
 
 	public IntegerProperty NumDiaProperty() {
 		return numDia;
+	}
+	
+	public DoubleProperty getHora_inicio() {
+		return hora_inicio;
+	}
+
+	public void setHora_inicio(DoubleProperty hora_inicio) {
+		this.hora_inicio = hora_inicio;
+	}
+
+	public DoubleProperty getHora_fin() {
+		return hora_fin;
+	}
+
+	public void setHora_fin(DoubleProperty hora_fin) {
+		this.hora_fin = hora_fin;
 	}
 
 	public int guardarDomingo(Connection cn) {

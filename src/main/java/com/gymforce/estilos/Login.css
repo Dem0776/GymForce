@@ -1,0 +1,27 @@
+.fondoPrincipal{
+	-fx-background-color:  #021528;
+}
+
+.fondoVentana{
+	-fx-background-color: #070c14;
+}
+
+.texto{
+	-fx-font-size: 16;
+	-fx-text-fill: #7C8184;
+}
+
+.titulo{
+	-fx-font-size: 18;
+	-fx-text-fill: #7C8184;
+}
+
+.btnsFondo{
+	-fx-font-size: 16;
+	-fx-background-color: #063151;	
+	-fx-text-fill: #7C8184;
+}
+
+.btns:hover, .btns:active{
+	-fx-background-color: #04525b;
+}

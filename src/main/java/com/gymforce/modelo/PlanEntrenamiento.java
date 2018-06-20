@@ -165,15 +165,15 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 
 	public int guardarPlanE(Connection cn) {
 		try {
-			PreparedStatement consulta = cn.prepareStatement("INSERT clase VALUES (DEFAULT,?,?,?,?,DEFAULT,?)");
+			PreparedStatement consulta = cn.prepareStatement("INSERT plan_entrenamiento VALUES (DEFAULT,?,?,?,?,DEFAULT,?)");
 			consulta.setString(1, desc_pe.get());
 			consulta.setString(2, duracion_pe.get());
 			consulta.setString(3, frecuencia_pe.get());
 			consulta.setString(4, dificultad_pe.get());
-			consulta.setInt(5, clv_categoria.getClv_categoria());			
+			consulta.setInt(5, clv_categoria.getClv_categoria());
 			return consulta.executeUpdate();
 		} catch (SQLException e) {
-			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, e);
 			return 0;
 		}
 	}
@@ -190,11 +190,11 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 
 			while (rs.next()) {
 				listPlan.add(new PlanEntrenamiento(rs.getInt("clv_pe"), 
-						rs.getString("desc_pe"), 
+						rs.getString("desc_pe"),
 						rs.getString("duracion_pe"), 
 						rs.getString("frecuencia_pe"), 
-						rs.getString("dificultad_pe"), 
-						rs.getString("status_pe"), 
+						rs.getString("dificultad_pe"),
+						rs.getString("status_pe"),
 						new Categoria(rs.getInt("clv_categoria"), rs.getString("desc_categoria")),
 						new Ejercicio(rs.getString("desc_ejercicio")),
 						new Rutina(rs.getInt("serie_rutina"), 
