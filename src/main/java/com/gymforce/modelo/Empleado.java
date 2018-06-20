@@ -223,5 +223,48 @@ String usuario_empleado, String password_empleado, TipoEmpleado clv_te) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
             return 0;
         }
-    }	
+    }
+    public int actualizarEmpleado(Connection cn) {
+        try {
+            PreparedStatement consulta = cn.prepareStatement("UPDATE empleado SET "
+            + "empleado.rfc_empleado = ?, "
+            + "empleado.nombre_empleado = ?, "
+            + "empleado.ape1_empleado = ?, "
+            + "empleado.ape2_empleado = ?, "
+            + "empleado.telefono_empleado = ?, "
+            + "empleado.email_empleado = ?, "
+            + "empleado.usuario_empleado = ?, "
+            + "empleado.password_empleado = ?, "
+            + "tipo_empleado.clv_te = ? "
+            + "WHERE empleado.rfc_empleado = ? ");
+            consulta.setString(1, rfc_empleado.get());
+            consulta.setString(2, nombre_empleado.get());
+            consulta.setString(3, ape1_empleado.get());
+            consulta.setString(4, ape2_empleado.get());
+            consulta.setString(5, telefono_empleado.get());
+            consulta.setString(6, email_empleado.get());
+            consulta.setString(7, usuario_empleado.get());
+            consulta.setString(8, password_empleado.get());
+            consulta.setInt(9, clv_te.getClv_te());
+            consulta.setString(10, rfc_empleado.get());
+            
+            return consulta.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+ }
+ public int eliminarEmpleado(Connection cn) {
+        try {
+            PreparedStatement consulta = cn.prepareStatement(
+                    "DELETE FROM empleado "
+                    + "WHERE empleado.rfc_empleado = ?");
+            consulta.setString(1, rfc_empleado.get());
+            return consulta.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
 }

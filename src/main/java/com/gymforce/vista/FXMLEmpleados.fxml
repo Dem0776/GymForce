@@ -4,19 +4,20 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLEmpleadosController">
+<AnchorPane fx:id="empleadoAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLEmpleadosController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -62,7 +63,19 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewEmpleados" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TableView fx:id="tblViewEmpleados" prefHeight="345.0" prefWidth="950.0">
+                                            <columns>
+                                              <TableColumn fx:id="clmnRFC" prefWidth="100.0" text="RFC" />
+                                              <TableColumn fx:id="clmnNombre" prefWidth="100.0" text="Nombre" />
+                                                <TableColumn fx:id="clmnApl1" prefWidth="100.0" text="Apellido 1" />
+                                                <TableColumn fx:id="clmnApel2" prefWidth="100.0" text="Apellido 2" />
+                                                <TableColumn fx:id="clmnTelefono" prefWidth="100.0" text="Telefono" />
+                                                <TableColumn fx:id="clmnCorreo" prefWidth="100.0" text="Correo" />
+                                                <TableColumn fx:id="clmnUsuario" prefWidth="100.0" text="Usuario" />
+                                                <TableColumn fx:id="clmnPassword" prefWidth="100.0" text="Password" />
+                                                <TableColumn fx:id="clmnClvTE" prefWidth="100.0" text="Tipo Empleado" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
@@ -194,11 +207,14 @@
                                                       <Insets left="-20.0" right="20.0" top="30.0" />
                                                    </VBox.margin>
                                                 </JFXTextField>
-                                                <JFXTreeTableView fx:id="tblViewEmpleadosTipos" prefHeight="249.0" prefWidth="353.0" style="-fx-background-color: #1d1e1e;">
+                                                <TableView fx:id="tblViewEmpleadosTipos" prefHeight="249.0" prefWidth="353.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnDesc_TE" prefWidth="150.0" text="Tipo de Empleado" />
+                                                  </columns>
                                                    <VBox.margin>
                                                       <Insets left="-200.0" right="-100.0" top="20.0" />
                                                    </VBox.margin>
-                                                </JFXTreeTableView>
+                                                </TableView>
                                              </children>
                                           </VBox>
                                           <VBox prefHeight="461.0" prefWidth="350.0">

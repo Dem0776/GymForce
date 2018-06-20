@@ -1,6 +1,8 @@
 package com.gymforce.controlador;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.gymforce.modelo.ConexionMySQL;
@@ -10,18 +12,22 @@ import com.gymforce.modelo.TipoEmpleado;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 
 public class FXMLEmpleadosController implements Initializable {
 
@@ -29,7 +35,10 @@ public class FXMLEmpleadosController implements Initializable {
 
 	private ObservableList<TipoEmpleado> listaTipo;
 	private ObservableList<Empleado> listaEmpleado;
-
+	
+	 @FXML
+	private AnchorPane empleadoAP;
+	
 	@FXML
 	private JFXButton btnModificarEmpleadoTable;
 
@@ -37,7 +46,7 @@ public class FXMLEmpleadosController implements Initializable {
 	private JFXTextField txtBuscarEmpleado;
 
 	@FXML
-	private JFXTreeTableView<Empleado> tblViewEmpleados;
+	private TableView<Empleado> tblViewEmpleados;
 
 	@FXML
 	private JFXButton btnVerEmpleado;
@@ -68,15 +77,16 @@ public class FXMLEmpleadosController implements Initializable {
 
 	@FXML
 	private JFXComboBox<TipoEmpleado> cmbTipoEmpleado;
-	private TreeTableColumn<Empleado, String> clmnRFC;
-	private TreeTableColumn<Empleado, String> clmnNombre;
-	private TreeTableColumn<Empleado, String> clmnApl1;
-	private TreeTableColumn<Empleado, String> clmnApel2;
-	private TreeTableColumn<Empleado, String> clmnTelefono;
-	private TreeTableColumn<Empleado, String> clmnCorreo;
-	private TreeTableColumn<Empleado, String> clmnUsuario;
-	private TreeTableColumn<Empleado, String> clmnPassword;
-	private TreeTableColumn<Empleado, TipoEmpleado> clmnClvTE;
+	
+	@FXML private TableColumn<Empleado, String> clmnRFC;
+	@FXML private TableColumn<Empleado, String> clmnNombre;
+	@FXML private TableColumn<Empleado, String> clmnApl1;
+	@FXML private TableColumn<Empleado, String> clmnApel2;
+	@FXML private TableColumn<Empleado, String> clmnTelefono;
+	@FXML private TableColumn<Empleado, String> clmnCorreo;
+	@FXML private TableColumn<Empleado, String> clmnUsuario;
+	@FXML private TableColumn<Empleado, String> clmnPassword;
+	@FXML private TableColumn<Empleado, TipoEmpleado> clmnClvTE;
 
 	@FXML
 	private JFXButton btnAgregarEmpleado;
@@ -97,8 +107,8 @@ public class FXMLEmpleadosController implements Initializable {
 	private JFXButton btnEliminarTE;
 
 	@FXML
-	private JFXTreeTableView<TipoEmpleado> tblViewEmpleadosTipos;
-	private TreeTableColumn<TipoEmpleado, String> clmnDesc_TE;
+	private TableView<TipoEmpleado> tblViewEmpleadosTipos;
+	@FXML private TableColumn<TipoEmpleado, String> clmnDesc_TE;
 
 	@FXML
 	void btnAgregar(ActionEvent event) {
@@ -173,8 +183,26 @@ public class FXMLEmpleadosController implements Initializable {
 	}
 
 	@FXML
-	void btnEliminar(ActionEvent event) {
-
+	void btnEliminar(ActionEvent event) throws IOException {
+		conexion.establecerConexion();
+        int noReg = tblViewEmpleados.getSelectionModel().getSelectedItem().eliminarEmpleado(conexion.getConnection());
+        if (noReg != 0) {        	
+            Alert dialogo = new Alert(AlertType.CONFIRMATION);
+    		dialogo.setTitle("Continuar Eliminacion");
+    		dialogo.setHeaderText(null);
+    		dialogo.initStyle(StageStyle.UTILITY);
+    		dialogo.setContentText("EN REALIDAD DESEA ELIMINAR EL EMPLEADO "+txtRfc.getText());
+    		Optional<ButtonType> result = dialogo.showAndWait();
+    		if (result.get() == ButtonType.OK) {
+    			empleadoAP.getChildren().removeAll();
+    	    	Parent fxml = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLEmpleado.fxml"));
+    	    	empleadoAP.getChildren().setAll(fxml);
+    	    	//validarMembresia();
+    		}
+        }else {
+                Mensaje.error("Eliminar Empleado", "Problemas al eliminar al Empleado, Intente de nuevo");
+            }
+        conexion.cerrarConexion();
 	}
 
 	@FXML
@@ -183,8 +211,35 @@ public class FXMLEmpleadosController implements Initializable {
 	}
 
 	@FXML
-	void btnModificar(ActionEvent event) {
-
+	void btnModificar(ActionEvent event) throws IOException {
+		conexion.establecerConexion();
+		Empleado miCargo = new Empleado(txtRfc.getText(),
+				txtNombre.getText(),
+				txtApellido1.getText(),
+				txtApellido2.getText(),
+				txtTelefono.getText(),
+				txtCorreo.getText(),
+				txtUsuario.getText(),
+				txtContraseña.getText(),
+				cmbTipoEmpleado.getSelectionModel().getSelectedItem());
+		int noReg = miCargo.actualizarEmpleado(conexion.getConnection());
+                if (noReg != 0) {        	
+                    Alert dialogo = new Alert(AlertType.CONFIRMATION);
+            		dialogo.setTitle("Continuar Actualizacion");
+            		dialogo.setHeaderText(null);
+            		dialogo.initStyle(StageStyle.UTILITY);
+            		dialogo.setContentText("EN REALIDAD DESEA ACTUALIZAR LOS DATOS ");
+            		Optional<ButtonType> result = dialogo.showAndWait();
+            		if (result.get() == ButtonType.OK) {
+            			empleadoAP.getChildren().removeAll();
+            	    	Parent fxml = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLEmpleado.fxml"));
+            	    	empleadoAP.getChildren().setAll(fxml);
+            	    	//validarMembresia();
+            		}
+                }else{
+                    Mensaje.error("Actualizar Registro", "Problemas al Actualizar");
+                }
+        conexion.cerrarConexion();
 	}
 
 	@FXML
@@ -210,49 +265,19 @@ public class FXMLEmpleadosController implements Initializable {
 		
 		Empleado.llenarTableEmpleado(conexion.getConnection(), listaEmpleado);
 		cmbTipoEmpleado.setItems(listaTipo);
+		tblViewEmpleadosTipos.setItems(listaTipo);
+		tblViewEmpleados.setItems(listaEmpleado);
 
-		clmnDesc_TE = new TreeTableColumn<>("Tipo de Empleado");
-		clmnDesc_TE.setPrefWidth(150);
-		clmnDesc_TE.setCellValueFactory(new TreeItemPropertyValueFactory<TipoEmpleado, String>("desc_te"));
-		final TreeItem<TipoEmpleado> root = new RecursiveTreeItem<TipoEmpleado>(listaTipo,
-				RecursiveTreeObject::getChildren);
-		tblViewEmpleadosTipos.getColumns().addAll(clmnDesc_TE);
-		tblViewEmpleadosTipos.setRoot(root);
-		tblViewEmpleadosTipos.setShowRoot(false);
-
-		clmnRFC = new TreeTableColumn<>("RFC");
-		clmnNombre = new TreeTableColumn<>("Nombre");
-		clmnApl1 = new TreeTableColumn<>("Apellido 1");
-		clmnApel2 = new TreeTableColumn<>("Apellido 2");
-		clmnTelefono = new TreeTableColumn<>("Telefono");
-		clmnCorreo = new TreeTableColumn<>("Correo");
-		clmnUsuario = new TreeTableColumn<>("Usuario");
-		clmnPassword = new TreeTableColumn<>("Password");
-		clmnClvTE = new TreeTableColumn<>("Tipo Empleado");
-		clmnRFC.setPrefWidth(100);
-		clmnNombre.setPrefWidth(100);
-		clmnApl1.setPrefWidth(100);
-		clmnApel2.setPrefWidth(100);
-		clmnTelefono.setPrefWidth(100);
-		clmnCorreo.setPrefWidth(100);
-		clmnUsuario.setPrefWidth(100);
-		clmnPassword.setPrefWidth(100);
-		clmnClvTE.setPrefWidth(100);
-		clmnRFC.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("rfc_empleado"));
-		clmnNombre.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("nombre_empleado"));
-		clmnApl1.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("ape1_empleado"));
-		clmnApel2.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("ape2_empleado"));
-		clmnTelefono.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("telefono_empleado"));
-		clmnCorreo.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("email_empleado"));
-		clmnUsuario.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("usuario_empleado"));
-		clmnPassword.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, String>("password_empleado"));
-		clmnClvTE.setCellValueFactory(new TreeItemPropertyValueFactory<Empleado, TipoEmpleado>("clv_te"));
-		
-		final TreeItem<Empleado> rootEmpleado = new RecursiveTreeItem<Empleado>(listaEmpleado,
-				RecursiveTreeObject::getChildren);
-		tblViewEmpleados.getColumns().addAll(clmnRFC,clmnNombre,clmnApl1,clmnApel2,clmnTelefono,clmnCorreo,clmnUsuario,clmnPassword,clmnClvTE);
-		tblViewEmpleados.setRoot(rootEmpleado);
-		tblViewEmpleados.setShowRoot(false);	
+		clmnDesc_TE.setCellValueFactory(new PropertyValueFactory<TipoEmpleado, String>("desc_te"));
+		clmnRFC.setCellValueFactory(new PropertyValueFactory<Empleado, String>("rfc_empleado"));
+		clmnNombre.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombre_empleado"));
+		clmnApl1.setCellValueFactory(new PropertyValueFactory<Empleado, String>("ape1_empleado"));
+		clmnApel2.setCellValueFactory(new PropertyValueFactory<Empleado, String>("ape2_empleado"));
+		clmnTelefono.setCellValueFactory(new PropertyValueFactory<Empleado, String>("telefono_empleado"));
+		clmnCorreo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("email_empleado"));
+		clmnUsuario.setCellValueFactory(new PropertyValueFactory<Empleado, String>("usuario_empleado"));
+		clmnPassword.setCellValueFactory(new PropertyValueFactory<Empleado, String>("password_empleado"));
+		clmnClvTE.setCellValueFactory(new PropertyValueFactory<Empleado, TipoEmpleado>("clv_te"));
 
 		conexion.cerrarConexion();
 		seleccionarColumnaTalbe();

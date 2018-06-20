@@ -4,13 +4,14 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -62,7 +63,16 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewSocios" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TableView fx:id="tblViewSocios" prefHeight="345.0" prefWidth="950.0">
+                                            <columns>
+                                              <TableColumn fx:id="clmnRfcSocio" prefWidth="150.0" text="RFC" />
+                                              <TableColumn fx:id="clmnNombreSocio" prefWidth="150.0" text="NOMBRE" />
+                                                <TableColumn fx:id="clmnApe1Socio" prefWidth="150.0" text="APELLIDO1" />
+                                                <TableColumn fx:id="clmnApe2Socio" prefWidth="150.0" text="APELLIDO2" />
+                                                <TableColumn fx:id="clmnTelefonoSocio" prefWidth="150.0" text="TELEFONO" />
+                                                <TableColumn fx:id="clmnEmailSocio" prefWidth="150.0" text="CORREO" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
@@ -154,25 +164,6 @@
                                                 <Insets left="40.0" />
                                              </HBox.margin>
                                              <children>
-                                                <HBox prefHeight="45.0" prefWidth="331.0">
-                                                   <children>
-                                                      <JFXComboBox fx:id="cmbMembresia" prefHeight="28.0" prefWidth="276.0" promptText="---Membresias---" styleClass="textos">
-                                                         <HBox.margin>
-                                                            <Insets left="30.0" />
-                                                         </HBox.margin>
-                                                      </JFXComboBox>
-                                                      <FontAwesomeIconView glyphName="PLUS" size="20" text="" wrappingWidth="29.0">
-                                                         <HBox.margin>
-                                                            <Insets left="25.0" top="8.0" />
-                                                         </HBox.margin>
-                                                      </FontAwesomeIconView>
-                                                      <FontAwesomeIconView glyphName="MINUS" size="20">
-                                                         <HBox.margin>
-                                                            <Insets left="10.0" top="8.0" />
-                                                         </HBox.margin>
-                                                      </FontAwesomeIconView>
-                                                   </children>
-                                                </HBox>
                                                 <HBox layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="331.0">
                                                    <children>
                                                       <JFXComboBox fx:id="cmbClases" prefHeight="28.0" prefWidth="276.0" promptText="---Clases---" styleClass="textos">
@@ -239,11 +230,15 @@
                                                       <Insets top="10.0" />
                                                    </VBox.margin>
                                                 </HBox>
-                                                <JFXTreeTableView fx:id="tblViewAgegar" prefHeight="167.0" prefWidth="301.0" style="-fx-background-color: #1d1e1e;">
+                                                <TableView fx:id="tblViewAgegar" prefHeight="196.0" prefWidth="435.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnAñadir" prefWidth="122.0" text="Añadir" />
+                                                    <TableColumn prefWidth="122.0" text="C2" />
+                                                  </columns>
                                                    <VBox.margin>
                                                       <Insets left="-15.0" top="15.0" />
                                                    </VBox.margin>
-                                                </JFXTreeTableView>
+                                                </TableView>
                                              </children>
                                           </VBox>
                                        </children>

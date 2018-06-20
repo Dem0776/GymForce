@@ -3,19 +3,20 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLMembresiasController">
+<AnchorPane fx:id="membresiaAP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLMembresiasController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -61,18 +62,18 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewMembresias" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TableView fx:id="tblViewMembresias" onMouseClicked="#tblVerMembresia" prefHeight="343.0" prefWidth="950.0">
+                                            <columns>
+                                              <TableColumn fx:id="clmndesc_membresia" prefWidth="121.0" text="Descripcion" />
+                                              <TableColumn fx:id="clmnprecio_membresia" prefWidth="121.0" text="Precio" />
+                                                <TableColumn fx:id="clmndiasValidos_membresia" prefWidth="121.0" text="Dias Validos" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
                                        <children>
                                           <JFXButton fx:id="btnVerMembresia" onAction="#btnVer" prefHeight="40.0" prefWidth="150.0" text="Ver">
-                                             <styleClass>
-                                                <String fx:value="btns" />
-                                                <String fx:value="btnsFondo" />
-                                             </styleClass>
-                                          </JFXButton>
-                                          <JFXButton fx:id="btnModificarMembresiaTable" onAction="#btnModificar" prefHeight="40.0" prefWidth="150.0" text="Modificar">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
@@ -100,6 +101,11 @@
                                              <padding>
                                                 <Insets right="20.0" />
                                              </padding></Label>
+                                          <FontAwesomeIconView fx:id="iconRegresar" fill="#f5ebeb" glyphName="REPLY" onMouseClicked="#IconRegresar" size="30">
+                                             <HBox.margin>
+                                                <Insets left="500.0" top="-30.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
                                        </children>
                                        <VBox.margin>
                                           <Insets />

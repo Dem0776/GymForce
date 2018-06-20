@@ -28,7 +28,7 @@ public class Clase extends RecursiveTreeObject<Clase> {
 		this.nombre_clase = new SimpleStringProperty(nombre_clase);
 		this.desc_clase = new SimpleStringProperty(desc_clase);
 	}
-
+	
 	public Clase(String nombre_clase, String desc_clase, Empleado nombreInstructor,
 			DetalleClaseEntrenador precio) {
 		this.nombre_clase = new SimpleStringProperty(nombre_clase);
@@ -152,4 +152,23 @@ public class Clase extends RecursiveTreeObject<Clase> {
 		}
 		return clv;
 	}
+	@Override
+    public String toString() {
+        return desc_clase.get();
+    }
+	public static void llenarComboClase(Connection conect, ObservableList<Clase> listTipoClase) {
+        try {
+            Statement st = conect.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM clase");
+            while (rs.next()) {
+            	listTipoClase.add(
+                        new Clase(rs.getString("nombre_clase"),
+                                rs.getString("desc_clase")
+                        ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

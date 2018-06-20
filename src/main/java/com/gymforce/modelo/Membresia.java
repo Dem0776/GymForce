@@ -118,4 +118,35 @@ int diasValidos_membresia, String status_tm) {
 			return 0;
 		}
 	}
+	 public int actualizarMembresia(Connection cn) {
+	        try {
+	            PreparedStatement consulta = cn.prepareStatement("UPDATE membresia SET "
+	           /* 1 */         + "membresia.desc_membresia = ?, "
+	           /* 2 */         + "membresia.precio_membresia = ?, " 
+	                           + "membresia.diasValidos_membresia = ? " 
+	           /* 3 */         + "WHERE membresia.desc_membresia = ? ");
+	            consulta.setString(1, desc_membresia.get());
+	            consulta.setDouble(2, precio_membresia.get());
+	            consulta.setInt(3, diasValidos_membresia.get());
+	            consulta.setString(4, desc_membresia.get());
+	            
+	            return consulta.executeUpdate();
+	            
+	        } catch (SQLException ex) {
+	            Logger.getLogger(Membresia.class.getName()).log(Level.SEVERE, null, ex);
+	            return 0;
+	        }
+	 }
+	 public int eliminarMembresia(Connection cn) {
+	        try {
+	            PreparedStatement consulta = cn.prepareStatement(
+	                    "DELETE FROM membresia "
+	                    + "WHERE membresia.desc_membresia = ?");
+	            consulta.setString(1, desc_membresia.get());
+	            return consulta.executeUpdate();
+	        } catch (SQLException ex) {
+	            Logger.getLogger(Membresia.class.getName()).log(Level.SEVERE, null, ex);
+	            return 0;
+	        }
+	    }
 }
