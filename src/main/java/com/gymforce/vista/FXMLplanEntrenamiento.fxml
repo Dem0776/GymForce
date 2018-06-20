@@ -4,19 +4,20 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLplanEntrenamientoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLplanEntrenamientoController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -62,7 +63,12 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewPlanE" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TableView fx:id="tblViewPlanE" prefHeight="341.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
@@ -125,7 +131,15 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </VBox>
-                                          <JFXTreeTableView fx:id="tbRutina" prefHeight="225.0" prefWidth="436.0" />
+                                          <TableView fx:id="tbvRutina" prefHeight="249.0" prefWidth="378.0">
+                                            <columns>
+                                              <TableColumn fx:id="clmnEjercicio_rutina" prefWidth="75.0" text="Ejercicio" />
+                                              <TableColumn fx:id="clmnSerie_rutina" prefWidth="75.0" text="Series" />
+                                                <TableColumn fx:id="clmnRepeticion_rutina" prefWidth="75.0" text="Repeticion" />
+                                                <TableColumn fx:id="clmnDuracion_rutina" prefWidth="75.0" text="Duracion" />
+                                                <TableColumn fx:id="clmnPeso_rutina" prefWidth="75.0" text="Peso" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -259,7 +273,13 @@
                                                 <JFXTextField fx:id="txtDescEjercicio" promptText="Descripcion" styleClass="textos" />
                                                 <JFXTextField fx:id="txtComplejidad" promptText="Complejidad" styleClass="textos" />
                                                 <JFXComboBox fx:id="cmbEquipamento" prefWidth="500.0" promptText="Equipo necesario" styleClass="textos" />
-                                                <JFXTreeTableView fx:id="tbEjercicios" />
+                                                <TableView fx:id="tbvEjercicios" prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnNombre_ejercicio" prefWidth="75.0" text="Ejercicio" />
+                                                    <TableColumn fx:id="clmnComplejidad_ejercicio" prefWidth="106.0" text="Complejidad" />
+                                                      <TableColumn fx:id="clmnEquipamento_mobiliario" prefWidth="109.0" text="Equipamento" />
+                                                  </columns>
+                                                </TableView>
                                              </children>
                                              <HBox.margin>
                                                 <Insets />
@@ -320,7 +340,11 @@
                                           <VBox prefHeight="200.0" prefWidth="500.0" spacing="20.0">
                                              <children>
                                                 <JFXTextField fx:id="txtDescCategoria" promptText="Descripcion" styleClass="textos" />
-                                                <JFXTreeTableView fx:id="tbvCategoria" />
+                                                <TableView fx:id="tbvCategoria" prefHeight="286.0" prefWidth="500.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnNombre_categoria" prefWidth="160.0" text="Categoria" />
+                                                  </columns>
+                                                </TableView>
                                              </children>
                                              <HBox.margin>
                                                 <Insets />
@@ -367,5 +391,6 @@
    <stylesheets>
       <URL value="@../estilos/StyleClases.css" />
       <URL value="@../estilos/StyleJFXTreeTableView.css" />
+      <URL value="@../estilos/tableView.css" />
    </stylesheets>
 </AnchorPane>

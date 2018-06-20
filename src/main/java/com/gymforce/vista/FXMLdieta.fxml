@@ -4,13 +4,14 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -62,7 +63,7 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tbvViewDieta" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TableView fx:id="tbvDietas" prefHeight="368.0" prefWidth="950.0" />
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
@@ -105,18 +106,22 @@
                                     </HBox>
                                     <HBox prefHeight="370.0" prefWidth="950.0">
                                        <children>
-                                          <VBox fx:id="txtNombreDieta" spacing="20.0">
+                                          <VBox spacing="20.0">
                                              <children>
-                                                <JFXTextField fx:id="txtNombre" promptText="Nombre" styleClass="textos" />
+                                                <JFXTextField fx:id="txtNombreDieta" promptText="Nombre" styleClass="textos" />
                                                 <JFXTextField fx:id="txtDescDieta" promptText="Descripcion" styleClass="textos" />
                                                 <JFXComboBox fx:id="cmbAlimentoDieta" prefHeight="25.0" prefWidth="383.0" promptText="Alimento" styleClass="textos" />
-                                                <JFXButton fx:id="btnAgregarAlimentoDieta" onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
+                                                <JFXButton onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
                                                    <styleClass>
                                                       <String fx:value="btnsFondo" />
                                                       <String fx:value="btns" />
                                                    </styleClass>
                                                 </JFXButton>
-                                                <JFXTreeTableView fx:id="tbvAlimentoDieta" prefHeight="163.0" prefWidth="383.0" />
+                                                <TableView fx:id="tbvAlimentoDieta" prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnAlimento_dda" prefWidth="161.0" text="Alimentos agregados" />
+                                                  </columns>
+                                                </TableView>
                                              </children>
                                              <HBox.margin>
                                                 <Insets left="275.0" />
@@ -177,7 +182,12 @@
                                              <children>
                                                 <JFXTextField fx:id="txtNombreAlimento" promptText="Nombre" styleClass="textos" />
                                                 <JFXTextField fx:id="txtDescAlimento" promptText="Descripcion" styleClass="textos" />
-                                                <JFXTreeTableView fx:id="tbvAlimento" />
+                                                <TableView fx:id="tbvAlimento" prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnnombre_alimento" prefWidth="150.0" text="Nombre" />
+                                                    <TableColumn fx:id="clmndesc_alimento" minWidth="0.0" prefWidth="165.0" text="Descripcion" />
+                                                  </columns>
+                                                </TableView>
                                              </children>
                                              <HBox.margin>
                                                 <Insets />

@@ -1,6 +1,5 @@
 package com.gymforce.controlador;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,18 +10,15 @@ import com.gymforce.modelo.Empleado;
 import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FXMLclasesController implements Initializable {
 
@@ -34,13 +30,13 @@ public class FXMLclasesController implements Initializable {
 	@FXML
 	private JFXTextField txtBuscarClase;
 
-	@FXML
-	private JFXTreeTableView<Clase> tvbViewClases;
+    @FXML
+    private TableView<Clase> tvbViewClases;
 
-	private TreeTableColumn<Clase, String> clmnNombre_clase;
-	private TreeTableColumn<Clase, String> clmnDesc_clase;
-	private TreeTableColumn<Clase, Empleado> clmnInstructor;
-	private TreeTableColumn<Clase, DetalleClaseEntrenador> clmnPrecio;
+	private TableColumn<Clase, String> clmnNombre_clase;
+	private TableColumn<Clase, String> clmnDesc_clase;
+	private TableColumn<Clase, Empleado> clmnInstructor;
+	private TableColumn<Clase, DetalleClaseEntrenador> clmnPrecio;
 
 	@FXML
 	private JFXTextField txtNombre;
@@ -109,25 +105,22 @@ public class FXMLclasesController implements Initializable {
 
 		cmbInstructor.setItems(listaInstructor);
 
-		clmnNombre_clase = new TreeTableColumn<>("Clase");
-		clmnDesc_clase = new TreeTableColumn<>("Descripcion");
-		clmnInstructor = new TreeTableColumn<>("Instructor");
-		clmnPrecio = new TreeTableColumn<>("Precio");
+		clmnNombre_clase = new TableColumn<>("Clase");
+		clmnDesc_clase = new TableColumn<>("Descripcion");
+		clmnInstructor = new TableColumn<>("Instructor");
+		clmnPrecio = new TableColumn<>("Precio");
 		/*
 		 * clmnNombre_clase.setPrefWidth(150); clmnDesc_clase.setPrefWidth(150);
 		 * clmnInstructor.setPrefWidth(150); clmnPrecio.setPrefWidth(150);
 		 */
-		clmnNombre_clase.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, String>("nombre_clase"));
-		clmnDesc_clase.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, String>("desc_clase"));
-		clmnInstructor.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, Empleado>("nombreInstructor"));
-		clmnPrecio.setCellValueFactory(new TreeItemPropertyValueFactory<Clase, DetalleClaseEntrenador>("precio"));
-		final TreeItem<Clase> root = new RecursiveTreeItem<Clase>(listaClase, RecursiveTreeObject::getChildren);
-		tvbViewClases.getColumns().addAll(clmnNombre_clase, clmnDesc_clase, clmnInstructor, clmnPrecio);
-		tvbViewClases.setRoot(root);
-		tvbViewClases.setShowRoot(false);
+		clmnNombre_clase.setCellValueFactory(new PropertyValueFactory<Clase, String>("nombre_clase"));
+		clmnDesc_clase.setCellValueFactory(new PropertyValueFactory<Clase, String>("desc_clase"));
+		clmnInstructor.setCellValueFactory(new PropertyValueFactory<Clase, Empleado>("nombreInstructor"));
+		clmnPrecio.setCellValueFactory(new PropertyValueFactory<Clase, DetalleClaseEntrenador>("precio"));		
+		tvbViewClases.getColumns().addAll(clmnNombre_clase, clmnDesc_clase, clmnInstructor, clmnPrecio);		
+		tvbViewClases.setItems(listaClase);
 
-		conexion.cerrarConexion();
-		seleccionarColumnaTalbe();
+		conexion.cerrarConexion();		
 	}
 
 	@FXML
@@ -214,11 +207,11 @@ public class FXMLclasesController implements Initializable {
 		txtPrecio.setText("");
 	}
 
-	private void seleccionarColumnaTalbe() {
+	/*private void seleccionarColumnaTalbe() {
 		tvbViewClases.getSelectionModel().selectedIndexProperty().addListener((observable, oldCount, newCount) -> {
 			 TreeItem<Clase> selectedItem = tvbViewClases.getSelectionModel().getSelectedItem();
 			 int index = selectedItem.getParent().getChildren().indexOf(selectedItem);
 			 System.out.println(index);
 		});
-	}
+	}*/
 }
