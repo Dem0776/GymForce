@@ -5,26 +5,40 @@ import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class FXMLprincipalController {
 
     @FXML
-    private BorderPane principal;
+    public BorderPane principal;
+    
+    @FXML
+    private VBox vbSlideBar;    
 
     @FXML
     void hbClases(MouseEvent event) throws IOException {
     	AnchorPane clase;
     	clase = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLclases.fxml"));
-		principal.setRight(clase);
+		principal.setCenter(clase);
     }
-
+    
     @FXML
-    void hbEmpleados(MouseEvent event) {
-
+    void hbDietas(MouseEvent event) throws IOException {
+    	AnchorPane dieta;
+    	dieta = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLdieta.fxml"));
+		principal.setCenter(dieta);
     }
+    
+    @FXML
+    void hbEmpleados(MouseEvent event) throws IOException {
+    	AnchorPane Empleados;
+    	Empleados = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLEmpleados.fxml"));
+		principal.setCenter(Empleados);
+    }   
 
     @FXML
     void hbFinanzas(MouseEvent event) {
@@ -32,33 +46,56 @@ public class FXMLprincipalController {
     }
 
     @FXML
-    void hbMembresias(MouseEvent event) {
-
+    void hbMembresias(MouseEvent event) throws IOException {
+    	AnchorPane Membresias;
+    	Membresias = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLMembresias.fxml"));
+		principal.setCenter(Membresias);
     }
 
     @FXML
-    void hbMobiliario(MouseEvent event) {
-
+    void hbPagosCompras(MouseEvent event) throws IOException {
+    	AnchorPane Compras;
+    	Compras = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLcomprasPagos.fxml"));
+		principal.setCenter(Compras);
     }
+
 
     @FXML
-    void hbPlanesEntrenamiento(MouseEvent event) {
-
+    void hbPlanesEntrenamiento(MouseEvent event) throws IOException {
+    	AnchorPane planEntr;
+    	planEntr = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLplanEntrenamiento.fxml"));
+		principal.setCenter(planEntr);
     }
-
-    @FXML
-    void hbProductos(MouseEvent event) {
-
-    }
-
     @FXML
     void hbSalir(MouseEvent event) {
     	Platform.exit();
     }
-
+    
     @FXML
-    void hbVentas(MouseEvent event) {
-
+    void hbSocios(MouseEvent event) throws IOException {
+    	AnchorPane planEntr;
+		planEntr = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLSocios.fxml"));
+		principal.setCenter(planEntr);
     }
 
+    @FXML
+    void hbVentas(MouseEvent event) throws IOException {
+    	AnchorPane ventas;
+    	ventas = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLventas.fxml"));
+		principal.setCenter(ventas);
+    	
+    	
+    }
+    
+    @FXML
+    void hideSlideBar(MouseEvent event) {
+    }
+    
+    @FXML
+    void hbInventario(MouseEvent event) throws IOException {
+    	AnchorPane inventario;
+    	inventario = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLinventario.fxml"));
+		principal.setCenter(inventario);
+    }
+    
 }

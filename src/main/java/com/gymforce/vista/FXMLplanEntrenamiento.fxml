@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLplanEntrenamientoController">
+   <children>
+      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
+            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+               <tabs>
+                  <Tab text="Ver planes">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="P L A N E S  D E  E N T R E N A M I E N T O  R E G I S T R A D O S">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <FontAwesomeIconView glyphName="SEARCH" styleClass="icono">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <JFXTextField fx:id="txtBuscarPlanE" prefWidth="400.0" promptText="Buscar" styleClass="textos" />
+                                          <JFXButton onAction="#btnBuscarPlanE" prefHeight="30.0" prefWidth="100.0" text="Ir">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <padding>
+                                          <Insets right="20.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <TableView fx:id="tblViewPlanE" prefHeight="341.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnVerPlanE" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnEliminarPlanE" prefHeight="40.0" prefWidth="150.0" text="Eliminar">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Plan entrenamiento">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="P L A N  D E  E N T R E N A M I E N T O">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin></Label>
+                                          <Label layoutX="280.0" layoutY="40.0" styleClass="titulo" text="R U T I N A S">
+                                             <padding>
+                                                <Insets left="130.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="200.0" prefWidth="950.0" spacing="50.0">
+                                       <children>
+                                          <VBox prefHeight="225.0" prefWidth="400.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField fx:id="txtDescPlanE" promptText="Descripcion" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDuracionPlanE" promptText="Duracion" styleClass="textos" />
+                                                <JFXTextField fx:id="txtFrecuenciaPlanE" promptText="Frecuencia" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDificultadPlanE" promptText="Dificultad" styleClass="textos" />
+                                                <JFXComboBox fx:id="cmbCategoriaPlanE" prefHeight="25.0" prefWidth="383.0" promptText="Categoria" styleClass="textos" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <TableView fx:id="tbvRutina" prefHeight="249.0" prefWidth="378.0">
+                                            <columns>
+                                              <TableColumn fx:id="clmnEjercicio_rutina" prefWidth="75.0" text="Ejercicio" />
+                                              <TableColumn fx:id="clmnSerie_rutina" prefWidth="75.0" text="Series" />
+                                                <TableColumn fx:id="clmnRepeticion_rutina" prefWidth="75.0" text="Repeticion" />
+                                                <TableColumn fx:id="clmnDuracion_rutina" prefWidth="75.0" text="Duracion" />
+                                                <TableColumn fx:id="clmnPeso_rutina" prefWidth="75.0" text="Peso" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <JFXButton onAction="#btnAgregarRutinaPlan" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnAgregarPlanE" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnCancelarPlanE" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Rutinas">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="950.0" spacing="300.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="R U T I N A" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="312.0" prefWidth="950.0" spacing="150.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="350.0" spacing="20.0">
+                                             <children>
+                                                <JFXComboBox fx:id="cmbEjercicioRutina" prefHeight="25.0" prefWidth="383.0" promptText="Ejercicio" styleClass="textos" />
+                                                <JFXTextField fx:id="txtSeries" promptText="Series" styleClass="textos" />
+                                                <JFXTextField fx:id="txtRepeticiones" promptText="Repeticiones" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDuracion" promptText="Duracion" styleClass="textos" />
+                                                <JFXTextField fx:id="txtPeso" layoutX="10.0" layoutY="160.0" promptText="Peso en libras" styleClass="textos" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnAgregarRutina" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnCancelarRutina" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Ejercicios">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="E J E R C I C I O" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="270.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="500.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField fx:id="txtDescEjercicio" promptText="Descripcion" styleClass="textos" />
+                                                <JFXTextField fx:id="txtComplejidad" promptText="Complejidad" styleClass="textos" />
+                                                <JFXComboBox fx:id="cmbEquipamento" prefWidth="500.0" promptText="Equipo necesario" styleClass="textos" />
+                                                <TableView fx:id="tbvEjercicios" prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnNombre_ejercicio" prefWidth="75.0" text="Ejercicio" />
+                                                    <TableColumn fx:id="clmnComplejidad_ejercicio" prefWidth="106.0" text="Complejidad" />
+                                                      <TableColumn fx:id="clmnEquipamento_mobiliario" prefWidth="109.0" text="Equipamento" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnAgregarEjercicio" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnCancelarEjercicio" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Categorias">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="C A T E G O R I A S" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="270.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="500.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField fx:id="txtDescCategoria" promptText="Descripcion" styleClass="textos" />
+                                                <TableView fx:id="tbvCategoria" prefHeight="286.0" prefWidth="500.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnNombre_categoria" prefWidth="160.0" text="Categoria" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnAgregarCategoria" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnCancelarCategoria" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../estilos/StyleClases.css" />
+      <URL value="@../estilos/StyleJFXTreeTableView.css" />
+      <URL value="@../estilos/tableView.css" />
+   </stylesheets>
+</AnchorPane>

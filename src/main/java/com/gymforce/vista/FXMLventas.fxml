@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLventasController">
+   <children>
+      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css" />
+            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+               <tabs>
+                  <Tab text="Productos">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                       <children>
+                                          <Label prefHeight="27.0" prefWidth="44.0" text="NO.">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtfolioproductos" editable="false" prefHeight="25.0" prefWidth="81.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="1.0" />
+                                             </HBox.margin>
+                                          </JFXTextField>
+                                       </children>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="74.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css" text="Producto">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtrfcProductos" labelFloat="true" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="361.0" promptText="RFC CLIENTE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <Label layoutX="303.0" layoutY="74.0" text="Cantidad">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtcantidadProductos" layoutX="394.0" layoutY="75.0" prefHeight="25.0" prefWidth="31.0" />
+                                          <Label layoutX="455.0" layoutY="79.0" text="Precio Unitario">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtPrecioUnitarioProductos" editable="false" layoutX="585.0" layoutY="75.0" prefHeight="25.0" prefWidth="143.0" />
+                                          <JFXButton layoutX="195.0" layoutY="126.0" onAction="#btnagregarProductoVenta" prefHeight="32.0" prefWidth="120.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Agregar" />
+                                          <JFXButton layoutX="568.0" layoutY="124.0" onAction="#btneliminarProducto" prefHeight="40.0" prefWidth="113.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Eliminar" />
+                                          <JFXTreeTableView fx:id="tblvwVentasProducto" layoutX="14.0" layoutY="175.0" prefHeight="193.0" prefWidth="931.0" stylesheets="@../estilos/StyleJFXTreeTableView.css" />
+                                          <Label layoutX="405.0" layoutY="29.0" text="Forma de Pago">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXComboBox fx:id="cmbFormaPagoProductos" layoutX="536.0" layoutY="30.0" prefHeight="25.0" prefWidth="178.0" />
+                                          <JFXComboBox fx:id="cmbProductos" layoutX="100.0" layoutY="75.0" prefHeight="25.0" prefWidth="181.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css">
+                                       <children>
+                                          <JFXButton onAction="#btnComprarProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Comprar" />
+                                          <JFXButton onAction="#btnCancelarVentaProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Cancelar" />
+                                       </children></HBox>
+                                 </children>
+                              </VBox>
+                              <Label layoutX="20.0" layoutY="20.0" styleClass="titulo" stylesheets="@../../../../../../../../../Documents/gimnasio/GymForce/src/main/java/com/gymforce/estilos/StyleClases.css" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Membresias">
+                     <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox prefHeight="523.0" prefWidth="950.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                       <children>
+                                          <Label text="NO.">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtfolioMembresia" editable="false" prefHeight="25.0" prefWidth="84.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </JFXTextField>
+                                       </children>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="74.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css" text="Membresia">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtrfcMembresias" labelFloat="true" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="361.0" promptText="RFC CLIENTE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <Label layoutX="303.0" layoutY="74.0" text="Cantidad">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtCantidadMembresias" layoutX="394.0" layoutY="75.0" prefHeight="25.0" prefWidth="31.0" />
+                                          <Label layoutX="455.0" layoutY="79.0" text="Precio Unitario">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtPrecioUnitarioMembresias" editable="false" layoutX="585.0" layoutY="75.0" prefHeight="25.0" prefWidth="143.0" />
+                                          <JFXButton layoutX="195.0" layoutY="126.0" onAction="#btnAgregarMembresias" prefHeight="32.0" prefWidth="120.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Agregar" />
+                                          <JFXButton layoutX="568.0" layoutY="124.0" onAction="#btnEliminarListaMembresias" prefHeight="40.0" prefWidth="113.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Eliminar" />
+                                          <JFXTreeTableView fx:id="tblvwVentaMembresias" layoutX="14.0" layoutY="175.0" prefHeight="193.0" prefWidth="931.0" stylesheets="@../estilos/StyleJFXTreeTableView.css" />
+                                          <Label layoutX="415.0" layoutY="27.0" text="Forma de Pago">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXComboBox fx:id="cmbFormaPagoMembresias" layoutX="550.0" layoutY="28.0" prefHeight="25.0" prefWidth="178.0" />
+                                          <JFXComboBox fx:id="cmbMembresias" layoutX="112.0" layoutY="75.0" prefHeight="25.0" prefWidth="181.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnComprarMembresias" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Comprar" />
+                                          <JFXButton onAction="#btnCancelarMembresias" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Cancelar" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Clases">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox prefHeight="523.0" prefWidth="950.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                       <children>
+                                          <Label prefHeight="27.0" prefWidth="44.0" text="NO.">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtFolioClases" editable="false" prefHeight="25.0" prefWidth="81.0">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <HBox.margin>
+                                                <Insets left="2.0" />
+                                             </HBox.margin>
+                                          </JFXTextField>
+                                       </children>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="74.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css" text="Clases">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtrfcClases" labelFloat="true" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="361.0" promptText="RFC CLIENTE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </JFXTextField>
+                                          <Label layoutX="303.0" layoutY="74.0" text="Cantidad">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtcantidadClases" layoutX="394.0" layoutY="75.0" prefHeight="25.0" prefWidth="31.0" />
+                                          <Label layoutX="455.0" layoutY="79.0" text="Precio Unitario">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="txtPrecioUnitarioClases" editable="false" layoutX="585.0" layoutY="75.0" prefHeight="25.0" prefWidth="143.0" />
+                                          <JFXButton layoutX="195.0" layoutY="126.0" onAction="#btnAgregarClases" prefHeight="32.0" prefWidth="120.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Agregar" />
+                                          <JFXButton layoutX="568.0" layoutY="124.0" onAction="#btnEliminarListaClases" prefHeight="40.0" prefWidth="113.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Eliminar" />
+                                          <JFXTreeTableView fx:id="tblvwVentaClases" layoutX="14.0" layoutY="175.0" prefHeight="193.0" prefWidth="931.0" stylesheets="@../estilos/StyleJFXTreeTableView.css" />
+                                          <Label layoutX="411.0" layoutY="34.0" text="Forma de Pago">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXComboBox fx:id="cmbFormaPagoClases" layoutX="545.0" layoutY="35.0" prefHeight="25.0" prefWidth="178.0" />
+                                          <JFXComboBox fx:id="cmbClases" layoutX="83.0" layoutY="75.0" prefHeight="25.0" prefWidth="181.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnComprarClases" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Comprar" />
+                                          <JFXButton onAction="#btnCancelarCompraClases" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Cancelar" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="109.0" prefWidth="200.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css" />
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../estilos/StyleClases.css" />
+      <URL value="@../estilos/StyleJFXTreeTableView.css" />
+   </stylesheets>
+</AnchorPane>

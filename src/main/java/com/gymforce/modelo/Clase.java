@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class Clase extends RecursiveTreeObject<Clase> {
+public class Clase{
 	private IntegerProperty clv_clase;
 	private StringProperty nombre_clase;
 	private StringProperty desc_clase;
@@ -28,13 +28,17 @@ public class Clase extends RecursiveTreeObject<Clase> {
 		this.nombre_clase = new SimpleStringProperty(nombre_clase);
 		this.desc_clase = new SimpleStringProperty(desc_clase);
 	}
-
+	
 	public Clase(String nombre_clase, String desc_clase, Empleado nombreInstructor,
 			DetalleClaseEntrenador precio) {
 		this.nombre_clase = new SimpleStringProperty(nombre_clase);
 		this.desc_clase = new SimpleStringProperty(desc_clase);
 		this.nombreInstructor = nombreInstructor;
 		this.precio = precio;
+	}
+	
+	public Clase(int clv_clase) {
+		this.clv_clase = new SimpleIntegerProperty(clv_clase);		
 	}
 
 	// Metodos atributo: clv_clase
@@ -136,11 +140,25 @@ public class Clase extends RecursiveTreeObject<Clase> {
 			return 0;
 		}
 	}
+	
+	public int cancelarClase(Connection cn) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE clase SET " + "clase.status_clase = 0 " + "WHERE clase.clv_clase = ?");
+			consulta.setInt(1, clv_clase.get());
 
-	public static int obtenerUltimaClase(Connection connect) {
+			return consulta.executeUpdate();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
+
+	public static int obtenerUltimaClase(Connection conect) {
 		int clv = 0;
 		try {
-			Statement st = connect.createStatement();
+			Statement st = conect.createStatement();
 			ResultSet rs = st.executeQuery(
 					"SELECT " + "clase.clv_clase " + "FROM " + "clase ORDER BY clase.clv_clase DESC LIMIT 1");
 
@@ -152,4 +170,23 @@ public class Clase extends RecursiveTreeObject<Clase> {
 		}
 		return clv;
 	}
+	@Override
+    public String toString() {
+        return desc_clase.get();
+    }
+	public static void llenarComboClase(Connection conect, ObservableList<Clase> listTipoClase) {
+        try {
+            Statement st = conect.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM clase");
+            while (rs.next()) {
+            	listTipoClase.add(
+                        new Clase(rs.getString("nombre_clase"),
+                                rs.getString("desc_clase")
+                        ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

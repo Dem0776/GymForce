@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLdietaController">
+   <children>
+      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
+            <JFXTabPane fx:id="tpDieta" prefHeight="629.0" prefWidth="950.0">
+               <tabs>
+                  <Tab fx:id="tabVerDietas" text="Ver Dietas">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="D I E T A S  R E G I S T R A D A S">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <FontAwesomeIconView glyphName="SEARCH" styleClass="icono">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
+                                          <JFXTextField fx:id="txtBuscarDieta" prefWidth="400.0" promptText="Buscar" styleClass="textos" />
+                                          <JFXButton onAction="#btnBuscarDieta" prefHeight="30.0" prefWidth="100.0" text="Ir">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <padding>
+                                          <Insets right="20.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <TableView fx:id="tbvDietas" prefHeight="368.0" prefWidth="950.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnVerDieta" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnEliminarDieta" prefHeight="40.0" prefWidth="150.0" text="Eliminar">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab fx:id="tabDietas" text="Dietas">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="85.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="D I E T A" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets left="270.0" top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="370.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox spacing="20.0">
+                                             <children>
+                                                <JFXTextField fx:id="txtNombreDieta" promptText="Nombre" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDescDieta" promptText="Descripcion" styleClass="textos" />
+                                                <JFXComboBox fx:id="cmbAlimentoDieta" prefHeight="25.0" prefWidth="383.0" promptText="Alimento" styleClass="textos" />
+                                                <JFXButton onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
+                                                   <styleClass>
+                                                      <String fx:value="btnsFondo" />
+                                                      <String fx:value="btns" />
+                                                   </styleClass>
+                                                </JFXButton>
+                                                <TableView fx:id="tbvAlimentoDieta" prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnAlimento_dda" prefWidth="161.0" text="Alimentos agregados" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="275.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER" prefHeight="97.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnAgregarDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnCancelarDieta" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab fx:id="tabAlimentos" text="Alimentos">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="198.0" layoutY="109.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="129.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" text="A L I M E N T O" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets top="30.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="324.0" prefWidth="950.0">
+                                       <children>
+                                          <VBox prefWidth="500.0" spacing="20.0">
+                                             <children>
+                                                <JFXTextField fx:id="txtNombreAlimento" promptText="Nombre" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDescAlimento" promptText="Descripcion" styleClass="textos" />
+                                                <TableView fx:id="tbvAlimento" prefHeight="201.0" prefWidth="500.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="clmnnombre_alimento" prefWidth="150.0" text="Nombre" />
+                                                    <TableColumn fx:id="clmndesc_alimento" minWidth="0.0" prefWidth="165.0" text="Descripcion" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="97.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXButton onAction="#btnAgregarAlimento" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton onAction="#btnCancelarAlimento" prefHeight="40.0" prefWidth="150.0" text="Cancelar">
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../estilos/StyleClases.css" />
+      <URL value="@../estilos/tableView.css" />
+   </stylesheets>
+</AnchorPane>

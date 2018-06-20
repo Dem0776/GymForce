@@ -7,18 +7,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="parent" stylesheets="@../estilos/StylePrincipal.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLprincipalController">
+<BorderPane fx:id="principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="parent" stylesheets="@../estilos/StylePrincipal.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLprincipalController">
    <left>
-      <VBox prefHeight="600.0" prefWidth="250.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+      <VBox fx:id="vbSlideBar" prefHeight="600.0" prefWidth="250.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="75.0" prefWidth="250.0" styleClass="lblTitulo" text="Gym Force">
+            <Label onMouseClicked="#hideSlideBar" prefHeight="75.0" prefWidth="250.0" styleClass="lblTitulo" text="Gym Force">
                <padding>
                   <Insets left="10.0" />
                </padding>
             </Label>
             <HBox alignment="CENTER_LEFT" onMouseClicked="#hbFinanzas" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
-                  <FontAwesomeIconView glyphName="USD" styleClass="iconos" wrappingWidth="12.0" />
+                  <FontAwesomeIconView glyphName="INDUSTRY" styleClass="iconos" wrappingWidth="12.0" />
                   <Label prefHeight="17.0" prefWidth="250.0" styleClass="menus" text="Finanzas" />
                </children>
                <VBox.margin>
@@ -30,7 +30,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" onMouseClicked="#hbEmpleados" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
-                  <FontAwesomeIconView glyphName="USERS" styleClass="iconos" wrappingWidth="12.0" />
+                  <FontAwesomeIconView glyphName="USER" styleClass="iconos" wrappingWidth="12.0" />
                   <Label prefHeight="17.0" prefWidth="89.0" styleClass="menus" text="Empleados" />
                </children>
                <padding>
@@ -42,7 +42,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" onMouseClicked="#hbMembresias" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
-                  <FontAwesomeIconView glyphName="CC" styleClass="iconos" wrappingWidth="12.0" />
+                  <FontAwesomeIconView glyphName="LIST" styleClass="iconos" wrappingWidth="12.0" />
                   <Label styleClass="menus" text="Membresias" />
                </children>
                <padding>
@@ -52,10 +52,19 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="149.0" onMouseClicked="#hbProductos" prefHeight="40.0" spacing="10.0" styleClass="btns">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="455.0" onMouseClicked="#hbSocios" prefHeight="40.0" spacing="10.0" styleClass="btns">
+               <children>
+                  <FontAwesomeIconView glyphName="USERS" styleClass="iconos" wrappingWidth="12.0" />
+                  <Label onMouseClicked="#hbSocios" styleClass="menus" text="Socios" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="149.0" onMouseClicked="#hbInventario" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
                   <FontAwesomeIconView glyphName="CUBES" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Productos" />
+                  <Label styleClass="menus" text="Inventario" />
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -64,10 +73,10 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="176.0" onMouseClicked="#hbMobiliario" prefHeight="40.0" spacing="10.0" styleClass="btns">
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="176.0" onMouseClicked="#hbPagosCompras" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>
-                  <FontAwesomeIconView glyphName="GAVEL" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Mobiliario" />
+                  <FontAwesomeIconView glyphName="USD" styleClass="iconos" wrappingWidth="12.0" />
+                  <Label styleClass="menus" text="Pagos y compras" />
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -87,6 +96,15 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="175.0" onMouseClicked="#hbDietas" prefHeight="40.0" spacing="10.0" styleClass="btns">
+               <children>
+                  <FontAwesomeIconView glyphName="CUTLERY" styleClass="iconos" wrappingWidth="12.0" />
+                  <Label styleClass="menus" text="Dietas" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="230.0" onMouseClicked="#hbClases" prefHeight="40.0" spacing="10.0" styleClass="btns">
                <children>

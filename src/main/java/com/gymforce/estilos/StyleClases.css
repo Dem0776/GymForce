@@ -1,37 +1,47 @@
 .tab{
-	-fx-background-color:  #336699;
-	tab-size:100;
+	-fx-background-color:   #0c1421;	
 }
-
+.tab-label {
+	-fx-font-family: "Ebrima";
+    -fx-text-fill: #7C8184 ;
+    -fx-font-size: 18px;
+}
 .tab-header-background{
-	-fx-background-color: #333645;	
+	-fx-background-color: #070c14;	
 }
 
 .fondoHeader{
-	-fx-background-color: #333645;	
+	-fx-background-color: #070c14;	
 }
 
 .fondoVentana{
-	-fx-background-color: white;	
+	/*-fx-background-color: #0c1421;*/
+	-fx-background-color: linear-gradient(to right, #141e30 , #243b55);	
 }
 
-.titulos{
-	-fx-font-size: 18;
-	-fx-font-family: "Ebrima";	
+.titulo{
+	-fx-font-size: 24;
+	-fx-font-family: "Calibri light";	
+	-fx-text-fill: #7C8184;	
+}
+
+.textos{
+	-fx-font-size: 16;
+	-fx-font-family: "Calibri light";	
+	-fx-text-fill: #7C8184;	
+}
+
+.icono{
+	-fx-fill:#7C8184;
 }
 
 .btnsFondo{
 	-fx-font-size: 16;
-	-fx-background-color: #33ccff;
+	-fx-background-color: #063151;
 	-fx-font-family: "Ebrima";
 	-fx-text-fill: white;
 }
 
 .btns:hover, .btns:active{
-	-fx-background-color: #00cccc;
-}
-
-.buscar{
-	-fx-font-size: 16;
-	-fx-font-family: "Calibri light";	
+	-fx-background-color: #04525b;
 }

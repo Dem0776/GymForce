@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="informe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLInfromesSocioController">
+   <children>
+      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader">
+               <children>
+                  <HBox layoutX="910.0" layoutY="4.0" prefHeight="33.0" prefWidth="40.0">
+                     <children>
+                        <FontAwesomeIconView fill="#f5ebeb" glyphName="REPLY" onMouseClicked="#IconRegresar" size="30" />
+                     </children>
+                  </HBox>
+               </children></Pane>
+            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+               <tabs>
+                  <Tab text="Membresias">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="Membresias del Socio:">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                          <JFXTextField fx:id="txtSocio" prefHeight="25.0" prefWidth="309.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <TableView fx:id="tblViewInfMembresias" prefHeight="349.0" prefWidth="950.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXComboBox fx:id="cmbMembresias" prefHeight="30.0" prefWidth="319.0" promptText="---MEMBRESIAS---" styleClass="textos">
+                                             <HBox.margin>
+                                                <Insets left="-380.0" />
+                                             </HBox.margin>
+                                          </JFXComboBox>
+                                          <JFXButton fx:id="btnAgregarMembresias" onAction="#btnAgregar" prefHeight="30.0" prefWidth="100.0" text="AGREGAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnEliminarMembresias" onAction="#btnEliminarDieta" prefHeight="30.0" prefWidth="100.0" text="ELIMINAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Clases">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="Clases del Socio:">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                          <JFXTextField fx:id="txtSocioClases" prefHeight="25.0" prefWidth="309.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <TableView fx:id="tblViewInfClases" prefHeight="350.0" prefWidth="950.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXComboBox fx:id="cmbClases" prefHeight="30.0" prefWidth="319.0" promptText="---C L A S E S---" styleClass="textos">
+                                             <HBox.margin>
+                                                <Insets left="-380.0" />
+                                             </HBox.margin>
+                                          </JFXComboBox>
+                                          <JFXButton fx:id="btnAgregarClase" onAction="#btnAgregarClases" prefHeight="30.0" prefWidth="100.0" text="AGREGAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnEliminarClases" onAction="#btnEliminarDieta" prefHeight="30.0" prefWidth="100.0" text="ELIMINAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Planes de Entrenamiento">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="Planes de Entren. del Socio:">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                          <JFXTextField fx:id="txtEntrenamiento" prefHeight="25.0" prefWidth="309.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <TableView fx:id="tblViewInfPlanesEntren" prefHeight="350.0" prefWidth="950.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXComboBox fx:id="cmbEntrenamiento" prefHeight="30.0" prefWidth="319.0" promptText="---PLANES DE ENTRENAMIENTO---" styleClass="textos">
+                                             <HBox.margin>
+                                                <Insets left="-380.0" />
+                                             </HBox.margin>
+                                          </JFXComboBox>
+                                          <JFXButton fx:id="btnAgregarEntren" onAction="#btnAgregarEntrenamiento" prefHeight="30.0" prefWidth="100.0" text="AGREGAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnEliminarPlanesEntrena" onAction="#btnEliminarDieta" prefHeight="30.0" prefWidth="100.0" text="ELIMINAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Dietas">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
+                           <children>
+                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="50.0" prefWidth="950.0">
+                                       <children>
+                                          <Label styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="Dietas del Socio:">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                          <JFXTextField fx:id="txtDietas" prefHeight="25.0" prefWidth="309.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="20.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <AnchorPane prefHeight="350.0" prefWidth="950.0">
+                                       <children>
+                                          <TableView fx:id="tblViewInfDietas" prefHeight="350.0" prefWidth="950.0">
+                                            <columns>
+                                              <TableColumn prefWidth="75.0" text="C1" />
+                                              <TableColumn prefWidth="75.0" text="C2" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
+                                       <children>
+                                          <JFXComboBox fx:id="cmbDietas" prefHeight="30.0" prefWidth="272.0" promptText="---D I E T A S---" styleClass="textos">
+                                             <HBox.margin>
+                                                <Insets left="-410.0" />
+                                             </HBox.margin>
+                                          </JFXComboBox>
+                                          <JFXButton fx:id="btnAgregarDietas" onAction="#btnAgregarDieta" prefHeight="30.0" prefWidth="100.0" text="AGREGAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnEliminarDietas" onAction="#btnEliminarDieta" prefHeight="30.0" prefWidth="100.0" text="ELIMINAR">
+                                             <styleClass>
+                                                <String fx:value="btns" />
+                                                <String fx:value="btnsFondo" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </children>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../estilos/StyleClases.css" />
+      <URL value="@../estilos/StyleJFXTreeTableView.css" />
+   </stylesheets>
+</AnchorPane>
