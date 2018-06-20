@@ -13,7 +13,7 @@ public class ConexionMySQL {
 	
 	private String url = "jdbc:mysql://localhost/gymforce";
 	private String usuario = "root";
-	private String contrasena = "";
+	private String contrasena = "midian776";
 
 	public Connection getConnection() {
 		return connection;

@@ -115,6 +115,11 @@ public class Rutina extends RecursiveTreeObject<Rutina> {
 	public void setClv_ejercicio(Ejercicio clv_ejercicio) {
 		this.clv_ejercicio = clv_ejercicio;
 	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(serie_rutina.get());
+	}
 
 	public static void llenarTableRutina(Connection conect, ObservableList<Rutina> listRutina) {
 		try {

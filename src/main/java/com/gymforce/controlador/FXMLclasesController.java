@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.DetalleClaseEntrenador;
+import com.gymforce.modelo.DetalleDiaClaseEnt;
+import com.gymforce.modelo.DetalleDietaAlimento;
+import com.gymforce.modelo.Dieta;
 import com.gymforce.modelo.Empleado;
 import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXComboBox;
@@ -205,6 +208,10 @@ public class FXMLclasesController implements Initializable {
 		txtNombre.setText("");
 		txtDescripcion.setText("");
 		txtPrecio.setText("");
+	}
+	
+	private void guardarHorario() {
+		
 	}
 
 	/*private void seleccionarColumnaTalbe() {

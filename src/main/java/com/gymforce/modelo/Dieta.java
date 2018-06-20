@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -103,15 +101,16 @@ public class Dieta{
 	public static void llenarTableDieta(Connection conect, ObservableList<Dieta> listDieta) {
 		try {
 			Statement st = conect.createStatement();
-			/*ResultSet rs = st.executeQuery("SELECT " + "dieta.nombre_dieta, " + "dieta.desc_dieta, "
+			ResultSet rs = st.executeQuery("SELECT " + "dieta.nombre_dieta, " + "dieta.desc_dieta, "
 					+ "alimento.nombre_alimento " + "FROM " + "dieta "
 					+ "JOIN detalle_dieta_alimento ON dieta.clv_dieta = detalle_dieta_alimento.clv_dieta "
 					+ "JOIN alimento ON detalle_dieta_alimento.clv_alimento = alimento.clv_alimento "
-					+ "WHERE dieta.status_dieta = 1");*/
-			ResultSet rs = st.executeQuery("SELECT " + "* " + " FROM " + "dieta");
+					+ "WHERE dieta.status_dieta = 1");			
 
 			while (rs.next()) {
-				listDieta.add(new Dieta(rs.getInt("clv_dieta"), rs.getString("nombre_dieta"), rs.getString("desc_dieta")));
+				listDieta.add(new Dieta(rs.getString("nombre_dieta"), 
+						rs.getString("desc_dieta"), 
+						new Alimento(rs.getString("nombre_alimento"))));
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(Dieta.class.getName()).log(Level.SEVERE, null, ex);

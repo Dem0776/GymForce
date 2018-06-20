@@ -1,10 +1,24 @@
 package com.gymforce.modelo;
 
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.CallableStatement;
+import java.sql.Clob;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.NClob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.sql.SQLXML;
+import java.sql.Savepoint;
 import java.sql.Statement;
+import java.sql.Struct;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.Executor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +43,14 @@ public class DetalleDietaAlimento {
 		this.dieta = new SimpleIntegerProperty(dieta);
 		this.clv_alimento = clv_alimento;
 	}
-
+	
+	public DetalleDietaAlimento() {		
+	}
+	
+	public DetalleDietaAlimento(int dieta) {
+	this.dieta = new SimpleIntegerProperty(dieta);
+	}
+	
 	// Metodos atributo: clv_dda
 	public int getClv_dda() {
 		return clv_dda.get();
@@ -74,20 +95,24 @@ public class DetalleDietaAlimento {
 		return dieta;
 	}
 	
-	public static void lleanarTableDda(Connection conect, ObservableList<DetalleDietaAlimento> listaDda) {
-		try {
-			Statement st = conect.createStatement();
-			ResultSet rs = st.executeQuery("SELECT " + "* "
+	public static void lleanarTableDda(Connection conect, ObservableList<DetalleDietaAlimento> listaDda, int dieta) {
+		try {			
+			PreparedStatement st = conect.prepareStatement("SELECT " + "* "
 					+ "FROM detalle_dieta_alimento "
 					+ "JOIN alimento ON detalle_dieta_alimento.clv_alimento = alimento.clv_alimento "
 					+ "JOIN dieta ON detalle_dieta_alimento.clv_dieta = dieta.clv_dieta "
-					+ "WHERE dieta.clv_dieta = 1 ");			
+					+ "WHERE dieta.clv_dieta = ? ");
+			st.setInt(1, dieta);
+			/*ResultSet rs = st.executeQuery("SELECT " + "* "
+					+ "FROM detalle_dieta_alimento "
+					+ "JOIN alimento ON detalle_dieta_alimento.clv_alimento = alimento.clv_alimento "
+					+ "JOIN dieta ON detalle_dieta_alimento.clv_dieta = dieta.clv_dieta "
+					+ "WHERE dieta.clv_dieta = ? ");	*/		
+			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				listaDda.add(new DetalleDietaAlimento(rs.getInt("clv_dda"), 
 						new Dieta(rs.getInt("clv_dieta"), rs.getString("nombre_dieta"), rs.getString("desc_dieta")), 
-						new Alimento(rs.getInt("clv_alimento"), rs.getString("nombre_alimento"), rs.getString("desc_alimento"))));
-				/*listaEjercicio.add(new Ejercicio(rs.getString("desc_ejercicio"), rs.getString("complejidad_ejercicio"),
-						new Mobiliario(rs.getString("desc_mobiliario"))));*/
+						new Alimento(rs.getInt("clv_alimento"), rs.getString("nombre_alimento"), rs.getString("desc_alimento"))));				
 			}
 		} catch (SQLException e) {
 			Logger.getLogger(DetalleDietaAlimento.class.getName()).log(Level.SEVERE, null, e);

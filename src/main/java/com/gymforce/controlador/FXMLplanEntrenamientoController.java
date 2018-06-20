@@ -12,7 +12,6 @@ import com.gymforce.modelo.PlanEntrenamiento;
 import com.gymforce.modelo.Rutina;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,6 +39,13 @@ public class FXMLplanEntrenamientoController implements Initializable {
 
     @FXML
     private TableView<PlanEntrenamiento> tblViewPlanE;
+    private TableColumn<PlanEntrenamiento, String> clmnDesc_planE;
+    private TableColumn<PlanEntrenamiento, String> clmnDuracion_planE;
+    private TableColumn<PlanEntrenamiento, String> clmnFrecuencia_planE;
+    private TableColumn<PlanEntrenamiento, String> clmnDificultad_planE;
+    private TableColumn<PlanEntrenamiento, Categoria> clmnCategoria_planE;
+    private TableColumn<PlanEntrenamiento, Ejercicio> clmnEjercicio_planE;
+    private TableColumn<PlanEntrenamiento, Rutina> clmnRutina_planE;
 
 	@FXML
 	private JFXTextField txtDescPlanE;
@@ -245,6 +251,7 @@ public class FXMLplanEntrenamientoController implements Initializable {
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		conexion = new ConexionMySQL();
@@ -264,11 +271,30 @@ public class FXMLplanEntrenamientoController implements Initializable {
 		Ejercicio.lleanarTableEjercicio(conexion.getConnection(), oblListaEjercicioTbv);
 		Rutina.llenarTableRutina(conexion.getConnection(), oblListaRutinaTbv);
 		Ejercicio.llenarComboEjercicio(conexion.getConnection(), oblListaEjercicioCmb);
+		PlanEntrenamiento.llenarTablePlanE(conexion.getConnection(), oblListaPlanEntrTbv);
 
 		cmbEquipamento.setItems(oblListaMobiliariioCmb);
 		cmbEjercicioRutina.setItems(oblListaEjercicioCmb);
 		cmbCategoriaPlanE.setItems(oblListaCategoriaCmb);
 		
+		clmnDesc_planE = new TableColumn<>("Plan de Entrenamiento");
+	    clmnDuracion_planE = new TableColumn<>("Duracion");
+	    clmnFrecuencia_planE = new TableColumn<>("Frecuencia");
+	    clmnDificultad_planE = new TableColumn<>("Dificultad");
+	    clmnCategoria_planE = new TableColumn<>("Categoria");
+	    clmnEjercicio_planE = new TableColumn<>("Ejercicio");
+	    clmnRutina_planE = new TableColumn<>("Series");
+	    clmnDesc_planE.setCellValueFactory(new PropertyValueFactory<PlanEntrenamiento, String>("desc_pe"));
+	    clmnDuracion_planE.setCellValueFactory(new PropertyValueFactory<PlanEntrenamiento, String>("duracion_pe"));
+	    clmnFrecuencia_planE.setCellValueFactory(new PropertyValueFactory<PlanEntrenamiento, String>("frecuencia_pe"));
+	    clmnDificultad_planE.setCellValueFactory(new PropertyValueFactory<PlanEntrenamiento, String>("dificultad_pe"));
+	    clmnCategoria_planE.setCellValueFactory(new PropertyValueFactory<PlanEntrenamiento, Categoria>("clv_categoria"));
+	    clmnEjercicio_planE.setCellValueFactory(new PropertyValueFactory<PlanEntrenamiento, Ejercicio>("ejercicio"));
+	    clmnRutina_planE.setCellValueFactory(new PropertyValueFactory<PlanEntrenamiento, Rutina>("serie"));
+	    tblViewPlanE.getColumns().addAll(clmnDesc_planE, clmnDuracion_planE, 
+	    		clmnFrecuencia_planE, clmnDificultad_planE, clmnCategoria_planE, clmnEjercicio_planE, clmnRutina_planE);
+	    tblViewPlanE.setItems(oblListaPlanEntrTbv);
+	    
 		clmnNombre_categoria.setCellValueFactory(new PropertyValueFactory<Categoria, String>("desc_categoria"));				
 		clmnNombre_categoria.setPrefWidth(150);
 		tbvCategoria.setItems(oblListaCategoriaTbv);

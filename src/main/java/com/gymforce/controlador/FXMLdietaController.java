@@ -10,13 +10,17 @@ import com.gymforce.modelo.DetalleDietaAlimento;
 import com.gymforce.modelo.Dieta;
 import com.gymforce.modelo.Mensaje;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
+import com.mysql.fabric.xmlrpc.base.Value;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,12 +28,25 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FXMLdietaController implements Initializable {
 
 	private ConexionMySQL conexion;
+	private int banderaDieta = 0;
 
 	private ObservableList<Alimento> oblListaAlimentoTbv;
 	private ObservableList<Alimento> oblListaAlimentoCmb;
 	private ObservableList<Dieta> oblListaDietaTbv;
 	private ObservableList<DetalleDietaAlimento> oblListaDetDietaATbv;
 
+    @FXML
+    private JFXTabPane tpDieta;
+
+    @FXML
+    private Tab tabVerDietas;
+    
+    @FXML
+    private Tab tabDietas;
+    
+    @FXML
+    private Tab tabAlimentos;
+	
 	@FXML
 	private JFXTextField txtBuscarDieta;
 
@@ -37,7 +54,7 @@ public class FXMLdietaController implements Initializable {
 	private TableView<Dieta> tbvDietas;
     private TableColumn<Dieta, String> clmn_dieta;
     private TableColumn<Dieta, String> clmn_descDieta;    
-    private TableColumn<Dieta, String> clmn_alimentoDieta;    
+    private TableColumn<Dieta, Alimento> clmn_alimentoDieta;    
 
 	@FXML
 	private JFXTextField txtNombreDieta;
@@ -96,14 +113,28 @@ public class FXMLdietaController implements Initializable {
 			Mensaje.error("Campo Vacio", "Seleccione un alimento");
 			cmbAlimentoDieta.requestFocus();
 		} else {
-			//guardarDieta();
+			guardarDieta();
 			guardarDetalleDA();
+			banderaDieta = 1;
+			llenarTableAlimentoDieta();
 		}
 	}
 
 	@FXML
 	void btnAgregarDieta(ActionEvent event) {
-		Mensaje.informacion("Guardar Registro", "Dieta agregada");
+		if (txtNombreDieta.getText().trim().length() == 0) {
+			Mensaje.error("Campo Vacio", "Ingresa el nombre");
+			txtNombreAlimento.requestFocus();
+		} else if (txtDescDieta.getText().trim().length() == 0) {
+			Mensaje.error("Campo Vacio", "Ingresa la descripcion");
+			txtDescAlimento.requestFocus();
+		} else if (cmbAlimentoDieta.getValue() == null) {
+			Mensaje.error("Campo Vacio", "Seleccione un alimento");
+			cmbAlimentoDieta.requestFocus();
+		} else {
+			Mensaje.informacion("Guardar Registro", "Dieta agregada");
+			limpiarDieta();
+		}		
 	}
 
 	@FXML
@@ -118,12 +149,18 @@ public class FXMLdietaController implements Initializable {
 
 	@FXML
 	void btnCancelarDieta(ActionEvent event) {
-		conexion.establecerConexion();
-		Dieta dieta = new Dieta(Dieta.obtenerUltimaDieta(conexion.getConnection()), 
-				txtNombreDieta.getText(), 
-				txtDescDieta.getText());		
-		int noReg = dieta.cancelarDieta(conexion.getConnection());
-		conexion.cerrarConexion();
+		if (banderaDieta == 0) {
+			limpiarDieta();
+		} else {
+			conexion.establecerConexion();
+			Dieta dieta = new Dieta(Dieta.obtenerUltimaDieta(conexion.getConnection()), 
+					txtNombreDieta.getText(), 
+					txtDescDieta.getText());		
+			int noReg = dieta.cancelarDieta(conexion.getConnection());
+			conexion.cerrarConexion();
+			banderaDieta = 0;
+			limpiarDieta();
+		}		
 	}
 
 	@FXML
@@ -132,8 +169,14 @@ public class FXMLdietaController implements Initializable {
 	}
 
 	@FXML
-	void btnVerDieta(ActionEvent event) {
-
+	void btnVerDieta(ActionEvent event) {		
+		tbvDietas.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Dieta> observable, Dieta oldValue, Dieta newValue) -> {
+			txtNombreDieta.setText(newValue.getNombre_dieta());
+			txtDescDieta.setText(newValue.getDesc_dieta());
+			cmbAlimentoDieta.setValue(newValue.getNombre_alimento());
+        });
+		
+		tpDieta.getSelectionModel().select(tabDietas);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -145,26 +188,18 @@ public class FXMLdietaController implements Initializable {
 		
 		oblListaAlimentoTbv = FXCollections.observableArrayList();
 		oblListaAlimentoCmb = FXCollections.observableArrayList();
-		oblListaDietaTbv = FXCollections.observableArrayList();
+		oblListaDietaTbv = FXCollections.observableArrayList();		
 		oblListaDetDietaATbv = FXCollections.observableArrayList();
 		
 		Alimento.llenarTableAlimento(conexion.getConnection(), oblListaAlimentoTbv);
-		Alimento.llenarComboAlimento(conexion.getConnection(), oblListaAlimentoCmb);
-		DetalleDietaAlimento.lleanarTableDda(conexion.getConnection(), oblListaDetDietaATbv);
+		Alimento.llenarComboAlimento(conexion.getConnection(), oblListaAlimentoCmb);		
 		Dieta.llenarTableDieta(conexion.getConnection(), oblListaDietaTbv);
 		
 		cmbAlimentoDieta.setItems(oblListaAlimentoCmb);
 		
 		clmnnombre_alimento.setCellValueFactory(new PropertyValueFactory<Alimento, String>("nombre_alimento"));
 		clmndesc_alimento.setCellValueFactory(new PropertyValueFactory<Alimento, String>("desc_alimento"));
-		tbvAlimento.setItems(oblListaAlimentoTbv);
-		
-		clmnDieta_dda = new TableColumn<>();
-		clmnClv_dda = new TableColumn<>();
-		clmnDieta_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento, Dieta>("dieta"));
-		clmnClv_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento,Number>("clv_dda"));
-		clmnAlimento_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento, Alimento>("clv_alimento"));
-		tbvAlimentoDieta.setItems(oblListaDetDietaATbv);
+		tbvAlimento.setItems(oblListaAlimentoTbv);				
 		
 		clmn_dieta = new TableColumn<>("Dieta");
 		clmn_descDieta = new TableColumn<>("Descripcion");
@@ -172,9 +207,9 @@ public class FXMLdietaController implements Initializable {
 		clmn_dieta.setPrefWidth(200);
 		clmn_descDieta.setPrefWidth(200);
 		clmn_alimentoDieta.setPrefWidth(200);
-		clmn_dieta.setCellValueFactory(new PropertyValueFactory<Dieta, String>("clv_dieta"));
-		clmn_descDieta.setCellValueFactory(new PropertyValueFactory<Dieta, String>("nombre_dieta"));
-		clmn_alimentoDieta.setCellValueFactory(new PropertyValueFactory<Dieta, String>("desc_dieta"));		
+		clmn_dieta.setCellValueFactory(new PropertyValueFactory<Dieta, String>("nombre_dieta"));
+		clmn_descDieta.setCellValueFactory(new PropertyValueFactory<Dieta, String>("desc_dieta"));
+		clmn_alimentoDieta.setCellValueFactory(new PropertyValueFactory<Dieta, Alimento>("nombre_alimento"));		
 		tbvDietas.getColumns().addAll(clmn_dieta, clmn_descDieta, clmn_alimentoDieta);
 	    tbvDietas.setItems(oblListaDietaTbv);
 				
@@ -207,7 +242,7 @@ public class FXMLdietaController implements Initializable {
 				oblListaDietaTbv.add(dieta);
 			}
 		} catch (Exception e) {
-			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
+			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos d");
 		}
 		conexion.cerrarConexion();
 	}
@@ -216,7 +251,7 @@ public class FXMLdietaController implements Initializable {
 		try {
 			conexion.establecerConexion();
 			DetalleDietaAlimento dda = new DetalleDietaAlimento(0, 
-					3, 
+					Dieta.obtenerUltimaDieta(conexion.getConnection()), 
 					cmbAlimentoDieta.getSelectionModel().getSelectedItem());
 			int noReg = dda.guardarDetalleDietaAlim(conexion.getConnection());
 			if (noReg != 0) {
@@ -224,9 +259,32 @@ public class FXMLdietaController implements Initializable {
 				oblListaDetDietaATbv.add(dda);
 			}
 		} catch (Exception e) {
-			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
+			Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos dda");
 		}
 		conexion.cerrarConexion();
+	}
+	
+	private void llenarTableAlimentoDieta() {
+		conexion.establecerConexion();
+				
+		DetalleDietaAlimento.lleanarTableDda(conexion.getConnection(), 
+				oblListaDetDietaATbv,
+				Dieta.obtenerUltimaDieta(conexion.getConnection()));
+		
+		clmnDieta_dda = new TableColumn<>();
+		clmnClv_dda = new TableColumn<>();
+		clmnDieta_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento, Dieta>("dieta"));
+		clmnClv_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento,Number>("clv_dda"));
+		clmnAlimento_dda.setCellValueFactory(new PropertyValueFactory<DetalleDietaAlimento, Alimento>("clv_alimento"));
+		tbvAlimentoDieta.setItems(oblListaDetDietaATbv);
+		
+		conexion.cerrarConexion();
+	}
+	
+	private void limpiarDieta() {
+		txtNombreDieta.setText("");
+		txtDescDieta.setText("");
+		cmbAlimentoDieta.setValue(null);
 	}
 
 }
