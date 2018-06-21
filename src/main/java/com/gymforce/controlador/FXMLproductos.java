@@ -6,23 +6,21 @@ import java.util.ResourceBundle;
 
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.Marca;
-import com.gymforce.modelo.Mobiliario;
+
 import com.gymforce.modelo.Producto;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.TreeItem;
+
 import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+
 import javafx.scene.layout.AnchorPane;
 
 public class FXMLproductos implements Initializable  {
@@ -39,7 +37,7 @@ public class FXMLproductos implements Initializable  {
       private ObservableList<Producto>listproducto;
       
       @FXML
-      private JFXTreeTableView<Producto> tblViewProductos;
+     // private JFXTreeTableView<Producto> tblViewProductos;
       private TreeTableColumn<Producto, String> clmnnombre_producto;
   	private TreeTableColumn<Producto, String> clmndesc_producto;
   	private TreeTableColumn<Producto, Double> clmnprecioActual_producto;
@@ -80,7 +78,8 @@ public class FXMLproductos implements Initializable  {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Parent fxml;
+		
+		/*Parent fxml;
 		try {
 			fxml = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLproductos.fxml"));
 			productos.getChildren().removeAll();
@@ -130,7 +129,7 @@ public class FXMLproductos implements Initializable  {
 		
 		
 	}
-
+*/
     
-    
+	}  
 }

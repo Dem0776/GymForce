@@ -26,6 +26,10 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 	private DoubleProperty costo_mobiliario;
 	private StringProperty status_mobiliario;
 
+	public Mobiliario() {
+		
+	}
+	
 	public Mobiliario(String desc_mobiliario, Double costo_mobiliario) {
 
 		this.desc_mobiliario = new SimpleStringProperty(desc_mobiliario);
@@ -120,7 +124,7 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 		try {
 			Statement st = conexion.createStatement();
 			ResultSet rs = st
-					.executeQuery("SELECT" + " desc_mobiliario," + "costo_mobiliario" + " FROM " + "mobiliario ");
+					.executeQuery("SELECT" + " desc_mobiliario," + "costo_mobiliario" + " FROM " + "mobiliario "+"WHERE status_mobiliario=1");
 			while (rs.next()) {
 				listmobiliario.add(new Mobiliario(rs.getString("desc_mobiliario"), rs.getDouble("costo_mobiliario")));
 			}
@@ -144,5 +148,24 @@ public class Mobiliario extends RecursiveTreeObject<Mobiliario> {
 			return 0;
 		}
 	}
+	
+	public int eliminaMobiliario(Connection cn,String Mobi) {
+		
+		
+		PreparedStatement consulta;
+		try {
+			consulta = cn.prepareStatement("UPDATE mobiliario SET status_mobiliario='0' where desc_mobiliario='"+Mobi+"' and status_mobiliario='1'");
+			
+
+			return consulta.executeUpdate();			
+
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			return 0;
+		}
+		
+		}
+	
 
 }
