@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -154,7 +152,7 @@ public class Clase{
 	}
 	@Override
     public String toString() {
-        return desc_clase.get();
+        return nombre_clase.get();
     }
 	public static void llenarComboClase(Connection conect, ObservableList<Clase> listTipoClase) {
         try {

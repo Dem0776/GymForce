@@ -62,7 +62,7 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <TableView fx:id="tblViewMembresias" onMouseClicked="#tblVerMembresia" prefHeight="343.0" prefWidth="950.0">
+                                          <TableView fx:id="tblViewMembresias" onMouseClicked="#tblVerMembresia" prefHeight="343.0" prefWidth="950.0" stylesheets="@../estilos/tableView.css">
                                             <columns>
                                               <TableColumn fx:id="clmndesc_membresia" prefWidth="121.0" text="Descripcion" />
                                               <TableColumn fx:id="clmnprecio_membresia" prefWidth="121.0" text="Precio" />

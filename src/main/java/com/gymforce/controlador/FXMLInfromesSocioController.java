@@ -1,23 +1,40 @@
 package com.gymforce.controlador;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.util.ResourceBundle;
 
+import com.gymforce.modelo.ConexionMySQL;
+import com.gymforce.modelo.Reporte;
+import com.gymforce.reportes.Reportes2;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableView;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class FXMLInfromesSocioController {
+public class FXMLInfromesSocioController implements Initializable {
+	private ConexionMySQL conexion;
+	
+	private String rfc;
+	
+	
+	 public String getRfc() {
+		return rfc;
+	}
 
-	 @FXML
+	public void setRfc(String rfc) {
+		this.rfc = rfc;
+	}
+	@FXML
 	    private AnchorPane informe;
 
 	    @FXML
@@ -82,7 +99,8 @@ public class FXMLInfromesSocioController {
 
     @FXML
     void btnAgregar(ActionEvent event) {
-
+    	  System.out.println(getRfc());
+  		txtSocio.setText(getRfc());
     }
 
     @FXML
@@ -115,5 +133,13 @@ public class FXMLInfromesSocioController {
     	Parent fxml = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLSocios.fxml"));
     	informe.getChildren().setAll(fxml);
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+	 
+		
+		
+	}
 }
 

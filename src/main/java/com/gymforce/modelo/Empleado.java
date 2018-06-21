@@ -235,7 +235,7 @@ String usuario_empleado, String password_empleado, TipoEmpleado clv_te) {
             + "empleado.email_empleado = ?, "
             + "empleado.usuario_empleado = ?, "
             + "empleado.password_empleado = ?, "
-            + "tipo_empleado.clv_te = ? "
+            + "empleado.clv_te = ? "
             + "WHERE empleado.rfc_empleado = ? ");
             consulta.setString(1, rfc_empleado.get());
             consulta.setString(2, nombre_empleado.get());
@@ -259,7 +259,7 @@ String usuario_empleado, String password_empleado, TipoEmpleado clv_te) {
         try {
             PreparedStatement consulta = cn.prepareStatement(
                     "DELETE FROM empleado "
-                    + "WHERE empleado.rfc_empleado = ?");
+                    +"WHERE empleado.rfc_empleado = ? ");
             consulta.setString(1, rfc_empleado.get());
             return consulta.executeUpdate();
         } catch (SQLException ex) {

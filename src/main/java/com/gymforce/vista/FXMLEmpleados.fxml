@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
@@ -22,9 +22,9 @@
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
-            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+            <JFXTabPane fx:id="TabEmpleado" prefHeight="629.0" prefWidth="950.0">
                <tabs>
-                  <Tab text="Ver Empleados">
+                  <Tab fx:id="tabverEmpleados" text="Ver Empleados">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
                            <children>
@@ -85,12 +85,18 @@
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
                                              </styleClass>
+                                             <HBox.margin>
+                                                <Insets right="220.0" />
+                                             </HBox.margin>
                                           </JFXButton>
-                                          <JFXButton fx:id="btnModificarEmpleadoTable" onAction="#btnModificar" prefHeight="40.0" prefWidth="150.0" text="Modificar">
+                                          <JFXButton fx:id="btnReporte" onAction="#btnCrearReporte" prefHeight="40.0" prefWidth="150.0" text="Reporte">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
                                              </styleClass>
+                                             <HBox.margin>
+                                                <Insets right="-400.0" top="40.0" />
+                                             </HBox.margin>
                                           </JFXButton>
                                        </children>
                                     </HBox>
@@ -99,7 +105,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Administrar Empleado">
+                  <Tab fx:id="tabadministrarEmpleado" text="Administrar Empleado">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
@@ -108,6 +114,11 @@
                                     <HBox prefHeight="35.0" prefWidth="950.0">
                                        <children>
                                           <Label styleClass="titulo" text="Empleados" />
+                                          <FontAwesomeIconView fx:id="iconRegresar" fill="#f5ebeb" glyphName="REPLY" onMouseClicked="#IconRegresar" size="30">
+                                             <HBox.margin>
+                                                <Insets left="540.0" top="-30.0" />
+                                             </HBox.margin>
+                                          </FontAwesomeIconView>
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -128,7 +139,7 @@
                                                 <JFXTextField fx:id="txtCorreo" promptText="Correo" styleClass="textos" />
                                                 <JFXTextField fx:id="txtUsuario" promptText="Usuario" styleClass="textos" />
                                                 <JFXTextField fx:id="txtContraseña" promptText="Password" styleClass="textos" />
-                                                <JFXComboBox fx:id="cmbTipoEmpleado" prefHeight="38.0" prefWidth="367.0" promptText="--TIPO EMPLEADO--" styleClass="textos" />
+                                                <ComboBox fx:id="cmbTipoEmpleado" prefHeight="33.0" prefWidth="369.0" promptText="--Tipo Empleado--" styleClass="textos" />
                                              </children>
                                              <HBox.margin>
                                                 <Insets left="210.0" />
@@ -178,7 +189,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Administrar Tipo Empleado">
+                  <Tab fx:id="tabadministratTE" text="Administrar Tipo Empleado">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
                            <children>

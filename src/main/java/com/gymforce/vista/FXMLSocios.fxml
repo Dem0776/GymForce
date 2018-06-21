@@ -22,9 +22,9 @@
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
-            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+            <JFXTabPane fx:id="tabPaneSocios" prefHeight="629.0" prefWidth="950.0">
                <tabs>
-                  <Tab text="Ver Socios">
+                  <Tab fx:id="tabVerSocios" text="Ver Socios">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
                            <children>
@@ -65,12 +65,13 @@
                                        <children>
                                           <TableView fx:id="tblViewSocios" prefHeight="345.0" prefWidth="950.0">
                                             <columns>
-                                              <TableColumn fx:id="clmnRfcSocio" prefWidth="150.0" text="RFC" />
-                                              <TableColumn fx:id="clmnNombreSocio" prefWidth="150.0" text="NOMBRE" />
-                                                <TableColumn fx:id="clmnApe1Socio" prefWidth="150.0" text="APELLIDO1" />
-                                                <TableColumn fx:id="clmnApe2Socio" prefWidth="150.0" text="APELLIDO2" />
-                                                <TableColumn fx:id="clmnTelefonoSocio" prefWidth="150.0" text="TELEFONO" />
-                                                <TableColumn fx:id="clmnEmailSocio" prefWidth="150.0" text="CORREO" />
+                                              <TableColumn fx:id="clmnRfcSocio" prefWidth="130.0" text="RFC" />
+                                              <TableColumn fx:id="clmnNombreSocio" prefWidth="130.0" text="NOMBRE" />
+                                                <TableColumn fx:id="clmnApe1Socio" prefWidth="130.0" text="APELLIDO1" />
+                                                <TableColumn fx:id="clmnApe2Socio" prefWidth="130.0" text="APELLIDO2" />
+                                                <TableColumn fx:id="clmnTelefonoSocio" prefWidth="130.0" text="TELEFONO" />
+                                                <TableColumn fx:id="clmnDireccionSocio" prefWidth="130.0" text="DIRECCION" />
+                                                <TableColumn fx:id="clmnEmailSocio" prefWidth="130.0" text="CORREO" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -83,7 +84,7 @@
                                                 <String fx:value="btnsFondo" />
                                              </styleClass>
                                           </JFXButton>
-                                          <JFXButton fx:id="btnModificarSocioTable" onAction="#btnModificar" prefHeight="40.0" prefWidth="150.0" text="Modificar">
+                                          <JFXButton fx:id="btnModificarEmpleado" onAction="#btnModificarEmpleado" prefHeight="40.0" prefWidth="150.0" text="Modificar">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
@@ -96,7 +97,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Administrar Socios">
+                  <Tab fx:id="tabAdministrarSocio" text="Administrar Socios">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
@@ -122,6 +123,7 @@
                                                 <JFXTextField fx:id="txtApellido1" promptText="Apellido1" styleClass="textos" />
                                                 <JFXTextField fx:id="txtApellido2" promptText="Apellido2" styleClass="textos" />
                                                 <JFXTextField fx:id="txtTelefono" promptText="Telefono" styleClass="textos" />
+                                                <JFXTextField fx:id="txtDireccion" layoutX="10.0" layoutY="210.0" promptText="Direccion" styleClass="textos" />
                                                 <JFXTextField fx:id="txtCorreo" promptText="Correo" styleClass="textos" />
                                                 <HBox prefHeight="162.0" prefWidth="369.0">
                                                    <children>
@@ -164,28 +166,6 @@
                                                 <Insets left="40.0" />
                                              </HBox.margin>
                                              <children>
-                                                <HBox layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="331.0">
-                                                   <children>
-                                                      <JFXComboBox fx:id="cmbClases" prefHeight="28.0" prefWidth="276.0" promptText="---Clases---" styleClass="textos">
-                                                         <HBox.margin>
-                                                            <Insets left="30.0" />
-                                                         </HBox.margin>
-                                                      </JFXComboBox>
-                                                      <FontAwesomeIconView glyphName="PLUS" size="20" text="" wrappingWidth="29.0">
-                                                         <HBox.margin>
-                                                            <Insets left="25.0" top="8.0" />
-                                                         </HBox.margin>
-                                                      </FontAwesomeIconView>
-                                                      <FontAwesomeIconView glyphName="MINUS" size="20">
-                                                         <HBox.margin>
-                                                            <Insets left="10.0" top="8.0" />
-                                                         </HBox.margin>
-                                                      </FontAwesomeIconView>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets top="10.0" />
-                                                   </VBox.margin>
-                                                </HBox>
                                                 <HBox layoutX="10.0" layoutY="55.0" prefHeight="45.0" prefWidth="331.0">
                                                    <children>
                                                       <JFXComboBox fx:id="cmbPlanesEntren" prefHeight="28.0" prefWidth="276.0" promptText="---Planes de Entrenamiento---" styleClass="textos">
@@ -193,12 +173,12 @@
                                                             <Insets left="30.0" />
                                                          </HBox.margin>
                                                       </JFXComboBox>
-                                                      <FontAwesomeIconView glyphName="PLUS" size="20" text="" wrappingWidth="29.0">
+                                                      <FontAwesomeIconView fx:id="añadirPE" glyphName="PLUS" onMouseClicked="#añadirPE" size="20" text="" wrappingWidth="29.0">
                                                          <HBox.margin>
                                                             <Insets left="25.0" top="8.0" />
                                                          </HBox.margin>
                                                       </FontAwesomeIconView>
-                                                      <FontAwesomeIconView glyphName="MINUS" size="20">
+                                                      <FontAwesomeIconView fx:id="subPE" glyphName="MINUS" onMouseClicked="#subPE" size="20">
                                                          <HBox.margin>
                                                             <Insets left="10.0" top="8.0" />
                                                          </HBox.margin>
@@ -215,12 +195,12 @@
                                                             <Insets left="30.0" />
                                                          </HBox.margin>
                                                       </JFXComboBox>
-                                                      <FontAwesomeIconView glyphName="PLUS" size="20" text="" wrappingWidth="29.0">
+                                                      <FontAwesomeIconView fx:id="añadirDieta" glyphName="PLUS" onMouseClicked="#añadirDieta" size="20" text="" wrappingWidth="29.0">
                                                          <HBox.margin>
                                                             <Insets left="25.0" top="8.0" />
                                                          </HBox.margin>
                                                       </FontAwesomeIconView>
-                                                      <FontAwesomeIconView glyphName="MINUS" size="20">
+                                                      <FontAwesomeIconView fx:id="subDieta" glyphName="MINUS" onMouseClicked="#subDieta" size="20">
                                                          <HBox.margin>
                                                             <Insets left="10.0" top="8.0" />
                                                          </HBox.margin>
@@ -232,8 +212,8 @@
                                                 </HBox>
                                                 <TableView fx:id="tblViewAgegar" prefHeight="196.0" prefWidth="435.0">
                                                   <columns>
-                                                    <TableColumn fx:id="clmnAñadir" prefWidth="122.0" text="Añadir" />
-                                                    <TableColumn prefWidth="122.0" text="C2" />
+                                                    <TableColumn fx:id="clmnRfcPE" prefWidth="149.0" text="RFC" />
+                                                    <TableColumn prefWidth="157.0" />
                                                   </columns>
                                                    <VBox.margin>
                                                       <Insets left="-15.0" top="15.0" />

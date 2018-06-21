@@ -104,4 +104,16 @@ public class TipoEmpleado extends RecursiveTreeObject<TipoEmpleado>{
 			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
+ public int eliminarTipoEmpleado(Connection cn) {
+        try {
+            PreparedStatement consulta = cn.prepareStatement(
+                    "DELETE FROM tipo_empleado "
+                    + "WHERE tipo_empleado.desc_te = ?");
+            consulta.setString(1, desc_te.get());
+            return consulta.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TipoEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
 }

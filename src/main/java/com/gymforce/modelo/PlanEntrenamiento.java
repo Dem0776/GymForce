@@ -14,6 +14,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 	private IntegerProperty clv_pe;
@@ -33,6 +34,9 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 		this.dificultad_pe = new SimpleStringProperty(dificultad_pe);
 		this.status_pe = new SimpleStringProperty(status_pe);
 		this.clv_categoria = clv_categoria;
+	}
+	public PlanEntrenamiento(String desc_pe) {
+		this.desc_pe = new SimpleStringProperty(desc_pe);
 	}
 
 	// Metodos atributo: clv_pe
@@ -151,4 +155,22 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 		}
 		return clv;
 	}
+	@Override
+    public String toString() {
+        return desc_pe.get();
+    }
+	public static void llenarComboPE(Connection conect, ObservableList<PlanEntrenamiento> listTipoPE) {
+        try {
+            Statement st = conect.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM plan_entrenamiento");
+            while (rs.next()) {
+            	listTipoPE.add(
+                        new PlanEntrenamiento(rs.getString("desc_pe"))
+                        );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

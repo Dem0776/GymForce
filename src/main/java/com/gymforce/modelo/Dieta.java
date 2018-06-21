@@ -158,4 +158,23 @@ public class Dieta{
 		}
 		return clv;
 	}
+	@Override
+    public String toString() {
+        return nombre_dieta.get();
+    }
+	public static void llenarComboDieta(Connection conect, ObservableList<Dieta> listTipoDieta) {
+        try {
+            Statement st = conect.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM dieta");
+            while (rs.next()) {
+            	listTipoDieta.add(
+                        new Dieta(rs.getString("nombre_dieta"),
+                                rs.getString("desc_dieta")
+                        ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
