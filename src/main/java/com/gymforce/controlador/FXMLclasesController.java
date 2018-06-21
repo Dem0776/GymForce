@@ -8,14 +8,18 @@ import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.DetalleClaseEntrenador;
 import com.gymforce.modelo.Empleado;
 import com.gymforce.modelo.Mensaje;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,15 +27,28 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FXMLclasesController implements Initializable {
 
 	private ConexionMySQL conexion;
+	private int banderaClase = 0;
+	private int contAgregarC = 0;
+	private int banderaCancelar = 0;
+	private int clvClase;
 
 	private ObservableList<Clase> listaClase;
 	private ObservableList<Empleado> listaInstructor;
 
 	@FXML
+	private JFXTabPane tpClases;
+
+	@FXML
+	private Tab tabVerClase;
+
+	@FXML
+	private Tab tabClase;
+
+	@FXML
 	private JFXTextField txtBuscarClase;
 
-    @FXML
-    private TableView<Clase> tvbViewClases;
+	@FXML
+	private TableView<Clase> tvbViewClases;
 
 	private TableColumn<Clase, String> clmnNombre_clase;
 	private TableColumn<Clase, String> clmnDesc_clase;
@@ -50,55 +67,21 @@ public class FXMLclasesController implements Initializable {
 	@FXML
 	private JFXComboBox<Empleado> cmbInstructor;
 
-    @FXML
-    private JFXTextField txtDomingoInicio;
+	@FXML
+	private JFXButton btnAgregarClase;
 
-    @FXML
-    private JFXTextField txtDomingoFin;
-
-    @FXML
-    private JFXTextField txtLunesInicio;
-
-    @FXML
-    private JFXTextField txtMartesInicio;
-
-    @FXML
-    private JFXTextField txtMiercolesInicio;
-
-    @FXML
-    private JFXTextField txtJuevesInicio;
-
-    @FXML
-    private JFXTextField txtViernesInicio;
-
-    @FXML
-    private JFXTextField txtSabadoInicio;
-
-    @FXML
-    private JFXTextField txtLunesFin;
-
-    @FXML
-    private JFXTextField txtMartesFin;
-
-    @FXML
-    private JFXTextField txtMiercolesFin;
-
-    @FXML
-    private JFXTextField txtJuevesFin;
-
-    @FXML
-    private JFXTextField txtViernesFin;
-
-    @FXML
-    private JFXTextField txtSabadoFin;
+	@FXML
+	private JFXButton btnActualizar;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		conexion = new ConexionMySQL();
 		conexion.establecerConexion();
+		
 		listaClase = FXCollections.observableArrayList();
 		listaInstructor = FXCollections.observableArrayList();
+		btnActualizar.setVisible(false);
 
 		Clase.llenarTableClase(conexion.getConnection(), listaClase);
 		Empleado.llenarComboInstructor(conexion.getConnection(), listaInstructor);
@@ -116,11 +99,35 @@ public class FXMLclasesController implements Initializable {
 		clmnNombre_clase.setCellValueFactory(new PropertyValueFactory<Clase, String>("nombre_clase"));
 		clmnDesc_clase.setCellValueFactory(new PropertyValueFactory<Clase, String>("desc_clase"));
 		clmnInstructor.setCellValueFactory(new PropertyValueFactory<Clase, Empleado>("nombreInstructor"));
-		clmnPrecio.setCellValueFactory(new PropertyValueFactory<Clase, DetalleClaseEntrenador>("precio"));		
-		tvbViewClases.getColumns().addAll(clmnNombre_clase, clmnDesc_clase, clmnInstructor, clmnPrecio);		
+		clmnPrecio.setCellValueFactory(new PropertyValueFactory<Clase, DetalleClaseEntrenador>("precio"));
+		tvbViewClases.getColumns().addAll(clmnNombre_clase, clmnDesc_clase, clmnInstructor, clmnPrecio);
 		tvbViewClases.setItems(listaClase);
 
-		conexion.cerrarConexion();		
+		conexion.cerrarConexion();
+		llenarFormularioSeleccion();
+	}
+
+	@FXML
+	void btnActualizarClase(ActionEvent event) {
+		Double precio;
+		tpClases.getSelectionModel().select(tabVerClase);
+		btnActualizar.setVisible(false);
+		tabVerClase.setDisable(false);
+		if (cmbInstructor.getValue() == null) {
+			Mensaje.error("Campo Vacio", "Seleccione un instructor");
+			cmbInstructor.requestFocus();
+		} else {
+			try {
+				precio = Double.valueOf(txtPrecio.getText());
+				actualizarClase();
+				actualizarDetalleCE();
+				limpiar();				
+				Mensaje.informacion("Actualizar Registro", "Clase actualizada");
+			} catch (Exception e) {
+				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
+			}
+		}
+
 	}
 
 	@FXML
@@ -141,17 +148,22 @@ public class FXMLclasesController implements Initializable {
 		} else {
 			try {
 				precio = Double.valueOf(txtPrecio.getText());
-				guardarClase();
-				guardarDetalleCE();
+				if (banderaClase == 0) {
+					guardarClase();
+					guardarDetalleCE();
+					limpiar();
+					// banderaCancelar = 1;
+					Mensaje.informacion("Guardar Registro", "Clase agregada");
+				} else {
+					Mensaje.informacion("Guardar Registro", "Clase agregada");
+					contAgregarC = 0;
+					limpiar();
+				}
+
 			} catch (Exception e) {
 				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
 			}
 		}
-	}
-
-	@FXML
-	void btnAsignarHorarioClase(ActionEvent event) {
-
 	}
 
 	@FXML
@@ -161,17 +173,38 @@ public class FXMLclasesController implements Initializable {
 
 	@FXML
 	void btnCancelarClase(ActionEvent event) {
-
+		limpiar();
+		tpClases.getSelectionModel().select(tabVerClase);
+		btnActualizar.setVisible(false);
+		tabVerClase.setDisable(false);
+		/*
+		 * if (banderaCancelar == 1) { conexion.establecerConexion(); Clase clase = new
+		 * Clase(Clase.obtenerUltimaClase(conexion.getConnection())); int noReg =
+		 * clase.cancelarClase(conexion.getConnection()); conexion.cerrarConexion();
+		 * banderaCancelar = 0; }
+		 */
 	}
 
 	@FXML
 	void btnEliminiarClase(ActionEvent event) {
+		conexion.establecerConexion();
+		Clase clase = new Clase();
+		try {
+			if (Mensaje.confirmar("Confirmacion", "Desea eliminar la clase?") == 1) {
+				int noReg = clase.eliminarClase(conexion.getConnection(), clvClase);
+				tvbViewClases.refresh();
+			}
+		} catch (Exception e) {
 
+		}
+		conexion.cerrarConexion();
 	}
 
 	@FXML
 	void btnVerClase(ActionEvent event) {
-
+		tpClases.getSelectionModel().select(tabClase);
+		btnActualizar.setVisible(true);
+		tabVerClase.setDisable(true);
 	}
 
 	private void guardarClase() {
@@ -180,7 +213,6 @@ public class FXMLclasesController implements Initializable {
 			Clase clase = new Clase(txtNombre.getText(), txtDescripcion.getText());
 			int noReg = clase.guardarClase(conexion.getConnection());
 			if (noReg != 0) {
-				Mensaje.informacion("Guardar Registro", "Clase Almacenada Correctamente");
 				listaClase.add(clase);
 			}
 		} catch (Exception e) {
@@ -201,17 +233,44 @@ public class FXMLclasesController implements Initializable {
 		conexion.cerrarConexion();
 	}
 
+	private void actualizarClase() {
+		conexion.establecerConexion();
+		Clase clase = new Clase();
+		clase.setClv_clase(clvClase);
+		clase.setNombre_clase(txtNombre.getText());
+		clase.setDesc_clase(txtDescripcion.getText());
+		int noReg = clase.actualizarClase(conexion.getConnection());
+		if (noReg != 0) {
+			Mensaje.informacion("Actualizar Registro", "Clase Actualizada Correctamente");
+		} else {
+			Mensaje.error("Actualizar Registro", "Problemas al Actualizar");
+		}
+		conexion.cerrarConexion();
+	}
+
+	private void actualizarDetalleCE() {
+		conexion.establecerConexion();
+		DetalleClaseEntrenador dce = new DetalleClaseEntrenador(cmbInstructor.getSelectionModel().getSelectedItem(),
+				clvClase, Double.valueOf(txtPrecio.getText()));
+		int noReg = dce.actualizarDetalleClaseE(conexion.getConnection());
+		conexion.cerrarConexion();
+	}
+
 	private void limpiar() {
 		txtNombre.setText("");
 		txtDescripcion.setText("");
 		txtPrecio.setText("");
+		cmbInstructor.setValue(null);
 	}
 
-	/*private void seleccionarColumnaTalbe() {
-		tvbViewClases.getSelectionModel().selectedIndexProperty().addListener((observable, oldCount, newCount) -> {
-			 TreeItem<Clase> selectedItem = tvbViewClases.getSelectionModel().getSelectedItem();
-			 int index = selectedItem.getParent().getChildren().indexOf(selectedItem);
-			 System.out.println(index);
-		});
-	}*/
+	private void llenarFormularioSeleccion() {
+		tvbViewClases.getSelectionModel().selectedItemProperty()
+				.addListener((ObservableValue<? extends Clase> observable, Clase oldValue, Clase newValue) -> {
+					clvClase = newValue.getClv_clase();
+					txtNombre.setText(newValue.getNombre_clase());
+					txtDescripcion.setText(String.valueOf(newValue.getDesc_clase()));
+					txtPrecio.setText(String.valueOf(newValue.getPrecio()));
+					cmbInstructor.setValue(newValue.getNombreInstructor());
+				});
+	}
 }

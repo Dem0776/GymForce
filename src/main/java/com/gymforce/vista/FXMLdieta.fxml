@@ -17,14 +17,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLdietaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLdietaController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
-            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+            <JFXTabPane fx:id="tpDieta" prefHeight="629.0" prefWidth="950.0">
                <tabs>
-                  <Tab text="Ver Dietas">
+                  <Tab fx:id="tabVerDietas" text="Ver Dietas">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
                            <children>
@@ -68,7 +68,7 @@
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
                                        <children>
-                                          <JFXButton onAction="#btnVerDieta" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                          <JFXButton fx:id="btnModificar" onAction="#btnVerDieta" prefHeight="40.0" prefWidth="150.0" text="Modificar">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
@@ -87,7 +87,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Dietas">
+                  <Tab fx:id="tabDietas" text="Dietas">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
@@ -111,7 +111,7 @@
                                                 <JFXTextField fx:id="txtNombreDieta" promptText="Nombre" styleClass="textos" />
                                                 <JFXTextField fx:id="txtDescDieta" promptText="Descripcion" styleClass="textos" />
                                                 <JFXComboBox fx:id="cmbAlimentoDieta" prefHeight="25.0" prefWidth="383.0" promptText="Alimento" styleClass="textos" />
-                                                <JFXButton onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
+                                                <JFXButton fx:id="btnAgregarAl" onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
                                                    <styleClass>
                                                       <String fx:value="btnsFondo" />
                                                       <String fx:value="btns" />
@@ -149,6 +149,15 @@
                                                 <String fx:value="btns" />
                                              </styleClass>
                                           </JFXButton>
+                                          <JFXButton fx:id="btnActualizarB" layoutX="495.0" layoutY="20.0" onAction="#btnActualizar" prefHeight="40.0" prefWidth="150.0" text="Actualizar">
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="30.0" />
@@ -159,7 +168,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Alimentos">
+                  <Tab fx:id="tabAlimentos" text="Alimentos">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
@@ -176,13 +185,13 @@
                                           <Insets top="30.0" />
                                        </padding>
                                     </HBox>
-                                    <HBox alignment="CENTER" prefHeight="221.0" prefWidth="950.0">
+                                    <HBox alignment="CENTER" prefHeight="324.0" prefWidth="950.0">
                                        <children>
                                           <VBox prefWidth="500.0" spacing="20.0">
                                              <children>
                                                 <JFXTextField fx:id="txtNombreAlimento" promptText="Nombre" styleClass="textos" />
                                                 <JFXTextField fx:id="txtDescAlimento" promptText="Descripcion" styleClass="textos" />
-                                                <TableView fx:id="tbvAlimento" prefHeight="200.0" prefWidth="200.0">
+                                                <TableView fx:id="tbvAlimento" prefHeight="201.0" prefWidth="500.0">
                                                   <columns>
                                                     <TableColumn fx:id="clmnnombre_alimento" prefWidth="150.0" text="Nombre" />
                                                     <TableColumn fx:id="clmndesc_alimento" minWidth="0.0" prefWidth="165.0" text="Descripcion" />
@@ -233,6 +242,6 @@
    </children>
    <stylesheets>
       <URL value="@../estilos/StyleClases.css" />
-      <URL value="@../estilos/StyleJFXTreeTableView.css" />
+      <URL value="@../estilos/tableView.css" />
    </stylesheets>
 </AnchorPane>

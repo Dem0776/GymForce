@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class Categoria extends RecursiveTreeObject<Categoria> {
+public class Categoria {
 	private IntegerProperty clv_categoria;
 	private StringProperty desc_categoria;
 	private StringProperty status_categoria;
@@ -77,10 +77,10 @@ public class Categoria extends RecursiveTreeObject<Categoria> {
 	public static void llenarTableCategoria(Connection conect, ObservableList<Categoria> listaCategoria) {
 		try {
 			Statement st = conect.createStatement();
-			ResultSet rs = st.executeQuery("SELECT " + "categoria.desc_categoria " + "FROM " + "categoria "
+			ResultSet rs = st.executeQuery("SELECT " + "* " + "FROM " + "categoria "
 					+ "WHERE categoria.status_categoria = 1");
 			while (rs.next()) {
-				listaCategoria.add(new Categoria(rs.getString("desc_categoria")));
+				listaCategoria.add(new Categoria(rs.getInt("clv_categoria"), rs.getString("desc_categoria")));
 			}
 		} catch (SQLException e) {
 			Logger.getLogger(Categoria.class.getName()).log(Level.SEVERE, null, e);

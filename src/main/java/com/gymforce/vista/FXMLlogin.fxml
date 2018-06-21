@@ -3,23 +3,72 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ventanalogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #021528;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLloginController">
+<AnchorPane fx:id="ventanalogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="fondoPrincipal" stylesheets="@../estilos/Login.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLloginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="479.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../recursos/login_image3.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="474.0" layoutY="75.0" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="474.0" layoutY="75.0" prefHeight="450.0" prefWidth="400.0" styleClass="fondoVentana">
          <children>
-            <JFXTextField layoutX="100.0" layoutY="119.0" prefHeight="25.0" prefWidth="200.0" promptText="Usuario" />
-            <JFXPasswordField layoutX="100.0" layoutY="242.0" prefHeight="25.0" prefWidth="200.0" promptText="Password" />
-            <JFXButton layoutX="100.0" layoutY="331.0" onAction="#btnLogin" prefHeight="25.0" prefWidth="200.0" text="Login" />
-            <JFXButton layoutX="100.0" layoutY="403.0" onAction="#btnSalir" prefHeight="25.0" prefWidth="200.0" text="Salir" />
+            <VBox alignment="CENTER" layoutX="50.0" layoutY="58.0" prefWidth="300.0" spacing="50.0">
+               <children>
+                  <Label styleClass="titulo" text="Gym Force">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <HBox prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos/businessman.png" />
+                           </image>
+                        </ImageView>
+                        <JFXTextField fx:id="txtUsuario" prefHeight="37.0" prefWidth="276.0" promptText="Usuario" styleClass="texto" />
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="300.0" spacing="10.0">
+                     <children>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../recursos/padlock.png" />
+                           </image>
+                        </ImageView>
+                        <JFXPasswordField fx:id="txtPassword" prefHeight="37.0" prefWidth="282.0" promptText="Password" styleClass="texto" />
+                     </children>
+                  </HBox>
+                  <VBox prefWidth="300.0" spacing="20.0">
+                     <children>
+                        <JFXButton onAction="#btnLogin" prefHeight="25.0" prefWidth="300.0" text="Login">
+                           <styleClass>
+                              <String fx:value="btnsFondo" />
+                              <String fx:value="btns" />
+                           </styleClass>
+                        </JFXButton>
+                        <JFXButton onAction="#btnSalir" prefHeight="25.0" prefWidth="300.0" text="Salir">
+                           <styleClass>
+                              <String fx:value="btnsFondo" />
+                              <String fx:value="btns" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>

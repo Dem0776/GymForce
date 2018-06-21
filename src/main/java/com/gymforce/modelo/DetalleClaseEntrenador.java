@@ -2,7 +2,9 @@ package com.gymforce.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,5 +91,39 @@ public class DetalleClaseEntrenador {
 			Logger.getLogger(DetalleClaseEntrenador.class.getName()).log(Level.SEVERE, null, e);
 			return 0;
 		}
+	}
+	
+	public int actualizarDetalleClaseE(Connection cn) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE detalle_clase_entrenador SET " 
+			+ "detalle_clase_entrenador.rfc_empleado = ?, " 			
+			+ "detalle_clase_entrenador.precio_clase = ? " 
+			+ "WHERE detalle_clase_entrenador.clv_clase = ?");
+			consulta.setString(1, rfc_empleado.getRfc_empleado());
+			consulta.setDouble(2, precio_clase.get());
+			consulta.setInt(3, clv_clase.get());
+			return consulta.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(DetalleClaseEntrenador.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
+	
+	public static int obtenerUltimoDetalleDce(Connection conect) {
+		int clv = 0;
+		try {
+			Statement st = conect.createStatement();
+			ResultSet rs = st.executeQuery(
+					"SELECT " + "detalle_clase_entrenador.clv_dce " + "FROM " 
+			+ "detalle_clase_entrenador ORDER BY detalle_clase_entrenador.clv_dce DESC LIMIT 1");
+
+			while (rs.next()) {
+				clv = rs.getInt("clv_dce");
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(DetalleClaseEntrenador.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return clv;
 	}
 }

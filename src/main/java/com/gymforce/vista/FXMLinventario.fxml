@@ -3,17 +3,19 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLinventarioController">
    <children>
@@ -57,7 +59,15 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewProductos" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" stylesheets="@../estilos/StyleJFXTreeTableView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TableView fx:id="tblProductos" layoutX="14.0" layoutY="14.0" prefHeight="322.0" prefWidth="925.0" stylesheets="@../estilos/tableView.css">
+                                            <columns>
+                                              <TableColumn fx:id="clmnnombreProducto" prefWidth="75.0" text="Nombre" />
+                                              <TableColumn fx:id="clmnDescripcionProducto" prefWidth="75.0" text="Descripcion" />
+                                                <TableColumn fx:id="clmnPrecioProducto" prefWidth="75.0" text="Precio" />
+                                                <TableColumn fx:id="clmnExistenciaProducto" prefWidth="75.0" text="Existencia" />
+                                                <TableColumn fx:id="clmnMarcaProd" prefWidth="75.0" text="Marca" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css">
@@ -111,22 +121,26 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <JFXTreeTableView fx:id="tblViewMobiliario" layoutX="288.0" layoutY="-65.0" prefHeight="317.0" prefWidth="950.0" style="-fx-background-color: #1d1e1e;" stylesheets="@../estilos/StyleJFXTreeTableView.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TableView fx:id="tblMobiliario" layoutX="14.0" layoutY="14.0" prefHeight="324.0" prefWidth="926.0" stylesheets="@../estilos/tableView.css">
+                                            <columns>
+                                              <TableColumn fx:id="clmnDescripcionMobiliaro" prefWidth="125.0" text="Descripcion" />
+                                              <TableColumn fx:id="clmnCostoMobiliario" minWidth="0.0" prefWidth="139.0" text="Costo" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css">
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <JFXButton onAction="#btnAgregar" prefHeight="40.0" prefWidth="191.0" text="Agregar">
-                                             <styleClass>
-                                                <String fx:value="btns" />
-                                                <String fx:value="btnsFondo" />
-                                             </styleClass>
+                                          <JFXTextField fx:id="apoyo" editable="false" />
+                                          <JFXButton onAction="#btnAgregar" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="AGREGAR">
+                                             <HBox.margin>
+                                                <Insets left="250.0" />
+                                             </HBox.margin>
                                           </JFXButton>
-                                          <JFXButton onAction="#btnEliminar" prefHeight="40.0" prefWidth="191.0" text="Eliminar">
-                                             <styleClass>
-                                                <String fx:value="btns" />
-                                                <String fx:value="btnsFondo" />
-                                             </styleClass>
+                                          <JFXButton onAction="#EliminarMobiliario" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="ELIMINAR">
+                                             <HBox.margin>
+                                                <Insets left="200.0" />
+                                             </HBox.margin>
                                           </JFXButton>
                                        </children>
                                     </HBox>
@@ -134,6 +148,28 @@
                               </VBox>
                            </children></AnchorPane>
                      </content>
+                  </Tab>
+                  <Tab text="Marca Productos">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <JFXTextField fx:id="txtMarca" labelFloat="true" layoutX="218.0" layoutY="79.0" prefHeight="25.0" prefWidth="253.0" promptText="Marca" />
+                              <TableView fx:id="tblvwMarca" layoutX="33.0" layoutY="138.0" prefHeight="276.0" prefWidth="651.0" stylesheets="@../estilos/tableView.css">
+                                 <columns>
+                                    <TableColumn fx:id="clmnMarca" prefWidth="75.0" text="Marca" />
+                                 </columns>
+                              </TableView>
+                              <JFXButton layoutX="218.0" layoutY="437.0" onAction="#btnAgregarMarca" prefHeight="40.0" prefWidth="135.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Agregar " />
+                              <JFXButton layoutX="432.0" layoutY="439.0" onAction="#btnEliminarMarca" prefHeight="37.0" prefWidth="102.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Eliminar" />
+                              <Label layoutX="21.0" layoutY="14.0" styleClass="titulo" stylesheets="@../estilos/StyleClases.css" text="M A R C A S   R E G I S T R A D A S">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="apoyo2" editable="false" layoutX="21.0" layoutY="425.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
                   </Tab>
                </tabs>
             </JFXTabPane>

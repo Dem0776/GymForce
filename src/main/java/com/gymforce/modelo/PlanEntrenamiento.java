@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
+public class PlanEntrenamiento {
 	private IntegerProperty clv_pe;
 	private StringProperty desc_pe;
 	private StringProperty duracion_pe;
@@ -24,6 +24,9 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 	private StringProperty dificultad_pe;
 	private StringProperty status_pe;
 	private Categoria clv_categoria;
+	private Ejercicio ejercicio;
+	private Rutina serie;
+	private Rutina rep;
 
 	public PlanEntrenamiento(int clv_pe, String desc_pe, String duracion_pe, String frecuencia_pe, String dificultad_pe,
 			String status_pe, Categoria clv_categoria) {
@@ -35,8 +38,26 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 		this.status_pe = new SimpleStringProperty(status_pe);
 		this.clv_categoria = clv_categoria;
 	}
+<<<<<<< HEAD
 	public PlanEntrenamiento(String desc_pe) {
 		this.desc_pe = new SimpleStringProperty(desc_pe);
+=======
+	
+	public PlanEntrenamiento(int clv_pe, String desc_pe, String duracion_pe, String frecuencia_pe, String dificultad_pe,
+			String status_pe, Categoria clv_categoria, Ejercicio ejercicio, Rutina serie) {
+		this.clv_pe = new SimpleIntegerProperty(clv_pe);
+		this.desc_pe = new SimpleStringProperty(desc_pe);
+		this.duracion_pe = new SimpleStringProperty(duracion_pe);
+		this.frecuencia_pe = new SimpleStringProperty(frecuencia_pe);
+		this.dificultad_pe = new SimpleStringProperty(dificultad_pe);
+		this.status_pe = new SimpleStringProperty(status_pe);
+		this.clv_categoria = clv_categoria;
+		this.ejercicio = ejercicio;
+		this.serie = serie;		
+	}
+	
+	public PlanEntrenamiento() {		
+>>>>>>> fb756e37e437783a0d0b8c526a288d281dfc3315
 	}
 
 	// Metodos atributo: clv_pe
@@ -126,18 +147,72 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 		this.clv_categoria = clv_categoria;
 	}
 	
+	public Ejercicio getEjercicio() {
+		return ejercicio;
+	}
+
+	public void setEjercicio(Ejercicio ejercicio) {
+		this.ejercicio = ejercicio;
+	}
+
+	public Rutina getSerie() {
+		return serie;
+	}
+
+	public void setSerie(Rutina serie) {
+		this.serie = serie;
+	}
+
+	public Rutina getRep() {
+		return rep;
+	}
+
+	public void setRep(Rutina rep) {
+		this.rep = rep;
+	}
+
 	public int guardarPlanE(Connection cn) {
 		try {
-			PreparedStatement consulta = cn.prepareStatement("INSERT clase VALUES (DEFAULT,?,?,?,?,DEFAULT,?)");
+			PreparedStatement consulta = cn.prepareStatement("INSERT plan_entrenamiento VALUES (DEFAULT,?,?,?,?,DEFAULT,?)");
 			consulta.setString(1, desc_pe.get());
 			consulta.setString(2, duracion_pe.get());
 			consulta.setString(3, frecuencia_pe.get());
 			consulta.setString(4, dificultad_pe.get());
-			consulta.setInt(5, clv_categoria.getClv_categoria());			
+			consulta.setInt(5, clv_categoria.getClv_categoria());
 			return consulta.executeUpdate();
 		} catch (SQLException e) {
-			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, e);
+			Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, e);
 			return 0;
+		}
+	}
+	
+	public static void llenarTablePlanE(Connection conect, ObservableList<PlanEntrenamiento> listPlan) {
+		try {
+			Statement st = conect.createStatement();
+			ResultSet rs = st.executeQuery("SELECT " + "* " + "FROM " + "detalle_rutina_plane "
+					+ "JOIN plan_entrenamiento ON detalle_rutina_plane.clv_pe = plan_entrenamiento.clv_pe "
+					+ "JOIN rutina ON detalle_rutina_plane.clv_rutina = rutina.clv_rutina "
+					+ "JOIN categoria ON plan_entrenamiento.clv_categoria = categoria.clv_categoria "
+					+ "JOIN ejercicio ON rutina.clv_ejercicio = ejercicio.clv_ejercicio "
+					+ "WHERE plan_entrenamiento.status_pe = 1");
+
+			while (rs.next()) {
+				listPlan.add(new PlanEntrenamiento(rs.getInt("clv_pe"), 
+						rs.getString("desc_pe"),
+						rs.getString("duracion_pe"), 
+						rs.getString("frecuencia_pe"), 
+						rs.getString("dificultad_pe"),
+						rs.getString("status_pe"),
+						new Categoria(rs.getInt("clv_categoria"), rs.getString("desc_categoria")),
+						new Ejercicio(rs.getString("desc_ejercicio")),
+						new Rutina(rs.getInt("serie_rutina"), 
+								rs.getInt("repeticion_rutina"), 
+								rs.getString("duracion_rutina"), 
+								rs.getInt("peso_rutina"), 
+								new Ejercicio("desc_ejercicio"))));
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 	
@@ -155,6 +230,7 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 		}
 		return clv;
 	}
+<<<<<<< HEAD
 	@Override
     public String toString() {
         return desc_pe.get();
@@ -173,4 +249,42 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
         }
 
     }
+=======
+	
+	public int actualizarPlanE(Connection cn) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE plan_entrenamiento SET " 
+			+ "plan_entrenamiento.desc_pe = ?, " 
+			+ "plan_entrenamiento.duracion_pe = ?, "
+			+ "plan_entrenamiento.frecuencia_pe = ?, " 
+			+ "plan_entrenamiento.dificultad_pe = ?, "			
+			+ "plan_entrenamiento.clv_categoria = ? " 
+			+ "WHERE plan_entrenamiento.clv_pe = ?");
+			consulta.setString(1, desc_pe.get());
+			consulta.setString(2, duracion_pe.get());
+			consulta.setString(3, frecuencia_pe.get());
+			consulta.setString(4, dificultad_pe.get());
+			consulta.setInt(5, clv_categoria.getClv_categoria());
+			consulta.setInt(6, clv_pe.get());
+			return consulta.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
+	
+	public int eliminarPlanE(Connection cn, int clave) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE plan_entrenamiento SET " 
+			+ "plan_entrenamiento.status_pe = 0 " 
+			+ "WHERE plan_entrenamiento.clv_pe = ' " + clave  + "'");			
+			return consulta.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
+>>>>>>> fb756e37e437783a0d0b8c526a288d281dfc3315
 }

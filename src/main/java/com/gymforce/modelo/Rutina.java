@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class Rutina extends RecursiveTreeObject<Rutina> {
+public class Rutina {
 	private IntegerProperty clv_rutina;
 	private IntegerProperty serie_rutina;
 	private IntegerProperty repeticion_rutina;
@@ -33,8 +33,9 @@ public class Rutina extends RecursiveTreeObject<Rutina> {
 		this.clv_ejercicio = clv_ejercicio;
 	}
 
-	public Rutina(Ejercicio ejercicio, int serie_rutina, int repeticion_rutina,
+	public Rutina(int clv_rutina, Ejercicio ejercicio, int serie_rutina, int repeticion_rutina,
 			String duracion_rutina, int peso_rutina) {
+		this.clv_rutina = new SimpleIntegerProperty(clv_rutina);
 		this.clv_ejercicio = ejercicio;		
 		this.serie_rutina = new SimpleIntegerProperty(serie_rutina);
 		this.repeticion_rutina = new SimpleIntegerProperty(repeticion_rutina);
@@ -115,17 +116,23 @@ public class Rutina extends RecursiveTreeObject<Rutina> {
 	public void setClv_ejercicio(Ejercicio clv_ejercicio) {
 		this.clv_ejercicio = clv_ejercicio;
 	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(serie_rutina.get());
+	}
 
 	public static void llenarTableRutina(Connection conect, ObservableList<Rutina> listRutina) {
 		try {
 			Statement st = conect.createStatement();
-			ResultSet rs = st.executeQuery("SELECT " + "ejercicio.desc_ejercicio, "
+			ResultSet rs = st.executeQuery("SELECT " + "rutina.clv_rutina, " + "ejercicio.desc_ejercicio, "
 					+ "rutina.serie_rutina, " + "rutina.repeticion_rutina, "
 					+ "rutina.duracion_rutina, " + "rutina.peso_rutina " + "FROM " + "rutina "					
 					+ "JOIN ejercicio ON rutina.clv_ejercicio = ejercicio.clv_ejercicio");
 
 			while (rs.next()) {
-				listRutina.add(new Rutina(new Ejercicio(rs.getString("desc_ejercicio")), 
+				listRutina.add(new Rutina(rs.getInt("clv_rutina"),
+						new Ejercicio(rs.getString("desc_ejercicio")), 
 						rs.getInt("serie_rutina"), 
 						rs.getInt("repeticion_rutina"), 
 						rs.getString("duracion_rutina"), 
