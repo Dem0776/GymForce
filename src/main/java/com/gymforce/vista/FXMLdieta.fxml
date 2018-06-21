@@ -68,7 +68,7 @@
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
                                        <children>
-                                          <JFXButton onAction="#btnVerDieta" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                          <JFXButton fx:id="btnModificar" onAction="#btnVerDieta" prefHeight="40.0" prefWidth="150.0" text="Modificar">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
@@ -111,7 +111,7 @@
                                                 <JFXTextField fx:id="txtNombreDieta" promptText="Nombre" styleClass="textos" />
                                                 <JFXTextField fx:id="txtDescDieta" promptText="Descripcion" styleClass="textos" />
                                                 <JFXComboBox fx:id="cmbAlimentoDieta" prefHeight="25.0" prefWidth="383.0" promptText="Alimento" styleClass="textos" />
-                                                <JFXButton onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
+                                                <JFXButton fx:id="btnAgregarAl" onAction="#btnAgregarAlimentoDieta" prefHeight="40.0" prefWidth="150.0" text="Agregar alimento">
                                                    <styleClass>
                                                       <String fx:value="btnsFondo" />
                                                       <String fx:value="btns" />
@@ -148,6 +148,15 @@
                                                 <String fx:value="btnsFondo" />
                                                 <String fx:value="btns" />
                                              </styleClass>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnActualizarB" layoutX="495.0" layoutY="20.0" onAction="#btnActualizar" prefHeight="40.0" prefWidth="150.0" text="Actualizar">
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
                                           </JFXButton>
                                        </children>
                                        <VBox.margin>

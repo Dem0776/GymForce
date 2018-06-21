@@ -29,8 +29,9 @@ public class Clase{
 		this.desc_clase = new SimpleStringProperty(desc_clase);
 	}
 	
-	public Clase(String nombre_clase, String desc_clase, Empleado nombreInstructor,
+	public Clase(int clv_clase, String nombre_clase, String desc_clase, Empleado nombreInstructor,
 			DetalleClaseEntrenador precio) {
+		this.clv_clase = new SimpleIntegerProperty(clv_clase);
 		this.nombre_clase = new SimpleStringProperty(nombre_clase);
 		this.desc_clase = new SimpleStringProperty(desc_clase);
 		this.nombreInstructor = nombreInstructor;
@@ -40,7 +41,9 @@ public class Clase{
 	public Clase(int clv_clase) {
 		this.clv_clase = new SimpleIntegerProperty(clv_clase);		
 	}
-
+	
+	public Clase() {		
+	}
 	// Metodos atributo: clv_clase
 	public int getClv_clase() {
 		return clv_clase.get();
@@ -112,15 +115,18 @@ public class Clase{
 	public static void llenarTableClase(Connection conect, ObservableList<Clase> listClase) {
 		try {
 			Statement st = conect.createStatement();
-			ResultSet rs = st.executeQuery("SELECT " + "clase.nombre_clase, " + "clase.desc_clase, "
-					+ "empleado.nombre_empleado, " + "detalle_clase_entrenador.precio_clase " + "FROM "
+			ResultSet rs = st.executeQuery("SELECT " + "clase.clv_clase, " + "clase.nombre_clase, " + "clase.desc_clase, "
+					+ "empleado.rfc_empleado, " + "empleado.nombre_empleado, " + "detalle_clase_entrenador.precio_clase " + "FROM "
 					+ "detalle_clase_entrenador " + "JOIN clase ON detalle_clase_entrenador.clv_clase = clase.clv_clase "
-					+ "JOIN empleado ON detalle_clase_entrenador.rfc_empleado = empleado.rfc_empleado");
+					+ "JOIN empleado ON detalle_clase_entrenador.rfc_empleado = empleado.rfc_empleado "
+					+ "WHERE clase.status_clase = 1");
 
 			while (rs.next()) {
-				listClase.add(new Clase(rs.getString("nombre_clase"), 
+				listClase.add(new Clase(rs.getInt("clv_clase"),
+						rs.getString("nombre_clase"), 
 						rs.getString("desc_clase"),
-						new Empleado(rs.getString("nombre_empleado")),
+						new Empleado(rs.getString("rfc_empleado"), rs.getString("nombre_empleado")),
+						//new Empleado(rs.getString("nombre_empleado")),
 						new DetalleClaseEntrenador(rs.getDouble("precio_clase"))							
 						));
 			}
@@ -187,6 +193,32 @@ public class Clase{
         } catch (SQLException ex) {
             Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+	
+	public int actualizarClase(Connection cn) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE clase SET " + "clase.nombre_clase = ?, " 
+			+ "clase.desc_clase = ? " + "WHERE clase.clv_clase = ?");
+			consulta.setString(1, nombre_clase.get());
+			consulta.setString(2, desc_clase.get());
+			consulta.setInt(3, clv_clase.get());
+			return consulta.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
+	
+	public int eliminarClase(Connection cn, int clave) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE clase SET " + "clase.status_clase = 0 " 
+			+ "WHERE clase.clv_clase = ' " + clave  + "'");			
+			return consulta.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
 }

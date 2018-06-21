@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
+public class PlanEntrenamiento {
 	private IntegerProperty clv_pe;
 	private StringProperty desc_pe;
 	private StringProperty duracion_pe;
@@ -50,6 +50,9 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 		this.clv_categoria = clv_categoria;
 		this.ejercicio = ejercicio;
 		this.serie = serie;		
+	}
+	
+	public PlanEntrenamiento() {		
 	}
 
 	// Metodos atributo: clv_pe
@@ -221,5 +224,41 @@ public class PlanEntrenamiento extends RecursiveTreeObject<PlanEntrenamiento>{
 			Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return clv;
+	}
+	
+	public int actualizarPlanE(Connection cn) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE plan_entrenamiento SET " 
+			+ "plan_entrenamiento.desc_pe = ?, " 
+			+ "plan_entrenamiento.duracion_pe = ?, "
+			+ "plan_entrenamiento.frecuencia_pe = ?, " 
+			+ "plan_entrenamiento.dificultad_pe = ?, "			
+			+ "plan_entrenamiento.clv_categoria = ? " 
+			+ "WHERE plan_entrenamiento.clv_pe = ?");
+			consulta.setString(1, desc_pe.get());
+			consulta.setString(2, duracion_pe.get());
+			consulta.setString(3, frecuencia_pe.get());
+			consulta.setString(4, dificultad_pe.get());
+			consulta.setInt(5, clv_categoria.getClv_categoria());
+			consulta.setInt(6, clv_pe.get());
+			return consulta.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
+	}
+	
+	public int eliminarPlanE(Connection cn, int clave) {
+		try {
+			PreparedStatement consulta = cn
+					.prepareStatement("UPDATE plan_entrenamiento SET " 
+			+ "plan_entrenamiento.status_pe = 0 " 
+			+ "WHERE plan_entrenamiento.clv_pe = ' " + clave  + "'");			
+			return consulta.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(PlanEntrenamiento.class.getName()).log(Level.SEVERE, null, ex);
+			return 0;
+		}
 	}
 }

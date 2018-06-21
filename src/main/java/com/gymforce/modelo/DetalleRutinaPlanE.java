@@ -2,6 +2,9 @@ package com.gymforce.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,7 +14,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class DetalleRutinaPlanE{
 	private IntegerProperty clv_detalleRPE;
 	private PlanEntrenamiento clv_pe;
-	private IntegerProperty clv_pent;	
+	private IntegerProperty clv_pent;
+	private IntegerProperty clv_rut;
 	private Rutina clv_rutina;
 
 	public DetalleRutinaPlanE(int clv_detalleRPE, PlanEntrenamiento clv_pe, Rutina clv_rutina) { 
@@ -24,7 +28,12 @@ public class DetalleRutinaPlanE{
 		this.clv_pent = new SimpleIntegerProperty(clv_pent);;
 		this.clv_rutina = clv_rutina;
 	}
-
+	
+	public DetalleRutinaPlanE(int clv_pent, int clv_rut) { 
+		this.clv_pent = new SimpleIntegerProperty(clv_pent);
+		this.clv_rut = new SimpleIntegerProperty(clv_rut);
+	}
+	
 	//Metodos atributo: clv_detalleRPE
 	public int getClv_detalleRPE() {
 		return clv_detalleRPE.get();
@@ -58,15 +67,23 @@ public class DetalleRutinaPlanE{
 		this.clv_pent = clv_pent;
 	}
 	
+	public IntegerProperty getClv_rut() {
+		return clv_rut;
+	}
+
+	public void setClv_rut(IntegerProperty clv_rut) {
+		this.clv_rut = clv_rut;
+	}
+
 	public int guardarDetalleRutinaPlanE(Connection cn) {
 		try {
 			PreparedStatement consulta = cn.prepareStatement("INSERT detalle_rutina_plane VALUES (DEFAULT,?,?)");
 			consulta.setInt(1, clv_pent.get());
-			consulta.setInt(2, clv_rutina.getClv_rutina());
+			consulta.setInt(2, clv_rut.get());
 			return consulta.executeUpdate();
 		} catch (Exception e) {	
 			Logger.getLogger(DetalleRutinaPlanE.class.getName()).log(Level.SEVERE, null, e);
 			return 0;
 		}
-	}
+	}	
 }

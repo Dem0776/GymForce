@@ -32,7 +32,8 @@ public class Dieta {
 		this.desc_dieta = new SimpleStringProperty(desc_dieta);
 	}
 
-	public Dieta(String nombre_dieta, String desc_dieta, Alimento nombre_alimento) {
+	public Dieta(int clv_dieta, String nombre_dieta, String desc_dieta, Alimento nombre_alimento) {
+		this.clv_dieta = new SimpleIntegerProperty(clv_dieta);
 		this.nombre_dieta = new SimpleStringProperty(nombre_dieta);
 		this.desc_dieta = new SimpleStringProperty(desc_dieta);
 		this.nombre_alimento = nombre_alimento;
@@ -110,14 +111,15 @@ public class Dieta {
 	public static void llenarTableDieta(Connection conect, ObservableList<Dieta> listDieta) {
 		try {
 			Statement st = conect.createStatement();
-			ResultSet rs = st.executeQuery("SELECT " + "dieta.nombre_dieta, " + "dieta.desc_dieta, "
-					+ "alimento.nombre_alimento " + "FROM " + "dieta "
-					+ "JOIN detalle_dieta_alimento ON dieta.clv_dieta = detalle_dieta_alimento.clv_dieta "
+			ResultSet rs = st.executeQuery("SELECT " + "* " + "FROM " + "detalle_dieta_alimento "
+					+ "JOIN dieta ON detalle_dieta_alimento.clv_dieta = dieta.clv_dieta "
 					+ "JOIN alimento ON detalle_dieta_alimento.clv_alimento = alimento.clv_alimento "
 					+ "WHERE dieta.status_dieta = 1");
 
 			while (rs.next()) {
-				listDieta.add(new Dieta(rs.getString("nombre_dieta"), rs.getString("desc_dieta"),
+				listDieta.add(new Dieta(rs.getInt("clv_dieta"),
+						rs.getString("nombre_dieta"), 
+						rs.getString("desc_dieta"),
 						new Alimento(rs.getString("nombre_alimento"))));
 			}
 		} catch (SQLException ex) {
@@ -169,11 +171,12 @@ public class Dieta {
 	public int actualizarDieta(Connection cn) {
 		try {
 			PreparedStatement consulta = cn.prepareStatement(
-					"UPDATE dieta SET " + "dieta.nombre_dieta = ?, " + "dieta.desc_dieta = ? "
-							+ "WHERE dieta.nombre_dieta = ? ");
+					"UPDATE dieta SET " + "dieta.nombre_dieta = ?, " 
+			+ "dieta.desc_dieta = ? "
+			+ "WHERE dieta.clv_dieta = ? ");
 			consulta.setString(1, nombre_dieta.get());
 			consulta.setString(2, desc_dieta.get());			
-			consulta.setString(3, nombre_dieta.get());
+			consulta.setInt(3, clv_dieta.get());
 			return consulta.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(Dieta.class.getName()).log(Level.SEVERE, null, ex);
@@ -181,11 +184,11 @@ public class Dieta {
 		}
 	}
 
-	public int eliminarDieta(Connection cn) {
+	public int eliminarDieta(Connection cn, int clave) {
 		try {
 			PreparedStatement consulta = cn
-					.prepareStatement("UPDATE dieta SET " + "dieta.status_dieta = 0 " + "WHERE dieta.nombre_dieta = ?");
-			consulta.setString(1, nombre_dieta.get());
+					.prepareStatement("UPDATE dieta SET " + "dieta.status_dieta = 0 " 
+			+ "WHERE dieta.clv_dieta = ' " + clave  + "'");			
 			return consulta.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(Dieta.class.getName()).log(Level.SEVERE, null, ex);

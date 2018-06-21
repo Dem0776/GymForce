@@ -22,9 +22,9 @@
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoHeader" />
-            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
+            <JFXTabPane fx:id="tpPlanEntr" prefHeight="629.0" prefWidth="950.0">
                <tabs>
-                  <Tab text="Ver planes">
+                  <Tab fx:id="tabVerPlan" text="Ver planes">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
                            <children>
@@ -68,7 +68,7 @@
                                     </AnchorPane>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0">
                                        <children>
-                                          <JFXButton onAction="#btnVerPlanE" prefHeight="40.0" prefWidth="150.0" text="Ver">
+                                          <JFXButton fx:id="btnModificar" onAction="#btnVerPlanE" prefHeight="40.0" prefWidth="150.0" text="Modificar">
                                              <styleClass>
                                                 <String fx:value="btns" />
                                                 <String fx:value="btnsFondo" />
@@ -87,7 +87,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Plan entrenamiento">
+                  <Tab fx:id="tabPlanEntr" text="Plan entrenamiento">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
@@ -139,7 +139,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <JFXButton onAction="#btnAgregarRutinaPlan" prefHeight="40.0" prefWidth="150.0" text="Agregar">
+                                          <JFXButton fx:id="btnAgregarRutina" onAction="#btnAgregarRutinaPlan" prefHeight="40.0" prefWidth="150.0" text="Agregar">
                                              <styleClass>
                                                 <String fx:value="btnsFondo" />
                                                 <String fx:value="btns" />
@@ -170,6 +170,15 @@
                                                 <String fx:value="btns" />
                                              </styleClass>
                                           </JFXButton>
+                                          <JFXButton fx:id="btnActualizarB" layoutX="495.0" layoutY="20.0" onAction="#btnActualizar" prefHeight="40.0" prefWidth="150.0" text="Actualizar">
+                                             <styleClass>
+                                                <String fx:value="btnsFondo" />
+                                                <String fx:value="btns" />
+                                             </styleClass>
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="30.0" />
@@ -180,7 +189,7 @@
                            </children></AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Rutinas">
+                  <Tab fx:id="tabRutina" text="Rutinas">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
@@ -244,7 +253,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Ejercicios">
+                  <Tab fx:id="tabEjercicio" text="Ejercicios">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>
@@ -313,7 +322,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Categorias">
+                  <Tab fx:id="tabCategoria" text="Categorias">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="900.0" styleClass="fondoVentana">
                            <children>

@@ -16,7 +16,7 @@ public class Inicio extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLsplash.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/com/gymforce/vista/FXMLlogin.fxml"));
 		Scene escena = new Scene(root);
 		primaryStage.setScene(escena);
 		primaryStage.initStyle(StageStyle.UNDECORATED);

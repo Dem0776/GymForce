@@ -102,12 +102,7 @@ public class DetalleDietaAlimento {
 					+ "JOIN alimento ON detalle_dieta_alimento.clv_alimento = alimento.clv_alimento "
 					+ "JOIN dieta ON detalle_dieta_alimento.clv_dieta = dieta.clv_dieta "
 					+ "WHERE dieta.clv_dieta = ? ");
-			st.setInt(1, dieta);
-			/*ResultSet rs = st.executeQuery("SELECT " + "* "
-					+ "FROM detalle_dieta_alimento "
-					+ "JOIN alimento ON detalle_dieta_alimento.clv_alimento = alimento.clv_alimento "
-					+ "JOIN dieta ON detalle_dieta_alimento.clv_dieta = dieta.clv_dieta "
-					+ "WHERE dieta.clv_dieta = ? ");	*/		
+			st.setInt(1, dieta);				
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				listaDda.add(new DetalleDietaAlimento(rs.getInt("clv_dda"), 
