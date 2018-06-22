@@ -101,8 +101,13 @@ public class Dieta {
 
 	public StringProperty Status_dietaProperty() {
 		return status_dieta;
+<<<<<<< HEAD
+	}
+		
+=======
 	}		
 	
+>>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
 	public static void llenarTableDieta(Connection conect, ObservableList<Dieta> listDieta) {
 		try {
 			Statement st = conect.createStatement();
@@ -209,5 +214,8 @@ public class Dieta {
 			return 0;
 		}
 	}
+<<<<<<< HEAD
+=======
 
+>>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
 }

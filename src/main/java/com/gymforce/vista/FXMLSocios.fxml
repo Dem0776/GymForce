@@ -219,6 +219,7 @@
                                                       <Insets left="-15.0" top="15.0" />
                                                    </VBox.margin>
                                                 </TableView>
+                                                <JFXComboBox fx:id="cmbSocio" prefHeight="25.0" prefWidth="200.0" promptText="RFC" styleClass="textos" />
                                              </children>
                                           </VBox>
                                        </children>

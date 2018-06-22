@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
+import com.gymforce.modelo.Detalle_plan_entrenamiento_socio;
 import com.gymforce.modelo.Dieta;
 import com.gymforce.modelo.Empleado;
 import com.gymforce.modelo.Mensaje;
@@ -29,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,6 +47,7 @@ public class FXMLSociosController  implements Initializable{
 	    private ObservableList<Dieta> listaDieta;
 	    private ObservableList<PlanEntrenamiento> listaPE;
 	    private ObservableList<Socio> listaSocio;
+	    private ObservableList<Detalle_plan_entrenamiento_socio> listaDPE;
 	    
 	    @FXML
 	    private FontAwesomeIconView añadirPE;
@@ -133,6 +136,10 @@ public class FXMLSociosController  implements Initializable{
 	    @FXML
 	    private JFXButton btnEliminarSocio;
 
+
+	    @FXML
+	    private JFXComboBox<Socio> cmbSocio;
+	    
 	    @FXML
 	    private JFXComboBox<PlanEntrenamiento> cmbPlanesEntren;
 
@@ -144,6 +151,7 @@ public class FXMLSociosController  implements Initializable{
 	    
 	    @FXML
 	    private TableColumn<?, ?> clmnRfcPE;
+	    
 	    
     @FXML
     void btnAgregar(ActionEvent event) {
@@ -190,6 +198,10 @@ public class FXMLSociosController  implements Initializable{
 						Optional<ButtonType> result1 = dialogo1.showAndWait();
 						if (result1.get() == ButtonType.OK) {
 							listaSocio.add(miSocio);
+							//listaSocio = FXCollections.observableArrayList();
+							Socio.llenarComboSocio1(conexion.getConnection(), listaSocio);
+							cmbSocio.setItems(listaSocio);
+							//cmbSocio.setValue(miSocio);
 							activarCombos();
 							desactivarEmpleado();
 						// validarMembresia();
@@ -290,6 +302,7 @@ public class FXMLSociosController  implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		desactivarCombos();
+		//cmbSocio.setVisible(false);
 		
 		conexion = new ConexionMySQL();
 		conexion.establecerConexion();
@@ -304,7 +317,7 @@ public class FXMLSociosController  implements Initializable{
 		PlanEntrenamiento.llenarComboPE(conexion.getConnection(), listaPE);
 		
 		Socio.llenarTableSocio(conexion.getConnection(), listaSocio);
-		
+		//Socio.llenarCaja(conect, listTipoPE);
 	
 		cmbDietas.setItems(listaDieta);
 		cmbPlanesEntren.setItems(listaPE);
@@ -354,7 +367,36 @@ public class FXMLSociosController  implements Initializable{
 
     @FXML
     void añadirPE(MouseEvent event) {
-    
+    	if (cmbSocio.getValue() == null) {
+			Mensaje.error("Campo Vacio", "Ingrese un RFC de Socio");
+			cmbSocio.requestFocus();
+		}else if (cmbPlanesEntren.getValue() == null) {
+			Mensaje.error("Campo Vacio", "Ingrese un Plan de Entrenamiento");
+			cmbPlanesEntren.requestFocus();
+		} else {
+			try {
+				conexion.establecerConexion();
+				Detalle_plan_entrenamiento_socio miDPE = new Detalle_plan_entrenamiento_socio(cmbSocio.getSelectionModel().getSelectedItem(),cmbPlanesEntren.getSelectionModel().getSelectedItem());
+				int noReg = miDPE.guardar(conexion.getConnection());
+				if (noReg != 0) {
+					Alert dialogo = new Alert(AlertType.CONFIRMATION);
+					dialogo.setTitle("Continuar Guardando");
+					dialogo.setHeaderText(null);
+					dialogo.initStyle(StageStyle.UTILITY);
+					dialogo.setContentText("Socio "+txtRfc.getText()+" Añadir Plan de Entrenamiento "+cmbPlanesEntren.getSelectionModel());
+					Optional<ButtonType> result = dialogo.showAndWait();
+					if (result.get() == ButtonType.OK) {
+						listaDPE.add(miDPE);
+						// validarMembresia();
+					} else {
+						// validarMembresia();
+					}
+
+				}
+			} catch (Exception e) {
+				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
+			}
+		}
     }
     
     public void desactivarCombos() {

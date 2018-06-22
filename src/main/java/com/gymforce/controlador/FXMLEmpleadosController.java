@@ -144,13 +144,13 @@ public class FXMLEmpleadosController implements Initializable {
 
 	@FXML
 	void btnCrearReporte(ActionEvent event) {
-		//ConexionMySQL cenexion = new ConexionMySQL();
-        //cenexion.establecerConexion();
-		//Connection conn = cenexion.getConnection();
-		//Reporte.crearReporte(conn,"C:\\Users\\Misael\\JaspersoftWorkspace\\GymForce\\Empleado.jasper");
-		//Reporte.showReporte();
+		// ConexionMySQL cenexion = new ConexionMySQL();
+		// cenexion.establecerConexion();
+		// Connection conn = cenexion.getConnection();
+		// Reporte.crearReporte(conn,"C:\\Users\\Misael\\JaspersoftWorkspace\\GymForce\\Empleado.jasper");
+		// Reporte.showReporte();
 		Reportes2 reporte = new Reportes2("Empleado");
-    	reporte.generarReporte();
+		reporte.generarReporte();
 	}
 
 	@FXML
@@ -276,7 +276,7 @@ public class FXMLEmpleadosController implements Initializable {
 			dialogo.setContentText("EN REALIDAD DESEA ELIMINAR EL EMPLEADO " + txtRfc.getText());
 			Optional<ButtonType> result = dialogo.showAndWait();
 			if (result.get() == ButtonType.OK) {
-
+				
 			}
 		} else {
 			Mensaje.error("Eliminar Cargo", "Problemas al eliminar el Cargo, Intente de nuevo");
@@ -336,8 +336,14 @@ public class FXMLEmpleadosController implements Initializable {
 		listaTipoCmb = FXCollections.observableArrayList();
 
 		TipoEmpleado.llenarTableTipoEmpleado(conexion.getConnection(), listaTipo);
+<<<<<<< HEAD
+		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipo);
+
+		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipoCmb);
+=======
 		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipoCmb);
 		
+>>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
 		Empleado.llenarTableEmpleado(conexion.getConnection(), listaEmpleado);
 		cmbTipoEmpleado.setItems(listaTipoCmb);
 		tblViewEmpleadosTipos.setItems(listaTipo);
@@ -355,6 +361,7 @@ public class FXMLEmpleadosController implements Initializable {
 		clmnClvTE.setCellValueFactory(new PropertyValueFactory<Empleado, TipoEmpleado>("clv_te"));
 
 		llenarFormularioSeleccionEmpleado();
+		llenarFormularioSeleccionTipoEmpleado();
 		conexion.cerrarConexion();
 
 	}
@@ -381,6 +388,15 @@ public class FXMLEmpleadosController implements Initializable {
 					txtContraseña.setText(newValue.getPassword_empleado());
 					cmbTipoEmpleado.setValue(newValue.getClv_te());
 					contador = 1;
+				});
+	}
+
+	private void llenarFormularioSeleccionTipoEmpleado() {
+		tblViewEmpleadosTipos.getSelectionModel().selectedItemProperty().addListener(
+				(ObservableValue<? extends TipoEmpleado> observable, TipoEmpleado oldValue, TipoEmpleado newValue) -> {
+
+					txtTipoEmpleado.setText(newValue.getDesc_te());
+
 				});
 	}
 
