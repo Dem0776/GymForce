@@ -232,6 +232,7 @@ public class Empleado extends RecursiveTreeObject<Empleado> {
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
+<<<<<<< HEAD
     }
     public int guardarEmpleado(Connection cn) {
         try {
@@ -286,6 +287,11 @@ public class Empleado extends RecursiveTreeObject<Empleado> {
         }
  }
 	
+=======
+    } 
+ 
+ 
+>>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
 	public int validarUsuario(Connection conect, String usuario, String password) {
 		String resultado = "";
 		try {
