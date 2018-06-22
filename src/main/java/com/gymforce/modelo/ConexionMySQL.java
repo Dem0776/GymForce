@@ -8,9 +8,15 @@ import java.util.logging.Logger;
 
 public class ConexionMySQL {
 	private Connection connection;
+<<<<<<< HEAD
 	private String url = "jdbc:mysql://localhost/gymforce";
 	private String usuario = "root";
 	private String contrasena = "";
+=======
+	private String url = "jdbc:mysql://localhost/gymforce1";
+	private String usuario = "root";
+	private String contrasena = "1";
+>>>>>>> ffecaa858964d3043f76faa241ab1d0c0d09466e
 
 	public Connection getConnection() {
 		return connection;

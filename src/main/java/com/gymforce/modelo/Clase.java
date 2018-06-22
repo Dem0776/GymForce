@@ -26,6 +26,11 @@ public class Clase{
 		this.nombre_clase = new SimpleStringProperty(nombre_clase);
 		this.desc_clase = new SimpleStringProperty(desc_clase);
 	}
+
+	public Clase(String nombre_clase) {
+		this.nombre_clase = new SimpleStringProperty(nombre_clase);
+		
+	}
 	
 	public Clase(int clv_clase, String nombre_clase, String desc_clase, Empleado nombreInstructor,
 			DetalleClaseEntrenador precio) {
@@ -33,6 +38,13 @@ public class Clase{
 		this.nombre_clase = new SimpleStringProperty(nombre_clase);
 		this.desc_clase = new SimpleStringProperty(desc_clase);
 		this.nombreInstructor = nombreInstructor;
+		this.precio = precio;
+	}
+	
+	public Clase(int clv_clase,String nombre_clase,
+			DetalleClaseEntrenador precio) {
+	    this.clv_clase=	new SimpleIntegerProperty(clv_clase);
+		this.nombre_clase = new SimpleStringProperty(nombre_clase);
 		this.precio = precio;
 	}
 	
@@ -219,4 +231,27 @@ public class Clase{
 			return 0;
 		}
 	}
+	 public static void extraerDatosClaseTable(Connection cn, ObservableList<Clase> lstClase) {
+		    try {
+		        Statement st = cn.createStatement();
+		        ResultSet rs = st.executeQuery("SELECT clase.clv_clase,clase.nombre_clase, detalle_clase_entrenador.precio_clase FROM clase "
+		        		+ "JOIN detalle_clase_entrenador ON clase.clv_clase = detalle_clase_entrenador.clv_clase"
+		        		+ " where status_clase = 1");
+		        while (rs.next()) {
+		            lstClase.add(new Clase(rs.getInt("clv_clase"),rs.getString("nombre_clase"),
+		            		new DetalleClaseEntrenador(rs.getDouble("precio_clase"))
+		            		));
+		                   
+		        }
+		    } catch (SQLException ex) {
+		        Logger.getLogger(Clase.class.getName()).log(Level.SEVERE, null, ex);
+		    }
+		}
+	
+	
+	
+	
+	
+	
+	
 }

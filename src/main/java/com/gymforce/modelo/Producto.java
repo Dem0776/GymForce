@@ -44,8 +44,9 @@ public class Producto {
 	
 	
 	
-	public Producto(String nombre_producto, String desc_producto, Double precioActual_producto, int existencia_producto,
+	public Producto(int clv_producto,String nombre_producto, String desc_producto, Double precioActual_producto, int existencia_producto,
 			Marca clv_marca) {
+		this.clv_producto = new SimpleIntegerProperty(clv_producto);
 		this.nombre_producto = new SimpleStringProperty(nombre_producto);
 		this.desc_producto = new SimpleStringProperty(desc_producto);
 		this.precioActual_producto = new SimpleDoubleProperty(precioActual_producto);
@@ -179,14 +180,16 @@ public class Producto {
 	public static void llenarTableProducto(Connection conexion, ObservableList<Producto> listproducto) {
 		try {
 			Statement st = conexion.createStatement();
-			ResultSet rs = st.executeQuery("SELECT" + " nombre_producto," + "desc_producto," + "precioActual_producto,"
-					+ "existencia_producto," + "desc_marca"+" " + "FROM " + "producto "
+			ResultSet rs = st.executeQuery("SELECT "+"clv_producto,"
+					+ "nombre_producto," + "desc_producto," + "precioActual_producto,"
+					+ "existencia_producto," +"marca.desc_marca"+" FROM " + "producto "
 					+ "JOIN marca ON marca.clv_marca=producto.clv_marca where status_producto=1");
 			while (rs.next()) {
-				listproducto.add(new Producto(rs.getString("nombre_producto"), rs.getString("desc_producto"),
+				listproducto.add(new Producto(
+						rs.getInt("clv_producto"),
+						rs.getString("nombre_producto"), rs.getString("desc_producto"),
 						rs.getDouble("precioActual_producto"), rs.getInt("existencia_producto"),
 						new Marca(rs.getString("desc_marca"))));
-						//new Marca(rs.getString("desc_marca"))));
 			}
 
 		} catch (SQLException ex) {

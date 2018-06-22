@@ -44,7 +44,7 @@
                                                     <TableColumn fx:id="clmnCostoMembresia" prefWidth="75.0" text="Costo" />
                                                   </columns>
                                                 </TableView>
-                                                <JFXButton onAction="#btnAgregarMembresias" styleClass="btnsFondo" text="Agregar" />
+                                                <JFXButton fx:id="btnAgregarM" onAction="#btnAgregarMembresias" styleClass="btnsFondo" text="Agregar" />
                                              </children>
                                           </VBox>
                                           <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="5.0">
@@ -56,7 +56,7 @@
                                                     <TableColumn fx:id="clmnCostoProducto" prefWidth="75.0" text="Costo" />
                                                   </columns>
                                                 </TableView>
-                                                <JFXButton onAction="#btnAgregarProductos" styleClass="btnsFondo" text="Agregar" />
+                                                <JFXButton fx:id="btnAgregarP" onAction="#btnAgregarProductos" styleClass="btnsFondo" text="Agregar" />
                                              </children>
                                           </VBox>
                                           <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="5.0">
@@ -68,7 +68,7 @@
                                                     <TableColumn fx:id="clmnCostosClases" prefWidth="75.0" text="Costo" />
                                                   </columns>
                                                 </TableView>
-                                                <JFXButton onAction="#btnAgregarClases" styleClass="btnsFondo" text="Agregar" />
+                                                <JFXButton fx:id="btnAgregarC" onAction="#btnAgregarClases" styleClass="btnsFondo" text="Agregar" />
                                              </children>
                                           </VBox>
                                           <VBox alignment="TOP_CENTER" layoutX="310.0" layoutY="10.0" prefWidth="334.0" spacing="5.0">
@@ -82,7 +82,7 @@
                                                       <TableColumn fx:id="clmnPrecioTotalCarrito" prefWidth="99.0" text="Precio total" />
                                                    </columns>
                                                 </TableView>
-                                                <JFXButton onAction="#btnRetirarCarrito" styleClass="btnsFondo" text="Retirar del carrito" />
+                                                <JFXButton fx:id="btnCarritoR" onAction="#btnRetirarCarrito" styleClass="btnsFondo" text="Retirar del carrito" />
                                              </children>
                                              <HBox.margin>
                                                 <Insets left="100.0" />
@@ -95,15 +95,20 @@
                                           <Insets left="20.0" top="10.0" />
                                        </padding>
                                        <children>
-                                          <JFXTextField fx:id="txtRFCcliente" promptText="RFC CLIENTE" styleClass="textos" />
+                                          <JFXTextField fx:id="txtRFCcliente" promptText="RFC CLIENTE" styleClass="textos" stylesheets="@../estilos/StyleClases.css" />
                                           <JFXComboBox fx:id="cmbFormaPago" prefHeight="25.0" prefWidth="166.0" promptText="FORMA DE PAGO" styleClass="textos" />
                                           <JFXTextField fx:id="txtTotalCompra" editable="false" promptText="TOTAL" styleClass="textos" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="61.0" prefWidth="950.0" spacing="20.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css">
                                        <children>
-                                          <JFXButton onAction="#btnComprarProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Comprar" />
-                                          <JFXButton onAction="#btnCancelarVentaProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Cancelar" />
+                                          <JFXButton fx:id="btnBuscarC" onAction="#btnBuscarClienteVenta" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="BUSCAR CLIENTE">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                          <JFXButton fx:id="btnComprarID" onAction="#btnComprarProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Comprar" />
+                                          <JFXButton fx:id="btnCancelarID" onAction="#btnCancelarVentaProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Cancelar" />
                                        </children></HBox>
                                  </children>
                               </VBox>
