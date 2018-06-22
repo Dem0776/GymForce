@@ -101,12 +101,7 @@ public class Dieta {
 
 	public StringProperty Status_dietaProperty() {
 		return status_dieta;
-	}
-	
-	@Override
-    public String toString() {
-        return String.valueOf(clv_dieta);
-    }
+	}		
 	
 	public static void llenarTableDieta(Connection conect, ObservableList<Dieta> listDieta) {
 		try {
@@ -167,7 +162,6 @@ public class Dieta {
 		}
 		return clv;
 	}
-<<<<<<< HEAD
 	@Override
     public String toString() {
         return nombre_dieta.get();
@@ -187,7 +181,6 @@ public class Dieta {
         }
 
     }
-=======
 
 	public int actualizarDieta(Connection cn) {
 		try {
@@ -216,5 +209,5 @@ public class Dieta {
 			return 0;
 		}
 	}
->>>>>>> fb756e37e437783a0d0b8c526a288d281dfc3315
+
 }

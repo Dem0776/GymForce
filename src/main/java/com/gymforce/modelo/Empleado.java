@@ -199,7 +199,6 @@ public class Empleado extends RecursiveTreeObject<Empleado> {
 	}
 
 	public static void llenarTableEmpleado(Connection conect, ObservableList<Empleado> listEmpleado) {
-<<<<<<< HEAD
         try {
             Statement st = conect.createStatement();
             ResultSet rs = st.executeQuery("SELECT "
@@ -233,92 +232,9 @@ public class Empleado extends RecursiveTreeObject<Empleado> {
         } catch (SQLException ex) {
             Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    public int guardarEmpleado(Connection cn) {
-        try {
-            PreparedStatement consulta
-                    = cn.prepareStatement(
-                            "INSERT empleado VALUES (?,?,?,?,?,?,?,?,?,DEFAULT)");
-            consulta.setString(1, rfc_empleado.get());
-            consulta.setString(2, nombre_empleado.get());
-            consulta.setString(3, ape1_empleado.get());
-            consulta.setString(4, ape2_empleado.get());
-            consulta.setString(5, telefono_empleado.get());
-            consulta.setString(6, email_empleado.get());
-            consulta.setString(7, usuario_empleado.get());
-            consulta.setString(8, password_empleado.get());
-            consulta.setInt(9, clv_te.getClv_te());
-
-            return consulta.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
-    }
-    public int actualizarEmpleado(Connection cn) {
-        try {
-            PreparedStatement consulta = cn.prepareStatement("UPDATE empleado SET "
-            + "empleado.rfc_empleado = ?, "
-            + "empleado.nombre_empleado = ?, "
-            + "empleado.ape1_empleado = ?, "
-            + "empleado.ape2_empleado = ?, "
-            + "empleado.telefono_empleado = ?, "
-            + "empleado.email_empleado = ?, "
-            + "empleado.usuario_empleado = ?, "
-            + "empleado.password_empleado = ?, "
-            + "empleado.clv_te = ? "
-            + "WHERE empleado.rfc_empleado = ? ");
-            consulta.setString(1, rfc_empleado.get());
-            consulta.setString(2, nombre_empleado.get());
-            consulta.setString(3, ape1_empleado.get());
-            consulta.setString(4, ape2_empleado.get());
-            consulta.setString(5, telefono_empleado.get());
-            consulta.setString(6, email_empleado.get());
-            consulta.setString(7, usuario_empleado.get());
-            consulta.setString(8, password_empleado.get());
-            consulta.setInt(9, clv_te.getClv_te());
-            consulta.setString(10, rfc_empleado.get());
-            
-            return consulta.executeUpdate();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
- }
- public int eliminarEmpleado(Connection cn) {
-        try {
-            PreparedStatement consulta = cn.prepareStatement(
-                    "DELETE FROM empleado "
-                    +"WHERE empleado.rfc_empleado = ? ");
-            consulta.setString(1, rfc_empleado.get());
-            return consulta.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
-    }
-=======
-		try {
-			Statement st = conect.createStatement();
-			ResultSet rs = st.executeQuery("SELECT " + "empleado.rfc_empleado, " + "empleado.nombre_empleado, "
-					+ "empleado.ape1_empleado, " + "empleado.ape2_empleado, " + "empleado.telefono_empleado, "
-					+ "empleado.email_empleado, " + "empleado.usuario_empleado, " + "empleado.password_empleado, "
-					+ "tipo_empleado.clv_te, " + "tipo_empleado.desc_te " + "FROM " + "empleado "
-					+ "INNER JOIN tipo_empleado ON empleado.clv_te = tipo_empleado.clv_te");
-			while (rs.next()) {
-				listEmpleado.add(new Empleado(rs.getString("rfc_empleado"), rs.getString("nombre_empleado"),
-						rs.getString("ape1_empleado"), rs.getString("ape2_empleado"), rs.getString("telefono_empleado"),
-						rs.getString("email_empleado"), rs.getString("usuario_empleado"),
-						rs.getString("password_empleado"),
-						new TipoEmpleado(rs.getInt("clv_te"), rs.getString("desc_te"))));
-
-			}
-		} catch (SQLException ex) {
-			Logger.getLogger(Empleado.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
-	
+    } 
+ 
+ 
 	public int validarUsuario(Connection conect, String usuario, String password) {
 		String resultado = "";
 		try {
@@ -398,5 +314,4 @@ public class Empleado extends RecursiveTreeObject<Empleado> {
 			return 0;
 		}
 	}
->>>>>>> fb756e37e437783a0d0b8c526a288d281dfc3315
 }

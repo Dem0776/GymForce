@@ -24,21 +24,21 @@ public class FXMLsplashController implements Initializable {
 	private double yOffset = 0;
 
 	@FXML
-	private AnchorPane parent;	
+	private AnchorPane parent;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		FXMLLoader principal = new FXMLLoader(getClass().getResource("/com/gymforce/vista/FXMLlogin.fxml"));
 		AnimationGenerator animationGenerator = new AnimationGenerator();
 		animationGenerator.applyFadeAnimationOn01(parent, 5000, 1, 0.8, 1, (e) -> {
-			animationGenerator.applyFadeAnimationOn02(parent, 4000, 0.8, 1, 1, (e2) -> {					
+			animationGenerator.applyFadeAnimationOn02(parent, 4000, 0.8, 1, 1, (e2) -> {
 		    	Parent root;
-		    	Stage stage = new Stage();		        	
+		    	Stage stage = new Stage();
 		    	parent.getScene().getWindow().hide();
 		    	try {
 					root = (Parent) principal.load();
 					stage.setScene(new Scene(root));
 			    	stage.initStyle(StageStyle.UNDECORATED);
-			    	//stage.setMaximized(true);    	
+			    	//stage.setMaximized(true);
 			    	stage.show();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

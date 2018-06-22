@@ -249,8 +249,7 @@ public class FXMLdietaController implements Initializable {
 	}
 
 	@FXML
-	void btnEliminarDieta(ActionEvent event) {
-		System.out.println(clvDieta);
+	void btnEliminarDieta(ActionEvent event) {		
 		conexion.establecerConexion();
 		Dieta dieta = new Dieta();
 		try {

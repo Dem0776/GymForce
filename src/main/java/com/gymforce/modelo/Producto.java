@@ -34,6 +34,16 @@ public class Producto {
 	
 	}
 	
+	public Producto(String nombre_producto,Double precioActual_producto) {
+		this.nombre_producto = new SimpleStringProperty(nombre_producto);
+		
+		this.precioActual_producto = new SimpleDoubleProperty(precioActual_producto);
+		
+
+	}
+	
+	
+	
 	public Producto(String nombre_producto, String desc_producto, Double precioActual_producto, int existencia_producto,
 			Marca clv_marca) {
 		this.nombre_producto = new SimpleStringProperty(nombre_producto);
@@ -292,7 +302,7 @@ public class Producto {
 		
 		PreparedStatement consulta;
 		try {
-			consulta = cn.prepareStatement("INSERT producto VALUES (DEFAULT,?,?,?,?,2,DEFAULT)");
+			consulta = cn.prepareStatement("INSERT producto VALUES (DEFAULT,?,?,?,?,1,DEFAULT)");
 			consulta.setString(1,  nombre_producto.get());
 			consulta.setString(2,  desc_producto.get());
 			consulta.setDouble(3,  precioActual_producto.get());
@@ -371,6 +381,25 @@ public static void llenarComboProducto(Connection cn, ObservableList<Producto> l
     }
 
 }
+
+public static void extraerDatosProductoTable(Connection cn, ObservableList<Producto> lstProd) {
+    try {
+        Statement st = cn.createStatement();
+        ResultSet rs = st.executeQuery("SELECT nombre_producto, precioActual_producto FROM producto where status_producto = 1");
+        while (rs.next()) {
+            lstProd.add(new Producto(rs.getString("nombre_producto"),rs.getDouble("precioActual_producto")));
+                   
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Producto.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+
+
+
+
+
+
 	
 	
 	

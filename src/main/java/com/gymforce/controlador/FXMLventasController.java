@@ -1,14 +1,16 @@
 package com.gymforce.controlador;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.Forma_pago;
-import com.gymforce.modelo.Marca;
-import com.gymforce.modelo.Mensaje;
+
+import com.gymforce.modelo.Membresia;
+
 import com.gymforce.modelo.Producto;
+import com.gymforce.modelo.Venta;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
@@ -17,71 +19,67 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.StageStyle;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FXMLventasController implements Initializable {
-    ConexionMySQL conexion;
-	 private ObservableList<Producto> listaproducto;
-	 private ObservableList<Forma_pago> listafp;
-	 
-	 @FXML
-	    private TableView<Producto> tblvwProductosVentas;
-
+	private ConexionMySQL conexion;
+	private ObservableList<Producto> listaProducto;
+	private ObservableList<Membresia> listaMembresia;
+	private ObservableList<Clase> listaClases;
+	private ObservableList<Venta> listaCarrito;
 	
     @FXML
-    private JFXTextField txtrfcProductos;
+    private TableView<Membresia> tblMembresias;
 
     @FXML
-    private JFXTextField txtcantidadProductos;
+    private TableColumn<Membresia,String> clmnMembresia;
 
     @FXML
-    private JFXTextField txtPrecioUnitarioProductos;
+    private TableColumn<Membresia,Double> clmnCostoMembresia;
 
     @FXML
-    private JFXComboBox<Forma_pago> cmbFormaPagoProductos;
+    private TableView<Producto> tblProductos;
 
     @FXML
-    private JFXComboBox<Producto> cmbProductos;
+    private TableColumn<Producto, String> clmnProducto;
 
     @FXML
-    private JFXTextField txtrfcMembresias;
+    private TableColumn<Producto, Double> clmnCostoProducto;
 
     @FXML
-    private JFXTextField txtCantidadMembresias;
+    private TableView<Clase> tblClases;
 
     @FXML
-    private JFXTextField txtPrecioUnitarioMembresias;
+    private TableColumn<Clase,String> clmnClases;
 
     @FXML
-    private JFXComboBox<?> cmbFormaPagoMembresias;
+    private TableColumn<Clase,Double> clmnCostosClases;
 
     @FXML
-    private JFXComboBox<?> cmbMembresias;
+    private TableView<Venta> tblCarrito;
 
     @FXML
-    private TableView<?> tablvwMembresiasVenta;
+    private TableColumn<Venta, Integer> clmnCantidadCarrito;
 
     @FXML
-    private JFXTextField txtrfcClases;
+    private TableColumn<Producto,String> clmnProductoCarrito;
 
     @FXML
-    private JFXTextField txtcantidadClases;
+    private TableColumn<Producto,Double> clmnPreciounitCarrito;
 
     @FXML
-    private JFXTextField txtPrecioUnitarioClases;
+    private TableColumn<?,?> clmnPrecioTotalCarrito;
 
     @FXML
-    private JFXComboBox<?> cmbFormaPagoClases;
+    private JFXTextField txtRFCcliente;
 
     @FXML
-    private JFXComboBox<?> cmbClases;
+    private JFXComboBox<Forma_pago> cmbFormaPago;
 
     @FXML
-    private TableView<?> tblvwClasesVentas;
+    private JFXTextField txtTotalCompra;
 
     @FXML
     void btnAgregarClases(ActionEvent event) {
@@ -94,12 +92,7 @@ public class FXMLventasController implements Initializable {
     }
 
     @FXML
-    void btnCancelarCompraClases(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnCancelarMembresias(ActionEvent event) {
+    void btnAgregarProductos(ActionEvent event) {
 
     }
 
@@ -109,102 +102,33 @@ public class FXMLventasController implements Initializable {
     }
 
     @FXML
-    void btnComprarClases(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnComprarMembresias(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnComprarProductos(ActionEvent event) {
 
     }
 
     @FXML
-    void btnEliminarListaClases(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnEliminarListaMembresias(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnagregarProductoVenta(ActionEvent event) {
-
-    	conexion = new ConexionMySQL();
-    	
-   	 int bandera=0;			
-			try {
-				String fp = cmbFormaPagoClases.getValue().toString();
-				String pro=cmbProductos.getValue().toString();
-				int cant= Integer.parseInt(txtcantidadProductos.getText());
-				double precio=Double.parseDouble(txtPrecioUnitarioProductos.getText());
-			} catch (Exception e) {
-				
-      bandera=1;
-			}
-        
-       
-      
-       if(txtrfcProductos.getText().trim().length() == 0){
-           Mensaje.error("Campo Vacio","Ingrese el RFC del SOCIO");;
-           txtrfcProductos.requestFocus();
-       }else if(txtcantidadProductos.getText().trim().length() == 0||Integer.parseInt(txtcantidadProductos.getText())<0){
-           Mensaje.error("Campo Vacio o Valor no valido", "Ingrese cantidad del producto");
-           txtcantidadProductos.requestFocus();
-       }else if(txtPrecioUnitarioProductos.getText().trim().length() == 0||Double.parseDouble(txtPrecioUnitarioProductos.getText())<0){
-           Mensaje.error("Campo Vacio o Valor no Valido", "Ingrese Precio correctamente");
-           txtPrecioUnitarioProductos.requestFocus();
-       
-   }else if(bandera==1) {
-		Mensaje.error("Sin seleccion", "Ingrese la marca");
-		cmbFormaPagoProductos.requestFocus();
-		
-       
-       
-   }else {
-   	
-   	Alert dialogo = new Alert(AlertType.CONFIRMATION);
-		dialogo.setTitle("Continuar guardando");
-		dialogo.setHeaderText(null);
-		dialogo.initStyle(StageStyle.UTILITY);
-		dialogo.setContentText("EN REALIDAD DESEA GUARADAR LOS DATOS ");
-		Optional<ButtonType> result = dialogo.showAndWait();
-		if (result.get() == ButtonType.OK) {
-    	
-    }
-   }
-    }
-
-    @FXML
-    void btneliminarProducto(ActionEvent event) {
+    void btnRetirarCarrito(ActionEvent event) {
 
     }
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	public void initialize(URL location, ResourceBundle resources) {
 		conexion = new ConexionMySQL();
+
 		conexion.establecerConexion();
-        listaproducto = FXCollections.observableArrayList();
-        listafp = FXCollections.observableArrayList();
-        
+
+		// Inicializar Observable ArrayList
+		listaProducto = FXCollections.observableArrayList();
 		
+		Producto.extraerDatosProductoTable(conexion.getConnection(), listaProducto);
 		
-		Producto.llenarComboProducto(conexion.getConnection(),listaproducto);
-	Forma_pago.llenarComboFP(conexion.getConnection(), listafp);
+		tblProductos.setItems(listaProducto);
 		
-		cmbFormaPagoProductos.setItems(listafp);
-		cmbProductos.setItems(listaproducto);
-		
+		clmnProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre_producto"));
+		clmnCostoProducto.setCellValueFactory(new PropertyValueFactory<Producto,Double>("precioActual_producto"));
 		
 		conexion.cerrarConexion();
-	
+		
 	}
 
 }

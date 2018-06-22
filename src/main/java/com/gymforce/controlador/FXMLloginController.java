@@ -61,7 +61,7 @@ public class FXMLloginController {
 	    	} else {
 	    		Mensaje.error("ERROR", "USUARIO O PASSWORD INCORRECTO");
 	    	}
-	    	conexion.cerrarConexion(); 
+	    	conexion.cerrarConexion();
 		}
     }
     
