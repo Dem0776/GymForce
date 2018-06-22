@@ -28,6 +28,7 @@ public class PlanEntrenamiento {
 	private Rutina serie;
 	private Rutina rep;
 
+
 	public PlanEntrenamiento(int clv_pe, String desc_pe, String duracion_pe, String frecuencia_pe, String dificultad_pe,
 			String status_pe, Categoria clv_categoria) {
 		this.clv_pe = new SimpleIntegerProperty(clv_pe);
@@ -38,18 +39,20 @@ public class PlanEntrenamiento {
 		this.status_pe = new SimpleStringProperty(status_pe);
 		this.clv_categoria = clv_categoria;
 	}
-<<<<<<< HEAD
-	public PlanEntrenamiento(String desc_pe) {
+
+	public PlanEntrenamiento(int clv_pe,String desc_pe) {
+		this.clv_pe = new SimpleIntegerProperty(clv_pe);
 		this.desc_pe = new SimpleStringProperty(desc_pe);
 
 	}
-=======
-
 	public PlanEntrenamiento(String desc_pe) {
+		
 		this.desc_pe = new SimpleStringProperty(desc_pe);
-		}
+
+	}
+
+
 	
->>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
 	public PlanEntrenamiento(int clv_pe, String desc_pe, String duracion_pe, String frecuencia_pe, String dificultad_pe,
 			String status_pe, Categoria clv_categoria, Ejercicio ejercicio, Rutina serie) {
 		this.clv_pe = new SimpleIntegerProperty(clv_pe);
@@ -236,10 +239,7 @@ public class PlanEntrenamiento {
 		}
 		return clv;
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
 	@Override
     public String toString() {
         return desc_pe.get();
@@ -250,7 +250,7 @@ public class PlanEntrenamiento {
             ResultSet rs = st.executeQuery("SELECT * FROM plan_entrenamiento");
             while (rs.next()) {
             	listTipoPE.add(
-                        new PlanEntrenamiento(rs.getString("desc_pe"))
+                        new PlanEntrenamiento(rs.getInt("clv_pe"),rs.getString("desc_pe"))
                         );
             }
         } catch (SQLException ex) {
@@ -258,10 +258,6 @@ public class PlanEntrenamiento {
         }
 
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
 	
 	public int actualizarPlanE(Connection cn) {
 		try {

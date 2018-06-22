@@ -219,18 +219,6 @@ public class Socio {
         }
 
     }
-	public static void llenarComboSocio1(Connection conect, ObservableList<Socio> listTipoSocio) {
-        try {
-            Statement st = conect.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM socio");
-            while (rs.next()) {
-            	listTipoSocio.add(
-                        new Socio(rs.getString("rfc_socio"))
-                        );
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Socio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+	
+	
 }

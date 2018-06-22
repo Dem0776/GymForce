@@ -8,6 +8,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
@@ -213,13 +214,13 @@
                                                 <TableView fx:id="tblViewAgegar" prefHeight="196.0" prefWidth="435.0">
                                                   <columns>
                                                     <TableColumn fx:id="clmnRfcPE" prefWidth="149.0" text="RFC" />
-                                                    <TableColumn prefWidth="157.0" />
+                                                    <TableColumn fx:id="clmnHabitosPE" prefWidth="157.0" text="HABITOS" />
                                                   </columns>
                                                    <VBox.margin>
                                                       <Insets left="-15.0" top="15.0" />
                                                    </VBox.margin>
                                                 </TableView>
-                                                <JFXComboBox fx:id="cmbSocio" prefHeight="25.0" prefWidth="200.0" promptText="RFC" styleClass="textos" />
+                                                <ComboBox fx:id="cmbSocio" prefWidth="150.0" promptText="--RFC--" />
                                              </children>
                                           </VBox>
                                        </children>

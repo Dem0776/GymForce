@@ -138,7 +138,7 @@ public class FXMLSociosController  implements Initializable{
 
 
 	    @FXML
-	    private JFXComboBox<Socio> cmbSocio;
+	    private ComboBox<Socio> cmbSocio;
 	    
 	    @FXML
 	    private JFXComboBox<PlanEntrenamiento> cmbPlanesEntren;
@@ -147,10 +147,13 @@ public class FXMLSociosController  implements Initializable{
 	    private JFXComboBox<Dieta> cmbDietas;
 
 	    @FXML
-	    private TableView<?> tblViewAgegar;
+	    private TableView<Detalle_plan_entrenamiento_socio> tblViewAgegar;
 	    
 	    @FXML
-	    private TableColumn<?, ?> clmnRfcPE;
+	    private TableColumn<Detalle_plan_entrenamiento_socio, Socio> clmnRfcPE;
+
+	    @FXML
+	    private TableColumn<Detalle_plan_entrenamiento_socio, PlanEntrenamiento> clmnHabitosPE;
 	    
 	    
     @FXML
@@ -199,9 +202,9 @@ public class FXMLSociosController  implements Initializable{
 						if (result1.get() == ButtonType.OK) {
 							listaSocio.add(miSocio);
 							//listaSocio = FXCollections.observableArrayList();
-							Socio.llenarComboSocio1(conexion.getConnection(), listaSocio);
-							cmbSocio.setItems(listaSocio);
-							//cmbSocio.setValue(miSocio);
+							Socio.llenarComboSocio(conexion.getConnection(), listaSocio, txtRfc.getText());
+							//cmbSocio.setItems(listaSocio);
+							cmbSocio.setValue(miSocio);
 							activarCombos();
 							desactivarEmpleado();
 						// validarMembresia();
@@ -330,6 +333,8 @@ public class FXMLSociosController  implements Initializable{
 		clmnTelefonoSocio.setCellValueFactory(new PropertyValueFactory<Socio,String>("telefono_socio"));
 		clmnDireccionSocio.setCellValueFactory(new PropertyValueFactory<Socio,String>("direccion_socio"));
 		clmnEmailSocio.setCellValueFactory(new PropertyValueFactory<Socio,String>("email_socio"));	
+		
+		
 		llenarFormularioSeleccionSocios();
 		conexion.cerrarConexion();
 	}
@@ -383,19 +388,26 @@ public class FXMLSociosController  implements Initializable{
 					dialogo.setTitle("Continuar Guardando");
 					dialogo.setHeaderText(null);
 					dialogo.initStyle(StageStyle.UTILITY);
-					dialogo.setContentText("Socio "+txtRfc.getText()+" Añadir Plan de Entrenamiento "+cmbPlanesEntren.getSelectionModel());
+					dialogo.setContentText("Socio: "+txtRfc.getText()+"\nPlan de Entrenamiento: "+cmbPlanesEntren.getValue().toString());
 					Optional<ButtonType> result = dialogo.showAndWait();
 					if (result.get() == ButtonType.OK) {
 						listaDPE.add(miDPE);
+						listaDPE = FXCollections.observableArrayList();
+						Detalle_plan_entrenamiento_socio.llenarTableTipoEntre(conexion.getConnection(), listaDPE, txtRfc.getText());
+						tblViewAgegar.setItems(listaDPE);
+						clmnRfcPE.setCellValueFactory(new PropertyValueFactory<Detalle_plan_entrenamiento_socio, Socio>("rfc_socio"));
+						clmnHabitosPE.setCellValueFactory(new PropertyValueFactory<Detalle_plan_entrenamiento_socio, PlanEntrenamiento>("clv_pe"));
+						
 						// validarMembresia();
 					} else {
 						// validarMembresia();
 					}
-
+					
 				}
-			} catch (Exception e) {
-				Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
+			}catch (Exception e) {
+				//Mensaje.error("Valores no Validos", "Verifique que los datos sean correctos");
 			}
+			conexion.cerrarConexion();
 		}
     }
     

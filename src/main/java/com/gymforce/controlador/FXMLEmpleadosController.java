@@ -336,14 +336,14 @@ public class FXMLEmpleadosController implements Initializable {
 		listaTipoCmb = FXCollections.observableArrayList();
 
 		TipoEmpleado.llenarTableTipoEmpleado(conexion.getConnection(), listaTipo);
-<<<<<<< HEAD
+
 		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipo);
 
 		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipoCmb);
-=======
+
 		TipoEmpleado.llenarComboClasif(conexion.getConnection(), listaTipoCmb);
 		
->>>>>>> ec609d323f73b9c63448221915dc6d9f21eab5dd
+
 		Empleado.llenarTableEmpleado(conexion.getConnection(), listaEmpleado);
 		cmbTipoEmpleado.setItems(listaTipoCmb);
 		tblViewEmpleadosTipos.setItems(listaTipo);
