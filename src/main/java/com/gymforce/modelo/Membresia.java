@@ -25,6 +25,13 @@ public class Membresia extends RecursiveTreeObject<Membresia>{
 	private IntegerProperty diasValidos_membresia;
 	private StringProperty status_tm;
 
+	public Membresia(String desc_membresia, Double precio_membresia) { 
+					
+					this.desc_membresia = new SimpleStringProperty(desc_membresia);
+					this.precio_membresia = new SimpleDoubleProperty(precio_membresia);
+		
+				}
+	
 
 	public Membresia(int clv_membresia, String desc_membresia, Double precio_membresia, 
 int diasValidos_membresia, String status_tm) { 
@@ -149,4 +156,19 @@ int diasValidos_membresia, String status_tm) {
 	            return 0;
 	        }
 	    }
+	 
+	 public static void extraerDatosMembresiaTable(Connection cn, ObservableList<Membresia> lstM) {
+		    try {
+		        Statement st = cn.createStatement();
+		        ResultSet rs = st.executeQuery("SELECT desc_membresia, precio_membresia FROM membresia where status_tm = 1");
+		        while (rs.next()) {
+		            lstM.add(new Membresia(rs.getString("desc_membresia"),rs.getDouble("precio_membresia")));
+		                   
+		        }
+		    } catch (SQLException ex) {
+		        Logger.getLogger(Membresia.class.getName()).log(Level.SEVERE, null, ex);
+		    }
+		}
+	 
+	 
 }

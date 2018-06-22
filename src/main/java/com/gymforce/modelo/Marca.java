@@ -30,6 +30,12 @@ public class Marca{
 		this.desc_marca = new SimpleStringProperty(desc_marca);
 		this.status_marca = new SimpleStringProperty(status_marca);
 	}
+	public Marca(int clv_marca, String desc_marca) { 
+		this.clv_marca = new SimpleIntegerProperty(clv_marca);
+		this.desc_marca = new SimpleStringProperty(desc_marca);
+		
+	}
+	
 	public Marca(String desc_marca) {
 		this.desc_marca = new SimpleStringProperty(desc_marca);
 			

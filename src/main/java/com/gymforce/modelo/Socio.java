@@ -21,6 +21,11 @@ public class Socio{
 	private StringProperty direccion_socio;
 	private StringProperty email_socio;
 
+	
+	public Socio() {
+		
+	}
+	
 	public Socio(String rfc_socio, String nombre_socio, String ape1_socio, 
 String ape2_socio, String telefono_socio, String direccion_socio, 
 String email_socio) { 
@@ -190,4 +195,24 @@ String email_socio) {
 	            return 0;
 	        }
 	    }
+	 public String buscaSocio(Connection cn,String Socio) {
+			
+			String nombreS="";
+			try {
+				
+				Statement st = cn.createStatement();
+				ResultSet rs = st.executeQuery("SELECT DISTINCT rfc_socio from socio where rfc_socio='"+Socio+"'"+"and status_socio=1");
+				while (rs.next()) {
+					nombreS=rs.getString("rfc_socio");
+				}
+				
+			}catch(Exception e) {
+					
+				}
+			return nombreS;
+		}
+	 
+	 
+	 
+	 
 }

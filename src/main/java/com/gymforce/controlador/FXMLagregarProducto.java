@@ -117,11 +117,7 @@ public class FXMLagregarProducto implements Initializable {
 			try {
 				
 				conexion.establecerConexion();
-				//Marca mar= new Marca();
-				//Producto obj= new Producto();
-				//String valor=obj.consultaid(conexion.getConnection(),cmbMarca.getValue().toString());
-				//JOptionPane.showMessageDialog(null,"PRUEBA ID "+valor);
-				//mar.setClv_marca(Integer.parseInt(valor));
+				
 				Producto prod= new Producto(btnnombreproducto.getText(),
 						btndescripcion.getText(),
 						Double.parseDouble(btnprecio.getText()),

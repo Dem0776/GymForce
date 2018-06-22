@@ -1,6 +1,11 @@
 package com.gymforce.modelo;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -13,6 +18,11 @@ public class Venta{
 	private DoubleProperty total_venta;
 	private Socio rfc_socio;
 
+	
+	
+	public Venta() {
+		
+	}
 	public Venta(int clv_venta, Date fecha_venta, Double total_venta, 
 Socio rfc_socio) { 
 		this.clv_venta = new SimpleIntegerProperty(clv_venta);
@@ -55,6 +65,22 @@ Socio rfc_socio) {
 	public void setRfc_socio(Socio rfc_socio) {
 		this.rfc_socio = rfc_socio;
 	}
+	
+	public int guardarVenta(Connection cn,String rfc) {
+		try {
+			PreparedStatement consulta = cn.prepareStatement("INSERT venta VALUES (DEFAULT,NOW(),DEFAULT,'"+rfc+"',"+"DEFAULT)");
+			//consulta.setString(1, desc_marca.get());
+			
+			
+			
+			return consulta.executeUpdate();
+		} catch (SQLException e) {
+			Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, e);
+			return 0;
+		}
+	}
+	
+	
 }
 
 
