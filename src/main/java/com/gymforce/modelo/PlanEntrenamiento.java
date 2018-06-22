@@ -38,11 +38,10 @@ public class PlanEntrenamiento {
 		this.status_pe = new SimpleStringProperty(status_pe);
 		this.clv_categoria = clv_categoria;
 	}
-<<<<<<< HEAD
 	public PlanEntrenamiento(String desc_pe) {
 		this.desc_pe = new SimpleStringProperty(desc_pe);
-=======
-	
+
+	}
 	public PlanEntrenamiento(int clv_pe, String desc_pe, String duracion_pe, String frecuencia_pe, String dificultad_pe,
 			String status_pe, Categoria clv_categoria, Ejercicio ejercicio, Rutina serie) {
 		this.clv_pe = new SimpleIntegerProperty(clv_pe);
@@ -57,7 +56,6 @@ public class PlanEntrenamiento {
 	}
 	
 	public PlanEntrenamiento() {		
->>>>>>> fb756e37e437783a0d0b8c526a288d281dfc3315
 	}
 
 	// Metodos atributo: clv_pe
@@ -230,7 +228,7 @@ public class PlanEntrenamiento {
 		}
 		return clv;
 	}
-<<<<<<< HEAD
+
 	@Override
     public String toString() {
         return desc_pe.get();
@@ -249,7 +247,7 @@ public class PlanEntrenamiento {
         }
 
     }
-=======
+
 	
 	public int actualizarPlanE(Connection cn) {
 		try {
@@ -286,5 +284,4 @@ public class PlanEntrenamiento {
 			return 0;
 		}
 	}
->>>>>>> fb756e37e437783a0d0b8c526a288d281dfc3315
 }
