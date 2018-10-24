@@ -1,0 +1,60 @@
+.planE-principal{
+	-fx-background-color: #0c1421;
+	-fx-background-radius: 0;
+	-fx-pref-width: 950;
+	-fx-pref-height: 600;	
+	-fx-border-color: green;
+    -fx-border-width: 0px;
+    -fx-padding: 0 0 0 0;
+    -fx-spacing: 0;
+	-fx-alignment: center;
+}
+.tab-label {
+    -fx-text-fill: #7C8184 ;
+    -fx-font-size: 16;
+}
+.tab-header-background{
+	-fx-background-color: #0c1421;	
+}
+
+.fondoHeader{
+	-fx-background-color: #070c14;
+}
+
+.fondoVentana{
+	/*-fx-background-color: #0c1421;*/
+	-fx-background-color: linear-gradient(to right, #141e30 , #243b55);	
+}
+
+.titulo{
+	-fx-font-size: 24;	
+	-fx-text-fill: #7C8184;	
+}
+
+.jfx-text-field {
+	-jfx-focus-color: #7C8184;	
+	-jfx-label-float: false;
+	-fx-prompt-text-fill: #7C8184;
+    -fx-text-fill: #7C8184;
+	-fx-font-size: 15;
+}
+
+.icono{
+	-fx-fill:#7C8184;
+}
+
+.jfx-button {
+	-fx-background-color: #063151;
+	-fx-text-fill: #F5F5F5;
+	-fx-font-size: 15;
+	-fx-background-radius: 0;
+	-fx-pref-height: 50;
+	-fx-pref-width: 200;
+	-fx-opacity: 1.0;
+}
+
+.jfx-button:hover{
+	-fx-background-color: #04525b;	
+	-fx-opacity: 1;	
+	-fx-cursor: hand;
+}

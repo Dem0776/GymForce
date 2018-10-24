@@ -1,147 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
+
+<?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="principal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="parent" stylesheets="@../estilos/StylePrincipal.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLprincipalController">
+<BorderPane fx:id="bpPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" styleClass="principal-panel-principal" stylesheets="@../estilos/StylePrincipal.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLprincipalController">
    <left>
-      <VBox fx:id="vbSlideBar" prefHeight="600.0" prefWidth="250.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+      <VBox prefHeight="600.0" prefWidth="250.0" styleClass="principal-sidebar" BorderPane.alignment="CENTER">
          <children>
-            <Label onMouseClicked="#hideSlideBar" prefHeight="75.0" prefWidth="250.0" styleClass="lblTitulo" text="Gym Force">
+            <Label prefHeight="75.0" prefWidth="250.0" styleClass="principal-lblTitulo" text="GymForce">
                <padding>
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <HBox alignment="CENTER_LEFT" onMouseClicked="#hbFinanzas" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="INDUSTRY" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label prefHeight="17.0" prefWidth="250.0" styleClass="menus" text="Finanzas" />
-               </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" onMouseClicked="#hbEmpleados" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="USER" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label prefHeight="17.0" prefWidth="89.0" styleClass="menus" text="Empleados" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" onMouseClicked="#hbMembresias" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="LIST" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Membresias" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="455.0" onMouseClicked="#hbSocios" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="USERS" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label onMouseClicked="#hbSocios" styleClass="menus" text="Socios" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="149.0" onMouseClicked="#hbInventario" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="CUBES" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Inventario" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="176.0" onMouseClicked="#hbPagosCompras" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="USD" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Pagos y compras" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="203.0" onMouseClicked="#hbPlanesEntrenamiento" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="ASTERISK" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Planes de entrenamiento" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="175.0" onMouseClicked="#hbDietas" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="CUTLERY" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Dietas" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="230.0" onMouseClicked="#hbClases" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="CALENDAR" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Clases" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="257.0" onMouseClicked="#hbVentas" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="TAGS" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Ventas" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="284.0" onMouseClicked="#hbSalir" prefHeight="40.0" spacing="10.0" styleClass="btns">
-               <children>
-                  <FontAwesomeIconView glyphName="CLOSE" styleClass="iconos" wrappingWidth="12.0" />
-                  <Label styleClass="menus" text="Salir" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
+            <JFXButton onAction="#btnFinanzas" styleClass="principal-btns" text="   Finanzas">
+               <graphic>
+                  <FontAwesomeIconView glyphName="INDUSTRY" styleClass="principal-iconos" />
+               </graphic></JFXButton>
+            <JFXButton layoutX="10.0" layoutY="95.0" onAction="#btnEmpleados" styleClass="principal-btns" text="    Empleados">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USER" styleClass="principal-iconos" />
+               </graphic></JFXButton>            	
+            <JFXButton layoutX="10.0" layoutY="140.0" onAction="#btnMembresias" styleClass="principal-btns" text="   Membresias">
+               <graphic>
+                  <FontAwesomeIconView glyphName="LIST" styleClass="principal-iconos" />
+               </graphic></JFXButton>            	
+            <JFXButton layoutX="10.0" layoutY="185.0" onAction="#btnSocios" styleClass="principal-btns" text="   Socios">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USERS" styleClass="principal-iconos" />
+               </graphic></JFXButton>            	
+            <JFXButton layoutX="10.0" layoutY="230.0" onAction="#btnInventario" styleClass="principal-btns" text="  Inventario">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CUBES" styleClass="principal-iconos" />
+               </graphic></JFXButton>
+            <JFXButton layoutX="10.0" layoutY="275.0" onAction="#btnPagosServicios" styleClass="principal-btns" text="    Pagos y compras">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USD" styleClass="principal-iconos" />
+               </graphic></JFXButton>
+            <JFXButton layoutX="10.0" layoutY="320.0" onAction="#btnPlanesEntrenamiento" styleClass="principal-btns" text="   Planes de entrenamiento">
+               <graphic>
+                  <FontAwesomeIconView glyphName="ASTERISK" styleClass="principal-iconos" />
+               </graphic></JFXButton>
+            <JFXButton layoutX="10.0" layoutY="365.0" onAction="#btnDietas" styleClass="principal-btns" text="    Dietas">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CUTLERY" styleClass="principal-iconos" />
+               </graphic></JFXButton>
+            <JFXButton layoutX="10.0" layoutY="410.0" onAction="#btnClases" styleClass="principal-btns" text="   Clases">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CALENDAR" styleClass="principal-iconos" />
+               </graphic></JFXButton>
+            <JFXButton layoutX="10.0" layoutY="455.0" onAction="#btnVentas" styleClass="principal-btns" text="   Ventas">
+               <graphic>
+                  <FontAwesomeIconView glyphName="TAGS" styleClass="principal-iconos" />
+               </graphic></JFXButton>
+            <JFXButton layoutX="10.0" layoutY="500.0" onAction="#btnSalir" styleClass="principal-btns" text="    Salir">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLOSE" styleClass="principal-iconos" />
+               </graphic></JFXButton>
          </children>
       </VBox>
    </left>

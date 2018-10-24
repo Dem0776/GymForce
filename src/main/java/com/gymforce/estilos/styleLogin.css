@@ -1,0 +1,70 @@
+.login-principal {
+	-fx-background-color: #021528;
+	-fx-background-radius: 0;
+	-fx-pref-height: 600;
+	-fx-pref-width: 900;
+}
+
+.login-panel-fondo{
+	-fx-background-color: #070c14;
+	-fx-background-radius: 0;
+	-fx-pref-height: 450;
+	-fx-pref-width: 400;
+	-fx-border-width: 0px;
+	-fx-padding: 0;
+    -fx-spacing: 50;
+	-fx-alignment: top-center;		
+}
+
+.login-contenedores {
+	-fx-pref-width: 400;
+	-fx-border-width: 0px;
+	-fx-padding: 0;
+    -fx-spacing: 10;
+	-fx-alignment: center;		
+}
+
+.login-vbox-btns{
+	-fx-background-color: transparent;
+	-fx-background-radius: 0;
+	-fx-pref-height: 200;
+	-fx-pref-width: 0;
+	-fx-padding: 0;
+    -fx-spacing: 10;
+	-fx-alignment: center;	
+}
+
+.login-lbl-titulo{
+	-fx-text-fill: #7C8184;
+	-fx-font-size: 25;
+	-fx-font-weight: bold;
+}
+
+.login-textfield {
+	-jfx-focus-color: #7C8184;	
+	-jfx-label-float: true;
+	-fx-prompt-text-fill: #7C8184;
+    -fx-text-fill: #7C8184;
+	-fx-font-size: 15;
+}
+
+.login-btns {
+	-fx-background-color: #063151;
+	-fx-text-fill: #7C8184;
+	-fx-font-size: 15;
+	-fx-background-radius: 0;
+	-fx-pref-height: 50;
+	-fx-pref-width: 350;
+	-fx-opacity: 1.0;
+}
+
+.login-btns:hover{
+	-fx-background-color: #04525b;	
+	-fx-opacity: 1;	
+	-fx-cursor: hand;
+}
+
+.login-iconos{
+	-fx-fill:#7C8184;
+	-fx-font-size: 20;
+}

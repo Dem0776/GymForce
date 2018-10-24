@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="vbPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="ventas-parent" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLlistraProdController">
+   <children>
+      <Label styleClass="ventas-lblTitulo" text="P R O D U C T O S  Y  S E R V I C I O S" />
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="ventas-cont-info">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="ventas-vbox-lbs">
+               <children>
+                  <Label styleClass="ventas-lbls" text="Buscar:" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="ventas-vbox-text">
+               <children>
+                  <JFXTextField fx:id="txtBuscar" />
+               </children>
+            </VBox>
+            <HBox styleClass="ventas-hbox-total">
+               <children>
+                  <JFXButton onAction="#btnBuscar" text="Buscar" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="ventas-vbox-tabla">
+         <children>
+            <TableView fx:id="tblProducto" prefHeight="290.0" prefWidth="365.0">
+              <columns>
+                <TableColumn fx:id="clmnDesc_producto" prefWidth="79.0" text="Producto" />
+                  <TableColumn fx:id="clmnPrecio_producto" prefWidth="61.0" text="Precio" />
+                  <TableColumn fx:id="clmnExistencia_producto" prefWidth="81.0" text="Existencia" />
+                  <TableColumn fx:id="clmnMarca_producto" prefWidth="93.0" text="Marca" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tblMembresia" layoutX="30.0" layoutY="20.0" prefHeight="290.0" prefWidth="331.0">
+               <columns>
+                  <TableColumn fx:id="clmnDesc_membresia" prefWidth="104.0" text="Membresia" />
+                  <TableColumn fx:id="clmnPrecio_membresia" minWidth="0.0" prefWidth="79.0" text="Precio" />
+                  <TableColumn fx:id="clmnDuracion_membresia" minWidth="0.0" prefWidth="97.0" text="Duracion" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tblClase" layoutX="395.0" layoutY="20.0" prefHeight="290.0" prefWidth="365.0">
+               <columns>
+                  <TableColumn fx:id="clmnDesc_clase" prefWidth="183.0" text="Clase" />
+                  <TableColumn fx:id="clmnPrecio_clase" minWidth="0.0" prefWidth="131.0" text="Precio" />
+               </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <HBox spacing="10.0">
+         <VBox.margin>
+            <Insets left="30.0" top="10.0" />
+         </VBox.margin>
+         <children>
+            <JFXButton onAction="#btnAgregar" text="Agregar al carrito" />
+            <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnRegresar" text="Regresar" />
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../estilos/styleVentas.css" />
+      <URL value="@../estilos/jfx-combo-box.css" />
+   </stylesheets>
+</VBox>

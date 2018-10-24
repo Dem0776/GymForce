@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.gymforce.modelo.Categoria;
-import com.gymforce.modelo.Clase;
 import com.gymforce.modelo.ConexionMySQL;
 import com.gymforce.modelo.DetalleRutinaPlanE;
 import com.gymforce.modelo.Ejercicio;

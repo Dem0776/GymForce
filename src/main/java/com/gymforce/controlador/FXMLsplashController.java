@@ -4,24 +4,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.gymforce.Inicio;
 import com.gymforce.modelo.AnimationGenerator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class FXMLsplashController implements Initializable {
-	private double xOffset = 0;
-	private double yOffset = 0;
 
 	@FXML
 	private AnchorPane parent;
@@ -37,11 +30,9 @@ public class FXMLsplashController implements Initializable {
 		    	try {
 					root = (Parent) principal.load();
 					stage.setScene(new Scene(root));
-			    	stage.initStyle(StageStyle.UNDECORATED);
-			    	//stage.setMaximized(true);
+			    	stage.initStyle(StageStyle.UNDECORATED);			    	
 			    	stage.show();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+				} catch (IOException e1) {					
 					e1.printStackTrace();
 				}		    	
 			});

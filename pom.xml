@@ -58,12 +58,6 @@
 
 
   </dependencies>
-<<<<<<< HEAD
-  
-  
-
-=======
- 
     <build>
     <plugins>
         <plugin>
@@ -77,5 +71,4 @@
         </plugin>
     </plugins>
 </build>
->>>>>>> 3c52e09e0acdc46b667a484ee1f752cec0b4db40
 </project>

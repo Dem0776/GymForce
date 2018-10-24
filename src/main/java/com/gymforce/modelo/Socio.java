@@ -21,19 +21,12 @@ public class Socio {
 	private StringProperty direccion_socio;
 	private StringProperty email_socio;
 
-<<<<<<< HEAD
-	
 	public Socio() {
 		
 	}
 	
-	public Socio(String rfc_socio, String nombre_socio, String ape1_socio, 
-String ape2_socio, String telefono_socio, String direccion_socio, 
-String email_socio) { 
-=======
 	public Socio(String rfc_socio, String nombre_socio, String ape1_socio, String ape2_socio, String telefono_socio,
 			String direccion_socio, String email_socio) {
->>>>>>> 3c52e09e0acdc46b667a484ee1f752cec0b4db40
 		this.rfc_socio = new SimpleStringProperty(rfc_socio);
 		this.nombre_socio = new SimpleStringProperty(nombre_socio);
 		this.ape1_socio = new SimpleStringProperty(ape1_socio);
@@ -45,11 +38,7 @@ String email_socio) {
 	
 	public Socio(String rfc_socio) {
 		this.rfc_socio = new SimpleStringProperty(rfc_socio);
-	}
-	public Socio() {
-		
-	}
-	
+	}	
 	
 	// Metodos atributo: rfc_socio
 	public String getRfc_socio() {
@@ -159,58 +148,6 @@ String email_socio) {
 		}
 	}
 
-	public int guardarSocio(Connection cn) {
-		try {
-			PreparedStatement consulta = cn.prepareStatement("INSERT socio VALUES (?,?,?,?,?,?,?,DEFAULT)");
-			consulta.setString(1, rfc_socio.get());
-			consulta.setString(2, nombre_socio.get());
-			consulta.setString(3, ape1_socio.get());
-			consulta.setString(4, ape2_socio.get());
-			consulta.setString(5, telefono_socio.get());
-			consulta.setString(6, direccion_socio.get());
-			consulta.setString(7, email_socio.get());
-
-			return consulta.executeUpdate();
-		} catch (SQLException ex) {
-			Logger.getLogger(Socio.class.getName()).log(Level.SEVERE, null, ex);
-			return 0;
-		}
-	}
-
-	public int actualizarSocio(Connection cn) {
-		try {
-			PreparedStatement consulta = cn.prepareStatement("UPDATE socio SET " + "socio.rfc_socio = ?, "
-					+ "socio.nombre_socio = ?, " + "socio.ape1_socio = ?, " + "socio.ape2_socio = ?, "
-					+ "socio.telefono_socio = ?, " + "socio.telefono_socio = ?, " + "socio.direccion_socio = ? "
-					+ "WHERE socio.rfc_socio = ? ");
-			consulta.setString(1, rfc_socio.get());
-			consulta.setString(2, nombre_socio.get());
-			consulta.setString(3, ape1_socio.get());
-			consulta.setString(4, ape2_socio.get());
-			consulta.setString(5, telefono_socio.get());
-			consulta.setString(6, direccion_socio.get());
-			consulta.setString(7, email_socio.get());
-			consulta.setString(8, rfc_socio.get());
-
-			return consulta.executeUpdate();
-
-		} catch (SQLException ex) {
-			Logger.getLogger(Socio.class.getName()).log(Level.SEVERE, null, ex);
-			return 0;
-		}
-	}
-
-	public int eliminarSocio(Connection cn) {
-		try {
-			PreparedStatement consulta = cn.prepareStatement("DELETE FROM socio " + "WHERE socio.rfc_socio = ? ");
-			consulta.setString(1, rfc_socio.get());
-			return consulta.executeUpdate();
-		} catch (SQLException ex) {
-			Logger.getLogger(Socio.class.getName()).log(Level.SEVERE, null, ex);
-			return 0;
-		}
-	}
-
 	@Override
     public String toString() {
         return rfc_socio.get();
@@ -230,10 +167,7 @@ String email_socio) {
         }
 
     }
-<<<<<<< HEAD
-	
-	
-=======
+
 	public static void llenarComboSocio1(Connection conect, ObservableList<Socio> listTipoSocio) {
         try {
             Statement st = conect.createStatement();
@@ -248,7 +182,7 @@ String email_socio) {
         }
 
     }
-<<<<<<< HEAD
+	
 	 public int guardarSocio(Connection cn) {
 	        try {
 	            PreparedStatement consulta
@@ -324,10 +258,4 @@ String email_socio) {
 			return nombreS;
 		}
 	 
-	 
-	 
-	 
-=======
->>>>>>> 3c52e09e0acdc46b667a484ee1f752cec0b4db40
->>>>>>> ffecaa858964d3043f76faa241ab1d0c0d09466e
 }

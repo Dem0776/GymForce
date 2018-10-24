@@ -2,127 +2,95 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLventasController">
+<VBox fx:id="vbprincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="ventas-parent" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLventasController">
    <children>
-      <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label styleClass="ventas-lblTitulo" text="V E N T A S" />
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="ventas-cont-info">
          <children>
-            <Pane prefHeight="109.0" prefWidth="200.0" stylesheets="@../estilos/StyleClases.css" />
-            <JFXTabPane prefHeight="629.0" prefWidth="950.0">
-               <tabs>
-                  <Tab text="Productos">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="fondoVentana">
-                           <children>
-                              <VBox layoutX="209.0" layoutY="72.0" prefHeight="523.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <HBox prefHeight="50.0" prefWidth="950.0">
-                                       <padding>
-                                          <Insets left="20.0" top="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox prefHeight="309.0" prefWidth="950.0">
-                                       <children>
-                                          <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="5.0">
-                                             <children>
-                                                <Label styleClass="textos" text="MEMBRESIAS" />
-                                                <TableView fx:id="tblMembresias" prefHeight="250.0" prefWidth="150.0">
-                                                  <columns>
-                                                    <TableColumn fx:id="clmnMembresia" prefWidth="75.0" text="Membresia" />
-                                                    <TableColumn fx:id="clmnCostoMembresia" prefWidth="75.0" text="Costo" />
-                                                  </columns>
-                                                </TableView>
-                                                <JFXButton fx:id="btnAgregarM" onAction="#btnAgregarMembresias" styleClass="btnsFondo" text="Agregar" />
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="5.0">
-                                             <children>
-                                                <Label styleClass="textos" text="PRODUCTOS" />
-                                                <TableView fx:id="tblProductos" prefHeight="250.0" prefWidth="200.0">
-                                                  <columns>
-                                                    <TableColumn fx:id="clmnProducto" prefWidth="75.0" text="Producto" />
-                                                    <TableColumn fx:id="clmnCostoProducto" prefWidth="75.0" text="Costo" />
-                                                  </columns>
-                                                </TableView>
-                                                <JFXButton fx:id="btnAgregarP" onAction="#btnAgregarProductos" styleClass="btnsFondo" text="Agregar" />
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="5.0">
-                                             <children>
-                                                <Label styleClass="textos" text="CLASES" />
-                                                <TableView fx:id="tblClases" prefHeight="250.0" prefWidth="161.0">
-                                                  <columns>
-                                                    <TableColumn fx:id="clmnClases" prefWidth="75.0" text="Clases" />
-                                                    <TableColumn fx:id="clmnCostosClases" prefWidth="75.0" text="Costo" />
-                                                  </columns>
-                                                </TableView>
-                                                <JFXButton fx:id="btnAgregarC" onAction="#btnAgregarClases" styleClass="btnsFondo" text="Agregar" />
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="TOP_CENTER" layoutX="310.0" layoutY="10.0" prefWidth="334.0" spacing="5.0">
-                                             <children>
-                                                <Label styleClass="textos" text="CARRITO" />
-                                                <TableView fx:id="tblCarrito" prefHeight="250.0" prefWidth="161.0">
-                                                   <columns>
-                                                      <TableColumn fx:id="clmnCantidadCarrito" prefWidth="75.0" text="Cantidad" />
-                                                      <TableColumn fx:id="clmnProductoCarrito" prefWidth="75.0" text="producto" />
-                                                      <TableColumn fx:id="clmnPreciounitCarrito" prefWidth="84.0" text="Precio unit" />
-                                                      <TableColumn fx:id="clmnPrecioTotalCarrito" prefWidth="99.0" text="Precio total" />
-                                                   </columns>
-                                                </TableView>
-                                                <JFXButton fx:id="btnCarritoR" onAction="#btnRetirarCarrito" styleClass="btnsFondo" text="Retirar del carrito" />
-                                             </children>
-                                             <HBox.margin>
-                                                <Insets left="100.0" />
-                                             </HBox.margin>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="106.0" prefWidth="950.0" spacing="200.0">
-                                       <padding>
-                                          <Insets left="20.0" top="10.0" />
-                                       </padding>
-                                       <children>
-                                          <JFXTextField fx:id="txtRFCcliente" promptText="RFC CLIENTE" styleClass="textos" stylesheets="@../estilos/StyleClases.css" />
-                                          <JFXComboBox fx:id="cmbFormaPago" prefHeight="25.0" prefWidth="166.0" promptText="FORMA DE PAGO" styleClass="textos" />
-                                          <JFXTextField fx:id="txtTotalCompra" editable="false" promptText="TOTAL" styleClass="textos" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="61.0" prefWidth="950.0" spacing="20.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css">
-                                       <children>
-                                          <JFXButton fx:id="btnBuscarC" onAction="#btnBuscarClienteVenta" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="BUSCAR CLIENTE">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </JFXButton>
-                                          <JFXButton fx:id="btnComprarID" onAction="#btnComprarProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Comprar" />
-                                          <JFXButton fx:id="btnCancelarID" onAction="#btnCancelarVentaProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Cancelar" />
-                                       </children></HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </JFXTabPane>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="ventas-vbox-lbs">
+               <children>
+                  <Label styleClass="ventas-lbls" text="No. venta:" />
+                  <Label styleClass="ventas-lbls" text="Fecha:" />
+                  <Label layoutX="10.0" layoutY="44.0" styleClass="ventas-lbls" text="Cliente:" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="ventas-vbox-text">
+               <children>
+                  <JFXTextField fx:id="txtNoVenta" editable="false" />
+                  <JFXTextField fx:id="txtFecha" editable="false" />
+                  <JFXComboBox fx:id="cmbCliente" prefHeight="31.0" prefWidth="312.0" />
+               </children>
+            </VBox>
+            <HBox styleClass="ventas-hbox-total">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="ventas-vbox-lbs">
+                     <children>
+                        <Label styleClass="ventas-lbls" text="Total:" />
+                        <Label styleClass="ventas-lbls" text="Entregado:" />
+                        <Label styleClass="ventas-lbls" text="Cambio:" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="ventas-vbox-text">
+                     <children>
+                        <JFXTextField fx:id="txtTotal" editable="false" />
+                        <JFXTextField fx:id="txtEntregado" editable="false" />
+                        <JFXTextField fx:id="txtCambio" editable="false" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
-      </VBox>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="ventas-vbox-tabla">
+         <children>
+            <TableView prefHeight="290.0" prefWidth="365.0">
+              <columns>
+                <TableColumn prefWidth="79.0" text="Producto" />
+                  <TableColumn prefWidth="61.0" text="Precio" />
+                  <TableColumn prefWidth="81.0" text="Cantidad" />
+                  <TableColumn prefWidth="93.0" text="Importe" />
+              </columns>
+            </TableView>
+            <TableView layoutX="30.0" layoutY="20.0" prefHeight="290.0" prefWidth="331.0">
+               <columns>
+                  <TableColumn prefWidth="81.0" text="Membresia" />
+                  <TableColumn minWidth="0.0" prefWidth="60.0" text="Precio" />
+                  <TableColumn minWidth="0.0" prefWidth="62.0" text="Cantidad" />
+                  <TableColumn prefWidth="77.0" text="Importe" />
+               </columns>
+            </TableView>
+            <TableView layoutX="395.0" layoutY="20.0" prefHeight="290.0" prefWidth="365.0">
+               <columns>
+                  <TableColumn prefWidth="79.0" text="Clase" />
+                  <TableColumn prefWidth="66.0" text="Precio" />
+                  <TableColumn text="Cantidad" />
+                  <TableColumn prefWidth="89.0" text="Importe" />
+               </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <HBox spacing="10.0">
+         <VBox.margin>
+            <Insets left="50.0" top="10.0" />
+         </VBox.margin>
+         <children>
+            <JFXButton onAction="#btnAgregar" text="Agregar productos o servicios" />
+            <JFXButton layoutX="10.0" layoutY="10.0" onAction="#btnNuevaVenta" text="Nueva venta" />
+            <JFXButton layoutX="260.0" layoutY="10.0" onAction="#btnRealizaVenta" text="Realizar venta" />
+         </children>
+      </HBox>
    </children>
    <stylesheets>
-      <URL value="@../estilos/StyleClases.css" />
-      <URL value="@../estilos/tableView.css" />
+      <URL value="@../estilos/styleVentas.css" />
+      <URL value="@../estilos/jfx-combo-box.css" />
    </stylesheets>
-</AnchorPane>
+</VBox>

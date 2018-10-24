@@ -16,11 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLcompraPagosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="tab-header-background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gymforce.controlador.FXMLcompraPagosController">
    <children>
       <VBox layoutX="97.0" layoutY="61.0" prefHeight="600.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css" />
+            <Pane prefHeight="109.0" prefWidth="200.0" styleClass="fondoVentana" />
             <JFXTabPane prefHeight="629.0" prefWidth="950.0">
                <tabs>
                   <Tab text="Compras">
@@ -51,7 +51,7 @@
                                     </HBox>
                                     <AnchorPane prefHeight="350.0" prefWidth="950.0">
                                        <children>
-                                          <Label layoutX="14.0" layoutY="74.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css" text="Producto">
+                                          <Label layoutX="14.0" layoutY="74.0" styleClass="tab" text="Producto">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
@@ -73,16 +73,16 @@
                                              </font>
                                           </Label>
                                           <JFXTextField fx:id="txtPrecioUnitarioProductos" layoutX="585.0" layoutY="75.0" prefHeight="25.0" prefWidth="143.0" />
-                                          <JFXButton layoutX="184.0" layoutY="164.0" onAction="#btnagregarProductoCompra" prefHeight="32.0" prefWidth="120.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Agregar" />
-                                          <JFXButton layoutX="437.0" layoutY="163.0" onAction="#btneliminarProducto" prefHeight="40.0" prefWidth="113.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Eliminar" />
-                                          <JFXTreeTableView fx:id="tblvwCompraProducto" layoutX="10.0" layoutY="200.0" prefHeight="193.0" prefWidth="931.0" stylesheets="@../estilos/StyleJFXTreeTableView.css" />
+                                          <JFXButton layoutX="184.0" layoutY="164.0" onAction="#btnagregarProductoCompra" prefHeight="32.0" prefWidth="120.0" styleClass="btnsFondo" text="Agregar" />
+                                          <JFXButton layoutX="437.0" layoutY="163.0" onAction="#btneliminarProducto" prefHeight="40.0" prefWidth="113.0" styleClass="btnsFondo" text="Eliminar" />
+                                          <JFXTreeTableView fx:id="tblvwCompraProducto" layoutX="10.0" layoutY="200.0" prefHeight="193.0" prefWidth="931.0" />
                                           <Label layoutX="405.0" layoutY="29.0" text="Forma de Pago">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Label>
                                           <JFXComboBox fx:id="cmbFormaPagoProductos" layoutX="536.0" layoutY="30.0" prefHeight="25.0" prefWidth="178.0" />
-                                          <JFXButton layoutX="255.0" layoutY="69.0" onAction="#btnagregarProveedorCompra" prefHeight="37.0" prefWidth="151.0" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Nuevo Proveedor" />
+                                          <JFXButton layoutX="255.0" layoutY="69.0" onAction="#btnagregarProveedorCompra" prefHeight="37.0" prefWidth="151.0" styleClass="btnsFondo" text="Nuevo Proveedor" />
                                           <JFXComboBox fx:id="cmbProductoCompras" layoutX="95.0" layoutY="75.0" prefHeight="25.0" prefWidth="149.0" />
                                           <Label layoutX="550.0" layoutY="131.0" text="Fecha">
                                              <font>
@@ -92,14 +92,14 @@
                                           <JFXDatePicker fx:id="dpfechaCompras" layoutX="610.0" layoutY="132.0" />
                                        </children>
                                     </AnchorPane>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0" styleClass="tab" stylesheets="@../estilos/StyleClases.css">
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="950.0" spacing="20.0" styleClass="tab">
                                        <children>
-                                          <JFXButton onAction="#btnComprarProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Comprar" />
-                                          <JFXButton onAction="#btnCancelarCompraProductos" styleClass="btnsFondo" stylesheets="@../estilos/StyleClases.css" text="Cancelar" />
+                                          <JFXButton onAction="#btnComprarProductos" styleClass="btnsFondo" text="Comprar" />
+                                          <JFXButton onAction="#btnCancelarCompraProductos" styleClass="btnsFondo" text="Cancelar" />
                                        </children></HBox>
                                  </children>
                               </VBox>
-                              <Label layoutX="20.0" layoutY="20.0" styleClass="titulo" stylesheets="@../../../../../../../../../Documents/gimnasio/GymForce/src/main/java/com/gymforce/estilos/StyleClases.css" />
+                              <Label layoutX="20.0" layoutY="20.0" styleClass="titulo" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -175,12 +175,12 @@
                   </Tab>
                </tabs>
             </JFXTabPane>
-            <Pane layoutX="10.0" layoutY="10.0" prefHeight="109.0" prefWidth="200.0" styleClass="fondoVentana" stylesheets="@../estilos/StyleClases.css" />
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="109.0" prefWidth="200.0" styleClass="fondoVentana" />
          </children>
       </VBox>
    </children>
    <stylesheets>
-      <URL value="@../estilos/StyleClases.css" />
-      <URL value="@../estilos/StyleJFXTreeTableView.css" />
+      <URL value="@../estilos/StyleVentanas.css" />
+      <URL value="@../estilos/jfx-combo-box.css" />
    </stylesheets>
 </AnchorPane>
